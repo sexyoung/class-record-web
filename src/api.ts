@@ -8,3 +8,7 @@ const getAPI = () => {
 export const postSignUp = () => {
     return `${getAPI()}/sign-up`;
 };
+
+export const postLogin = () => {
+    return `${getAPI()}/login`;
+};
