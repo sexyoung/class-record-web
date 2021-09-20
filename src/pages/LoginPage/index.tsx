@@ -15,7 +15,7 @@ export const LoginPage: FC = () => {
             </div>
             <Link to={ROUTE.MAIN}>已認證登入</Link>
             <br/>
-            <Link to={ROUTE.FINISHED}>未認證登入</Link>
+            <Link to={ROUTE.AUTH}>未認證登入</Link>
             {/* <Link>尚未註冊</Link> */}
         </div>
     )

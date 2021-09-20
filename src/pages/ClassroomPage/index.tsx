@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-export const MainPage: FC = () => {
+export const ClassroomPage: FC = () => {
     return (
         <div>
             主頁

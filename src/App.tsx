@@ -13,9 +13,8 @@ function App() {
       <Switch>
         <Route exact path={ROUTE.LOGIN}><Page.LoginPage /></Route>
         <Route exact path={ROUTE.SIGNUP}><Page.SignUpPage /></Route>
-        <Route exact path={ROUTE.FINISHED}><Page.FinishedPage /></Route>
         <Route exact path={ROUTE.AUTH}><Page.AuthenticationpPage /></Route>
-        <Route exact path={ROUTE.MAIN}><Page.MainPage /></Route>
+        <Route exact path={ROUTE.CLASS}><Page.ClassroomPage /></Route>
         <Route exact path={ROUTE.HOME}><Page.HomePage /></Route>
       </Switch>
     </Router>
