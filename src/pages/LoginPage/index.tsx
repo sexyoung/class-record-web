@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ROUTE } from 'route';
 import * as API from "api";
+import { clearToken, setToken } from 'utils';
 
 export const LoginPage: FC = () => {
     const history = useHistory();
@@ -21,9 +22,8 @@ export const LoginPage: FC = () => {
         })
         .then(res => res.json())
         .then(json => {
-            // console.log("jsonjsonjson", json);
+            setToken(json.token);
             if(json.emailVerifiedAt) {
-                document.cookie = `status=${json.token}; expires=${new Date(+new Date() + 86400000).toUTCString()}`;
                 history.replace(ROUTE.CLASS);
             } else {
                 history.replace(ROUTE.AUTH);
@@ -34,8 +34,8 @@ export const LoginPage: FC = () => {
 
     return (
         <div>
+            <div>登入頁</div>
             <form onSubmit={login}>
-                <div>登入頁</div>
                 <input type="text" name="email"　placeholder="email" required/><br/>
                 <input type="password" name="password"　placeholder="password" required/><br/>
                 <button>登入</button>

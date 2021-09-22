@@ -3,6 +3,8 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ROUTE } from 'route';
 import * as API from "api";
+import { clearToken, setToken } from 'utils';
+
 
 export const SignUpPage: FC = () => {
     const history = useHistory();
@@ -22,8 +24,7 @@ export const SignUpPage: FC = () => {
         })
         .then(res => res.json())
         .then(json => {
-            // console.log("jsonjsonjson", json);
-            document.cookie = `status=${json.token}; expires=${new Date(+new Date() + 86400000).toUTCString()}`;
+            setToken(json.token);
         });
         history.replace(ROUTE.AUTH);
     }
