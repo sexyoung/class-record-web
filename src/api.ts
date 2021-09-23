@@ -24,3 +24,5 @@ export const getHeaderWithToken = () => ({
   "content-type": "application/json",
   "Authorization": "Bearer " + getCookie().token,
 });
+
+

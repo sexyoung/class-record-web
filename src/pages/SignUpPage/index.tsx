@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ROUTE } from 'route';
 import * as API from "api";
-import { clearToken, setToken } from 'utils';
+import { setToken } from 'utils';
 
 
 export const SignUpPage: FC = () => {

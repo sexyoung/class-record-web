@@ -4,5 +4,6 @@ export const ROUTE = {
     SIGNUP: "/sign-up",
     AUTH: "/auth",
     CLASS: "/class",
+    STUDENT: "/student",
     MAIN: "/main",
 }
