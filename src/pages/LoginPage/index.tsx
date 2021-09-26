@@ -36,8 +36,8 @@ export const LoginPage: FC = () => {
         <div>
             <div>登入頁</div>
             <form onSubmit={login}>
-                <input type="text" name="email"　placeholder="email" required/><br/>
-                <input type="password" name="password"　placeholder="password" required/><br/>
+                <input type="text" name="email"　placeholder="email" required defaultValue="kellyu621@gmail.com"/><br/>
+                <input type="password" name="password"　placeholder="password" required defaultValue="790621"/><br/>
                 <button>登入</button>
             </form>
             <Link to={ROUTE.SIGNUP}>尚未註冊</Link>

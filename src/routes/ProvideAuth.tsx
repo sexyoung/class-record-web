@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-import * as API from "api";
+import { getCookie } from "utils";
 import { authContext } from "hooks/useAuth";
 import { useProvideAuth } from "hooks/useProvideAuth";
 
@@ -9,7 +9,7 @@ interface IProviderAuth {
 }
 
 export const ProvideAuth: React.FC<IProviderAuth> = ({ children }: IProviderAuth) => {
-  const auth = useProvideAuth(API.getToken());
+  const auth = useProvideAuth(getCookie().token);
   return (
     <authContext.Provider value={auth}>
       {children}

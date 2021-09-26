@@ -16,10 +16,11 @@ interface IPrivateRoute {
 
 export const PrivateRoute: React.FC<IPrivateRoute> = ({ children, ...rest }: IPrivateRoute) => {
   const auth = useAuth();
-  const token = getCookie();
+  const token = getCookie().token;
 
   // 有 token 但目前還沒取得登入狀態
   if(token && auth.isAuth === undefined) return null;
+  
 
   return (
     <Route
