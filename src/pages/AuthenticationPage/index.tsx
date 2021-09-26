@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import { ROUTE } from 'route';
 import * as API from "api";
 
-export const AuthenticationpPage: FC = () => {
+export const AuthenticationPage: FC = () => {
     const history = useHistory();
 
     const auth: FEH<HTMLFormElement> = (e) => {

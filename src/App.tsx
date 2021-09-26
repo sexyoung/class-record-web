@@ -6,7 +6,7 @@ import {
 import { ROUTE } from "route";
 import { PrivateRoute, ProvideAuth } from "./routes";
 import * as Page from "pages";
-import './App.css';
+// import style from './App.module.scss';
 
 function App() {
   return (
@@ -16,10 +16,11 @@ function App() {
           {/* 登入後頁面 */}
           <PrivateRoute path={ROUTE.CLASS}><Page.ClassroomPage /></PrivateRoute>
           <PrivateRoute path={ROUTE.STUDENT}><Page.StudentPage /></PrivateRoute>
+          <PrivateRoute path={ROUTE.AUTH}><Page.AuthenticationPage /></PrivateRoute>
+
           {/* 登入前頁面 */}
           <Route exact path={ROUTE.LOGIN}><Page.LoginPage /></Route>
           <Route exact path={ROUTE.SIGNUP}><Page.SignUpPage /></Route>
-          <Route exact path={ROUTE.AUTH}><Page.AuthenticationpPage /></Route>
           <Route exact path={ROUTE.HOME}><Page.HomePage /></Route>
         </Switch>
       </Router>

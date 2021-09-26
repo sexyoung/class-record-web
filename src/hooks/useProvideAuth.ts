@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 
 import * as API from "api";
-// import { isBuilding } from 'utils';
 
 export const useProvideAuth = (token: string) => {
   const [isAuth, setIsAuth] = useState<boolean | void>(undefined);
@@ -12,22 +11,19 @@ export const useProvideAuth = (token: string) => {
     const res = await fetch(API.getTeacherInfo(), {
       headers: API.getHeaderWithToken(),
     });
-    const user = await res.json();
-
-    // if(!isBuilding()) {
-    //   LogRocket.identify(user.id, {
-    //     name: user.fb_name || user.google_name || user.fb_id,
-    //     email: user.email,
-    //   });
-    // }
-
-    return user;
+    const { message, ...resData } = await res.json();
+    if(message) throw new Error(message);
+    
+    return resData;
   };
 
   useEffect(() => {
     token && checkIsAuth()
-    .then(() => { setIsAuth(true) })
-    .catch(e => { console.log(e.message) })
+    .then((res) => {
+      console.log(res);
+      setIsAuth(true);
+    })
+    .catch(e => { console.log('既然取得me失敗，那應該導回首頁', e.message) })
   }, [token]);
 
   return {

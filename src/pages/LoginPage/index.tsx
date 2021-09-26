@@ -15,6 +15,7 @@ export const LoginPage: FC = () => {
             email: formData.get("email"),
             password: formData.get("password"),
         };
+
         fetch(API.postLogin(), {
             method: 'POST',
             headers: {'content-type': 'application/json'},
