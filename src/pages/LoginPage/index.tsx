@@ -21,16 +21,29 @@ export const LoginPage: FC = () => {
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(apiRequest),
         })
-        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            if(res.status !== 200) {
+                // 觸發錯誤語法
+                throw new Error("帳號或密碼錯誤");
+            }
+            return res.json()
+        })
         .then(json => {
             setToken(json.token);
             if(json.emailVerifiedAt) {
                 history.replace(ROUTE.CLASS);
-            } else {
+            } 
+
+            else {
                 history.replace(ROUTE.AUTH);
             }
         
-        });
+        })
+        .catch( err => {
+            alert(err);
+        })
+        ;
     }
 
     return (
