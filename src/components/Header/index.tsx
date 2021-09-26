@@ -2,12 +2,12 @@ import { FC } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ROUTE } from 'route';
-import { clearToken } from 'utils';
+import { clearApiToken } from 'utils';
 
 export const Header: FC = () => {
   const history = useHistory();
   const logOut = () => {
-    clearToken();
+    clearApiToken();
     history.push(ROUTE.HOME);
   }
 
