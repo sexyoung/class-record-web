@@ -1,61 +1,65 @@
-import { FC, FormEventHandler as FEH } from 'react';
-import { useHistory } from 'react-router';
-import { Link } from 'react-router-dom';
-import { ROUTE } from 'route';
+// import { Helmet } from "react-helmet";
+import { Link, useHistory } from "react-router-dom";
+import { FC, useState, FormEventHandler as FEH, useEffect } from "react";
+
 import * as API from "api";
-import { setToken } from 'utils';
-import { useAuth } from 'hooks';
+import { ROUTE } from "route";
+import { useAuth } from "hooks";
+import { fetchApi, setApiToken, getCookie } from "utils";
 
 export const LoginPage: FC = () => {
-    const auth = useAuth();
-    const history = useHistory();
-    
-    const login: FEH<HTMLFormElement> = (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const apiRequest = {
-            email: formData.get("email"),
-            password: formData.get("password"),
-        };
+  const auth = useAuth();
+  const history = useHistory();
+  // const [token, setToken] = useState("");
+  const [error, setError] = useState<string>('');
 
-        fetch(API.postLogin(), {
-            method: 'POST',
-            headers: {'content-type': 'application/json'},
-            body: JSON.stringify(apiRequest),
-        })
-        .then(res => {
-            console.log(res);
-            if(res.status !== 200) {
-                // 觸發錯誤語法
-                throw new Error("帳號或密碼錯誤");
-            }
-            return res.json()
-        })
-        .then(json => {
-            setToken(json.token);
-            auth.setIsAuth!(true);
-            if(json.emailVerifiedAt) {
-                history.push(ROUTE.CLASS);
-            } else {
-                history.replace(ROUTE.AUTH);
-            }
-        
-        })
-        .catch( err => {
-            alert(err);
-        })
-        ;
-    }
+  useEffect(() => {
+    getCookie().token &&
+      fetchApi(API.getTeacherInfo()).catch(e => setError(`${e}`));
+  }, []);
 
-    return (
-        <div>
-            <div>登入頁</div>
-            <form onSubmit={login}>
-                <input type="text" name="email"　placeholder="email" required defaultValue="kellyu621@gmail.com"/><br/>
-                <input type="password" name="password"　placeholder="password" required defaultValue="790621"/><br/>
-                <button>登入</button>
-            </form>
-            <Link to={ROUTE.SIGNUP}>尚未註冊</Link>
-        </div>
-    )
-}
+  const login: FEH<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const apiRequest = {
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+
+    fetchApi(API.postLogin(), {
+      method: "post",
+      withToken: false,
+      body: apiRequest,
+    })
+      .then((data) => {
+        setApiToken(data.token);
+        auth.setIsAuth!(true);
+        if (data.emailVerifiedAt) {
+          history.push(ROUTE.CLASS);
+        } else {
+          history.replace(ROUTE.AUTH);
+        }
+      })
+      .catch((e) => setError(`${e}`))
+      .finally(() => {
+        console.log("hide the modal");
+      });
+  };
+
+  if(auth.isAuth === undefined) return null;
+
+  // if(auth.isAuth) return <Redirect to="/class" />;
+
+  return (
+    <div>
+      <div>登入頁</div>
+      <form onSubmit={login}>
+        <input type="text" name="email" placeholder="email" required defaultValue="sexyoung@gmail.com" /><br />
+        <input type="password" name="password" placeholder="password" required defaultValue="abc123" /><br />
+        <button>登入</button>
+        {error && <div>{error}</div>}
+      </form>
+      <Link to={ROUTE.SIGNUP}>尚未註冊</Link>
+    </div>
+  );
+};

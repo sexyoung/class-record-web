@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 
 import * as API from "api";
+import { clearApiToken } from "utils";
 
 export const useProvideAuth = (token: string) => {
   const [isAuth, setIsAuth] = useState<boolean | void>(undefined);
@@ -19,12 +20,18 @@ export const useProvideAuth = (token: string) => {
   };
 
   useEffect(() => {
-    token && checkIsAuth()
+    if(token === undefined) return setIsAuth(false);
+
+    checkIsAuth()
     .then((res) => {
       console.log(res);
       setIsAuth(true);
     })
-    .catch(e => { console.log('既然取得me失敗，那應該導回首頁', e.message) })
+    .catch(e => {
+      if(`${e}` === 'TypeError: Failed to fetch') return;
+      clearApiToken();
+      setIsAuth(false);
+    })
   }, [token]);
 
   return {
