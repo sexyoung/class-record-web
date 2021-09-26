@@ -20,7 +20,6 @@ export const PrivateRoute: React.FC<IPrivateRoute> = ({ children, ...rest }: IPr
 
   // 有 token 但目前還沒取得登入狀態
   if(token && auth.isAuth === undefined) return null;
-  
 
   return (
     <Route

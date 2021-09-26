@@ -3,10 +3,11 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { ROUTE } from 'route';
 import * as API from "api";
-import { setToken } from 'utils';
-
+import { fetchApi, setApiToken } from 'utils';
+import { useAuth } from 'hooks';
 
 export const SignUpPage: FC = () => {
+    const auth = useAuth();
     const history = useHistory();
 
     const signUp: FEH<HTMLFormElement> = (e) => {
@@ -17,16 +18,17 @@ export const SignUpPage: FC = () => {
             email: formData.get("email"),
             password: formData.get("password"),
         };
-        fetch(API.postSignUp(), {
-            method: 'POST',
-            headers: {'content-type': 'application/json'},
-            body: JSON.stringify(apiRequest),
+
+        fetchApi(API.postSignUp(), {
+            method: "post",
+            withToken: false,
+            body: apiRequest,
         })
-        .then(res => res.json())
         .then(json => {
-            setToken(json.token);
+            setApiToken(json.token);
+            auth.setIsAuth!(true);
+            history.replace(ROUTE.AUTH);
         });
-        history.replace(ROUTE.AUTH);
     }
 
     return (
