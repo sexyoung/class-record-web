@@ -11,10 +11,11 @@ export const useProvideAuth = (token: string) => {
     const res = await fetch(API.getTeacherInfo(), {
       headers: API.getHeaderWithToken(),
     });
-    const { message, ...resData } = await res.json();
-    if(message) throw new Error(message);
-    
-    return resData;
+
+    if (!res.ok) throw new Error(res.statusText);
+
+    const user = await res.json();
+    return user;
   };
 
   useEffect(() => {

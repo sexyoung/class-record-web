@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { ROUTE } from 'route';
 import * as API from "api";
 import { setToken } from 'utils';
+import { useAuth } from 'hooks';
 
 export const LoginPage: FC = () => {
+    const auth = useAuth();
     const history = useHistory();
     
     const login: FEH<HTMLFormElement> = (e) => {
@@ -31,11 +33,10 @@ export const LoginPage: FC = () => {
         })
         .then(json => {
             setToken(json.token);
+            auth.setIsAuth!(true);
             if(json.emailVerifiedAt) {
-                history.replace(ROUTE.CLASS);
-            } 
-
-            else {
+                history.push(ROUTE.CLASS);
+            } else {
                 history.replace(ROUTE.AUTH);
             }
         
