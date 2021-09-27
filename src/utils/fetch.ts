@@ -39,6 +39,6 @@ export const fetchApi: IFetchApi = (url: string, option = {
     .then(async (res) => {
       if(res.ok) return res.json();
       const error = await res.json();
-      throw new Error(error.message);
+      throw new Error(error.message || JSON.stringify(error));
     });
 };

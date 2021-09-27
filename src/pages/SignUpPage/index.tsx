@@ -7,8 +7,15 @@ import { ROUTE } from 'route';
 import { useAuth } from 'hooks';
 import { fetchApi, setApiToken } from 'utils';
 
+type SignUpError = {
+  name?: string;
+  email?: string;
+  password?: string;
+}
+
 export const SignUpPage: FC = () => {
   const auth = useAuth();
+  const [error, setError] = useState<SignUpError>({});
   const history = useHistory();
   const [bg, setBg] = useState();
 
@@ -20,11 +27,13 @@ export const SignUpPage: FC = () => {
 
   const handleSignUp: FEH<HTMLFormElement> = (e) => {
     e.preventDefault();
+    setError({});
     const formData = new FormData(e.currentTarget);
     const apiRequest = {
       name: formData.get("username"),
       email: formData.get("email"),
       password: formData.get("password"),
+      passwordConfirm: formData.get("passwordConfirm"),
     };
 
     fetchApi(API.postSignUp(), {
@@ -36,7 +45,17 @@ export const SignUpPage: FC = () => {
         setApiToken(json.token);
         auth.setIsAuth!(true);
         history.replace(ROUTE.AUTH);
+      })
+      .catch((e) => {
+        setError(JSON.parse(e.message).reduce((obj: object, row: any) => ({
+          ...obj,
+          [row.param]: row.msg,
+        }), {}));
+      })
+      .finally(() => {
+        console.log("hide the modal");
       });
+    ;
   }
 
   return (
@@ -51,22 +70,25 @@ export const SignUpPage: FC = () => {
           <form className="flex flex-col pt-3 md:pt-8" onSubmit={handleSignUp}>
             <div className="flex flex-col pt-4">
               <label htmlFor="name" className="text-lg">姓名</label>
-              <input type="text" id="name" placeholder="ex: 李佳儀" name="username" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+              <input required type="text" id="name" placeholder="ex: 李佳儀" name="username" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+              {error.name && <p className="text-red-500 text-xs italic">{error.name}</p>}
             </div>
 
             <div className="flex flex-col pt-4">
               <label htmlFor="email" className="text-lg">信箱</label>
-              <input type="email" id="email" placeholder="your@email.com" name="email" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+              <input required type="email" id="email" placeholder="your@email.com" name="email" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+              {error.email && <p className="text-red-500 text-xs italic">{error.email}</p>}
             </div>
 
             <div className="flex flex-col pt-4">
               <label htmlFor="password" className="text-lg">密碼</label>
-              <input type="password" id="password" placeholder="輸入有一定複雜度的密碼" name="password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+              <input required type="password" id="password" placeholder="輸入有一定複雜度的密碼" name="password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+              {error.password && <p className="text-red-500 text-xs italic">{error.password}</p>}
             </div>
 
             <div className="flex flex-col pt-4">
               <label htmlFor="confirm-password" className="text-lg">確認</label>
-              <input type="password" id="confirm-password" placeholder="再輸入一次您的密碼" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+              <input required type="password" id="confirm-password" placeholder="再輸入一次您的密碼" name="passwordConfirm" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
 
             <button className="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">註冊</button>
