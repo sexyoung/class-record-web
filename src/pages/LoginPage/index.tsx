@@ -75,7 +75,7 @@ export const LoginPage: FC = () => {
               <input type="password" id="password" name="password" defaultValue="abc123" placeholder="Password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
             {error && <div>{error}</div>}
-            <button type="submit" className="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">登入</button>
+            <button className="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">登入</button>
           </form>
           <div className="text-center pt-12 pb-12">
             <p>沒有帳號？<Link to={ROUTE.SIGNUP} className="underline font-semibold">註冊一下</Link></p>
