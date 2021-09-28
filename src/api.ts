@@ -17,7 +17,7 @@ export const postLogin = () => {
 
 export const getTeacherInfo = () => {
   return `${getAPI()}/me`;
-}
+};
 
 export const getAuth = (code: string) => {
   return `${getAPI()}/validate-email/${code}`;

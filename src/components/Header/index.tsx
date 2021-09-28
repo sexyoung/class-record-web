@@ -14,5 +14,5 @@ export const Header: FC = () => {
       <li><Link to={ROUTE.STUDENT}>STUDENT</Link></li>
       <li><Link to={ROUTE.HOME} onClick={clearApiToken}>LOGOUT</Link></li>
     </ul>
-  )
-}
+  );
+};

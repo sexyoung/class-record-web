@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { ROUTE } from "route";
 
 export const ClassroomEditPage: FC = () => {
-  
+
   return (
     <div>
       <Header />

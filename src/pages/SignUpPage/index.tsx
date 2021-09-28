@@ -55,8 +55,8 @@ export const SignUpPage: FC = () => {
       .finally(() => {
         console.log("hide the modal");
       });
-    ;
-  }
+
+  };
 
   return (
     <div className="w-full flex flex-wrap">
@@ -104,5 +104,5 @@ export const SignUpPage: FC = () => {
         {bg && <img className="object-cover w-full h-screen hidden md:block" src={bg} alt="Background" />}
       </div>
     </div>
-  )
-}
+  );
+};

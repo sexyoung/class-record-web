@@ -11,13 +11,16 @@ export const ClassroomPage: FC = () => {
   const [classroomList, setClassroomList] = useState<Type.Class[]>();
   useEffect(() => {
     fetchApi(API.getClassRoom())
-      .then(setClassroomList)
+      .then(setClassroomList);
   }, []);
-  
+
   return (
     <div>
       <Header />
       課程頁
+      <p>
+        <Link to={ROUTE.ROLLCALL}>點名</Link>
+      </p>
       {classroomList && classroomList.map(classroom =>
         <div key={classroom.id}>
           <Link to={`${ROUTE.CLASS}/${classroom.id}`}>EDIT</Link><br />
