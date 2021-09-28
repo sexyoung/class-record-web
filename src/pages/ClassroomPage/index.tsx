@@ -23,7 +23,7 @@ export const ClassroomPage: FC = () => {
       </p>
       {classroomList && classroomList.map(classroom =>
         <div key={classroom.id}>
-          <Link to={`${ROUTE.CLASS}/${classroom.id}`}>EDIT</Link><br />
+          <Link to={`${ROUTE.CLASS_EDIT}/?id=${classroom.id}`}>EDIT</Link><br />
           {classroom.date}<br />
           {classroom.students.map(student =>
             <span key={student.id}>{student.name}</span>

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { FC, useEffect, useState } from "react";
 
 import * as API from "api";
@@ -7,14 +7,18 @@ import { Header } from "components/Header";
 import * as StudentType from "domain/type/res/student";
 import * as ClassRoomType from "domain/type/res/classroom";
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 export const ClassroomEditPage: FC = () => {
-  const { id } = useParams<{id: string}>();
+  const query = useQuery();
   const [classroom, setClassroom] = useState<ClassRoomType.Class>();
   const [studentList, setStudentList] = useState<StudentType.Student[]>();
   useEffect(() => {
-    fetchApi(API.getClassRoom(+id)).then(setClassroom);
+    fetchApi(API.getClassRoom(+query.get('id')!)).then(setClassroom);
     fetchApi(API.getAllStudent(API.Query.Join)).then(setStudentList);
-  }, [id]);
+  }, [query.get('id')]);
 
   if(!classroom || !studentList) return null;
 

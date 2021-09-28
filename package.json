@@ -2,7 +2,6 @@
   "name": "class-record-web",
   "version": "0.1.0",
   "private": true,
-  "homepage": "//rollcall.sexyoung.tw",
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@testing-library/jest-dom": "^5.11.4",
@@ -61,6 +60,7 @@
       "/sign-up",
       "/auth",
       "/class",
+      "/class-edit",
       "/student",
       "/main"
     ]
