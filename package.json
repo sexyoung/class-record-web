@@ -2,6 +2,7 @@
   "name": "class-record-web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "//rollcall.sexyoung.tw",
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@testing-library/jest-dom": "^5.11.4",
@@ -12,18 +13,19 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "autoprefixer": "^9.8.7",
-    "node-sass": "^6.0.1",
     "postcss": "^7.0.38",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "sass": "^1.42.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.16",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "postbuild": "react-snap",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
@@ -49,6 +51,18 @@
   },
   "devDependencies": {
     "@types/react-helmet": "^6.1.2",
-    "@types/react-router-dom": "^5.1.8"
+    "@types/react-router-dom": "^5.1.8",
+    "react-snap": "^1.23.0"
+  },
+  "reactSnap": {
+    "include": [
+      "/",
+      "/login",
+      "/sign-up",
+      "/auth",
+      "/class",
+      "/student",
+      "/main"
+    ]
   }
 }

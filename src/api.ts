@@ -23,6 +23,10 @@ export const getAuth = (code: string) => {
   return `${getAPI()}/validate-email/${code}`;
 };
 
+export const getClassRoom = () => {
+  return `${getAPI()}/classroom`;
+};
+
 export const getHeaderWithToken = () => ({
   "Accept": "application/json",
   "content-type": "application/json",
