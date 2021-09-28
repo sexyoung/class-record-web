@@ -2,6 +2,13 @@ import { getCookie } from "utils";
 
 const { REACT_APP_API_DOMAIN: API } = process.env;
 
+export enum Query {
+  Join = 'join',
+  Dropout = 'dropout',
+  Current = 'current',
+  Zero = 'zero',
+  Debts = 'debts',
+}
 
 const getAPI = () => {
   return API;
@@ -32,7 +39,7 @@ export const getClassRoom = (id?: number) => {
 };
 
 // 學生查詢
-export const getAllStudent = (status: string) => {
+export const getAllStudent = (status: `${Query}`) => {
   return `${getAPI()}/student?status=${status}`;
 };
 

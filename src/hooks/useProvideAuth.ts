@@ -24,7 +24,7 @@ export const useProvideAuth = (token: string) => {
 
     checkIsAuth()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setIsAuth(true);
       })
       .catch(e => {
