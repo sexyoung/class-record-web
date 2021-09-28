@@ -23,8 +23,8 @@ export const getAuth = (code: string) => {
   return `${getAPI()}/validate-email/${code}`;
 };
 
-export const getClassRoom = () => {
-  return `${getAPI()}/classroom`;
+export const getClassRoom = (id?: number) => {
+  return id ? `${getAPI()}/classroom/${id}`: `${getAPI()}/classroom`;
 };
 
 export const getHeaderWithToken = () => ({

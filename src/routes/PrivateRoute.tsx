@@ -23,7 +23,7 @@ export const PrivateRoute: React.FC<IPrivateRoute> = ({ children, ...rest }: IPr
 
   return (
     <Route
-      exact                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+      exact
       {...rest}
       render={({ location }) =>
         auth.isAuth ? children : (

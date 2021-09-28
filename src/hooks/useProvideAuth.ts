@@ -8,7 +8,7 @@ export const useProvideAuth = (token: string) => {
   const [isAuth, setIsAuth] = useState<boolean | void>(undefined);
 
   const checkIsAuth = async () => {
-    
+
     const res = await fetch(API.getTeacherInfo(), {
       headers: API.getHeaderWithToken(),
     });
@@ -23,15 +23,15 @@ export const useProvideAuth = (token: string) => {
     if(token === undefined) return setIsAuth(false);
 
     checkIsAuth()
-    .then((res) => {
-      console.log(res);
-      setIsAuth(true);
-    })
-    .catch(e => {
-      if(`${e}` === 'TypeError: Failed to fetch') return;
-      clearApiToken();
-      setIsAuth(false);
-    })
+      .then((res) => {
+        console.log(res);
+        setIsAuth(true);
+      })
+      .catch(e => {
+        if(`${e}` === 'TypeError: Failed to fetch') return;
+        clearApiToken();
+        setIsAuth(false);
+      });
   }, [token]);
 
   return {
