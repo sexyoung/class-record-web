@@ -4,21 +4,29 @@ import * as API from "api";
 import { fetchApi } from "utils";
 import { Header } from "components/Header";
 import * as Type from "domain/type/res/classroom";
+import { Link } from "react-router-dom";
+import { ROUTE } from "route";
 
 export const ClassroomPage: FC = () => {
-  const [classroom, setClassroom] = useState<Type.Class[]>();
+  const [classroomList, setClassroomList] = useState<Type.Class[]>();
   useEffect(() => {
     fetchApi(API.getClassRoom())
-      .then(setClassroom)
+      .then(setClassroomList)
   }, []);
-
-  console.log(classroom);
   
   return (
     <div>
       <Header />
       課程頁
-      {classroom && classroom.map(c => <div>{c.date}</div>)}
+      {classroomList && classroomList.map(classroom =>
+        <div key={classroom.id}>
+          <Link to={`${ROUTE.CLASS}/${classroom.id}`}>EDIT</Link><br />
+          {classroom.date}<br />
+          {classroom.students.map(student =>
+            <span key={student.id}>{student.name}</span>
+          )}
+        </div>
+      )}
     </div>
   );
 };

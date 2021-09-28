@@ -14,6 +14,7 @@ function App() {
       <Router>
         <Switch>
           {/* 登入後頁面 */}
+          <PrivateRoute path={`${ROUTE.CLASS}/:id`}><Page.ClassroomEditPage /></PrivateRoute>
           <PrivateRoute path={ROUTE.CLASS}><Page.ClassroomPage /></PrivateRoute>
           <PrivateRoute path={ROUTE.STUDENT}><Page.StudentPage /></PrivateRoute>
           <PrivateRoute path={ROUTE.AUTH}><Page.AuthenticationPage /></PrivateRoute>
