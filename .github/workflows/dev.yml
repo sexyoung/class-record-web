@@ -76,6 +76,17 @@ jobs:
         with:
           args: unzip -qq ./artifact.zip -d ./
 
+      - name: 刪掉舊的資料夾
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: |
+            cd web
+            whoami
+            sudo rm -rf class-record-web
+          host: ${{secrets.DO_HOST}}
+          username: ${{secrets.DO_USER}}
+          privateKey: ${{ secrets.DO_KEY }}
+
       - name: 上傳程式碼到server
         uses: appleboy/scp-action@master
         env:
@@ -88,6 +99,15 @@ jobs:
           target: "~/web/class-record-web"
           strip_components: 1
 
+      - name: 改一下權限
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: |
+            cd web
+            sudo chmod -R 775 class-record-web
+          host: ${{secrets.DO_HOST}}
+          username: ${{secrets.DO_USER}}
+          privateKey: ${{ secrets.DO_KEY }}
   # slack-notice: # 通知啦幹
   #   runs-on: ubuntu-latest
   #   needs: deploy-dev
