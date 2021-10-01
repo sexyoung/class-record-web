@@ -6,6 +6,7 @@ export const ROUTE = {
   CLASS: "/class",
   CLASS_EDIT: "/class-edit",
   STUDENT: "/student",
+  STUDENTPERSONAL: "/student-personal",
   MAIN: "/main",
   ROLLCALL: "/rollcall",
 };

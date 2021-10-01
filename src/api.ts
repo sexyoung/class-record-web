@@ -43,6 +43,11 @@ export const getAllStudent = (status: `${Query}`) => {
   return `${getAPI()}/student?status=${status}`;
 };
 
+// 學生資訊
+export const getOneStudent = (id: number) => {
+  return `${getAPI()}/student/${id}`;
+};
+
 // 儲值
 export const postDeposit = () => {
   return `${getAPI()}/deposit`;
