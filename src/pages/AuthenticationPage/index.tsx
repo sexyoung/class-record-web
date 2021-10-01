@@ -11,12 +11,13 @@ export const AuthenticationPage: FC = () => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    fetchApi(API.getAuth(formData.get("code") as string)).then((json) => {
-      if (json.message === 'TOKEN_INVALID') {
-        return window.alert(json.message);
-      }
-      history.replace(ROUTE.CLASS);
-    });
+    fetchApi(API.getAuth(formData.get("code") as string))
+      .then((json) => {
+        if (json.message === 'TOKEN_INVALID') {
+          return window.alert(json.message);
+        }
+        history.replace(ROUTE.CLASS);
+      });
   };
 
   return (
