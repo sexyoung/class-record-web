@@ -1,14 +1,13 @@
 import { useEffect, useState, FormEventHandler as FEH} from "react";
 
 import * as API from "api";
+import { ROUTE } from "route";
 import { fetchApi } from "utils";
+import { useHistory } from "react-router";
 import { Header } from "components/Header";
 import * as StudentType from "domain/type/res/student";
-import { useHistory } from "react-router";
-import { ROUTE } from "route";
 
 export const RollCallPage = () => {
-
   const history = useHistory();
 
   useEffect(() => {
@@ -37,11 +36,12 @@ export const RollCallPage = () => {
   return (
     <div>
       <Header />
-      點名頁面
+      點名頁面<br />
       <form onSubmit={handleSubmit}>
-        所有學生:
+        date: <input type="date" name="date" required /><br />
+        time: <input type="time" name="time" required /><br />
         <ul>
-          {studentList.map((student, index) =>
+          {studentList.map((student) =>
             <li key={student.id}>
               <label>
                 <input type="checkbox" name="studentId" value={student.id} />
@@ -50,8 +50,6 @@ export const RollCallPage = () => {
             </li>
           )}
         </ul>
-        date: <input type="date" name="date" required /><br />
-        time: <input type="time" name="time" required /><br />
         <button>submit</button>
       </form>
     </div>
