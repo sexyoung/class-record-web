@@ -18,8 +18,9 @@ export const StudentPersonalPage: FC = () => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
+
     id && await fetchApi(API.getOneStudent(+id), {
-      method: "patch",
+      method: "post",
       withToken: true,
       body: {
         data: {
@@ -27,8 +28,9 @@ export const StudentPersonalPage: FC = () => {
         }
       }
     });
+
     id && await fetchApi(API.getOneStudent(+id), {
-      method: "patch",
+      method: "post",
       withToken: true,
       body: {
         data: {
@@ -36,6 +38,7 @@ export const StudentPersonalPage: FC = () => {
         }
       }
     });
+
     setIsEdit.bind(false);
   };
 
@@ -46,7 +49,7 @@ export const StudentPersonalPage: FC = () => {
       <div>
         <div>{student.name}</div>
         <div>{student.status}</div>
-        <button onClick={setIsEdit.bind(null, true)}>編輯</button>
+        <button onClick={setIsEdit.bind(null, true)}>[編輯]</button>
       </div>
       }
       {isEdit && student &&
@@ -54,7 +57,7 @@ export const StudentPersonalPage: FC = () => {
         <input type="text" name="name" defaultValue={student.name} placeholder="name" required />
         <input type="text" name="status" defaultValue={student.status} placeholder="status" required />
         <div>{student.status}</div>
-        <button>完成</button>
+        <button>[完成]</button>
       </form>
       }
     </div>
