@@ -1,6 +1,8 @@
 import { FC, useEffect, useState, FormEventHandler as FEH } from 'react';
-import { fetchApi } from "utils";
+
 import * as API from "api";
+import { fetchApi } from "utils";
+import { Header } from 'components/Header';
 import * as Type from "domain/type/res/student";
 
 export const StudentPersonalPage: FC = () => {
@@ -19,13 +21,12 @@ export const StudentPersonalPage: FC = () => {
 
     const formData = new FormData(e.currentTarget);
 
+    /** @fix 這邊只需 post 一次即可 */
     id && await fetchApi(API.getStudent(+id), {
       method: "post",
       withToken: true,
       body: {
-        data: {
-          name: formData.get("name")
-        }
+        data: {name: formData.get("name")}
       }
     });
 
@@ -33,9 +34,7 @@ export const StudentPersonalPage: FC = () => {
       method: "post",
       withToken: true,
       body: {
-        data: {
-          status: formData.get("status")
-        }
+        data: {status: formData.get("status")}
       }
     });
 
@@ -48,7 +47,9 @@ export const StudentPersonalPage: FC = () => {
 
   return (
     <div>
+      <Header />
       個人頁
+      <h2><strong>此頁的編輯功能未完成</strong></h2>
       {!isEdit && student &&
       <div>
         <div>{student.name}</div>
