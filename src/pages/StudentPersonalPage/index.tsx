@@ -4,13 +4,13 @@ import * as API from "api";
 import * as Type from "domain/type/res/student";
 
 export const StudentPersonalPage: FC = () => {
-  const [student, setStudent] = useState<Type.Student>();
+  const [student, setStudent] = useState<Type.Detail>();
   const [isEdit, setIsEdit] = useState(false);
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get('id');
 
   useEffect(() => {
-    id && fetchApi(API.getOneStudent(+id))
+    id && fetchApi(API.getStudent(+id))
       .then(setStudent);
   }, []);
 
@@ -19,7 +19,7 @@ export const StudentPersonalPage: FC = () => {
 
     const formData = new FormData(e.currentTarget);
 
-    id && await fetchApi(API.getOneStudent(+id), {
+    id && await fetchApi(API.getStudent(+id), {
       method: "post",
       withToken: true,
       body: {
@@ -29,7 +29,7 @@ export const StudentPersonalPage: FC = () => {
       }
     });
 
-    id && await fetchApi(API.getOneStudent(+id), {
+    id && await fetchApi(API.getStudent(+id), {
       method: "post",
       withToken: true,
       body: {
@@ -42,6 +42,10 @@ export const StudentPersonalPage: FC = () => {
     setIsEdit.bind(false);
   };
 
+  if(!student) return null;
+
+  console.log(student.records);
+
   return (
     <div>
       個人頁
@@ -53,13 +57,24 @@ export const StudentPersonalPage: FC = () => {
       </div>
       }
       {isEdit && student &&
-      <form onSubmit={finishEdit}>
-        <input type="text" name="name" defaultValue={student.name} placeholder="name" required />
-        <input type="text" name="status" defaultValue={student.status} placeholder="status" required />
-        <div>{student.status}</div>
-        <button>[完成]</button>
-      </form>
+        <form onSubmit={finishEdit}>
+          <input type="text" name="name" defaultValue={student.name} placeholder="name" required />
+          <input type="text" name="status" defaultValue={student.status} placeholder="status" required />
+          <div>{student.status}</div>
+          <button>[完成]</button>
+        </form>
       }
+      <ul>
+        {student.records.map((record: Type.Deposit | Type.RollCall) =>
+          <li key={`${record.type}-${record.id}`}>
+            <span>{record.type}</span>
+            <span>{record.date}</span>
+            {record.type === 'deposit' &&
+              <span>過期日{record.data!.expiresAt}</span>
+            }
+          </li>
+        )}
+      </ul>
     </div>
   );
 };

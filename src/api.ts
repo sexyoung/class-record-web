@@ -44,7 +44,7 @@ export const getAllStudent = (status: `${Query}`) => {
 };
 
 // 學生資訊
-export const getOneStudent = (id: number) => {
+export const getStudent = (id: number) => {
   return `${getAPI()}/student/${id}`;
 };
 

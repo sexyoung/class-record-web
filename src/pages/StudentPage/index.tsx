@@ -39,7 +39,7 @@ export const StudentPage: FC = () => {
   };
 
   const changeStatus = (id: number, updateStatus: API.Query.Join | API.Query.Dropout) => {
-    fetchApi(API.getOneStudent(id), {
+    fetchApi(API.getStudent(id), {
       method: "post",
       withToken: true,
       body: {data: { status: updateStatus }}
