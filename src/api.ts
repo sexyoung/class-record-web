@@ -7,7 +7,7 @@ export enum Query {
   Dropout = 'dropout',
   Current = 'current',
   Zero = 'zero',
-  Debts = 'debts',
+  Debts = 'debts',
 }
 
 const getAPI = () => {
@@ -51,6 +51,10 @@ export const getOneStudent = (id: number) => {
 // 儲值
 export const postDeposit = () => {
   return `${getAPI()}/deposit`;
+};
+
+export const getPlan = () => {
+  return `${getAPI()}/plan`;
 };
 
 // 帶token的header

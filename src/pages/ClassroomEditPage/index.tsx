@@ -1,16 +1,12 @@
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FC, useEffect, useState, FormEventHandler as FEH } from "react";
 
 import * as API from "api";
 import { ROUTE } from "route";
-import { fetchApi } from "utils";
+import { useQuery, fetchApi } from "utils";
 import { Header } from "components/Header";
 import * as StudentType from "domain/type/res/student";
 import * as ClassRoomType from "domain/type/res/classroom";
-
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
 
 export const ClassroomEditPage: FC = () => {
   const query = useQuery();
