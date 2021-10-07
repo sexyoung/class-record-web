@@ -1,47 +1,58 @@
-import { FC, useEffect, useState, FormEventHandler as FEH } from 'react';
-
+import {
+  FC,
+  useEffect,
+  useState,
+  FormEventHandler as FEH,
+} from 'react';
 import * as API from "api";
 import { fetchApi } from "utils";
 import { Header } from 'components/Header';
 import * as Type from "domain/type/res/student";
+import { Modal } from 'components/Modal';
+import { Deposit } from 'components/Deposit';
+import { usePlan } from 'hooks/usePlan';
 
 export const StudentPersonalPage: FC = () => {
+  const planList = usePlan();
   const [student, setStudent] = useState<Type.Detail>();
   const [isEdit, setIsEdit] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get('id');
 
-  useEffect(() => {
+  const getStudent = () => {
     id && fetchApi(API.getStudent(+id))
       .then(setStudent);
-  }, []);
+  };
+
+  useEffect(() => {
+    getStudent();
+  }, [id]);
 
   const finishEdit: FEH<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
 
-    /** @fix 這邊只需 post 一次即可 */
     id && await fetchApi(API.getStudent(+id), {
       method: "post",
       withToken: true,
       body: {
-        data: {name: formData.get("name")}
+        data: {
+          name: formData.get("name"),
+          status: formData.get("status"),
+        }
       }
     });
 
-    id && await fetchApi(API.getStudent(+id), {
-      method: "post",
-      withToken: true,
-      body: {
-        data: {status: formData.get("status")}
-      }
-    });
-
-    setIsEdit.bind(false);
+    setIsEdit(false);
   };
 
-  if(!student) return null;
+  const closeModal = () => {
+    setIsShowModal(false);
+  };
+
+  if(!student || !planList) return null;
 
   console.log(student.records);
 
@@ -49,7 +60,6 @@ export const StudentPersonalPage: FC = () => {
     <div>
       <Header />
       個人頁
-      <h2><strong>此頁的編輯功能未完成</strong></h2>
       {!isEdit && student &&
       <div>
         <div>{student.name}</div>
@@ -61,10 +71,10 @@ export const StudentPersonalPage: FC = () => {
         <form onSubmit={finishEdit}>
           <input type="text" name="name" defaultValue={student.name} placeholder="name" required />
           <input type="text" name="status" defaultValue={student.status} placeholder="status" required />
-          <div>{student.status}</div>
           <button>[完成]</button>
         </form>
       }
+      <button onClick={setIsShowModal.bind(null, true)}>[儲值]</button>
       <ul>
         {student.records.map((record: Type.Deposit | Type.RollCall) =>
           <li key={`${record.type}-${record.id}`}>
@@ -76,6 +86,16 @@ export const StudentPersonalPage: FC = () => {
           </li>
         )}
       </ul>
+      {isShowModal &&
+      <Modal>
+        <Deposit {...{
+          planList,
+          closeModal,
+          student,
+          depositDone: getStudent,
+        }} />
+      </Modal>
+      }
     </div>
   );
 };

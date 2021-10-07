@@ -8,15 +8,16 @@ import { Student } from 'domain/type/res/student';
 interface IDeposit {
   planList: Plan[];
   student: Student;
-  closeDeposit: () => void;
-  getStudentList: () => void;
+  closeModal: () => void;
+  depositDone: () => void;
 }
 
-export const Deposit: FC<IDeposit> = ({ planList, student, closeDeposit, getStudentList }) => {
+export const Deposit: FC<IDeposit> = ({ planList, student, closeModal, depositDone }) => {
   const deposit: FEH<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
+    console.log(student);
 
     await fetchApi(API.postDeposit(), {
       method: "post",
@@ -25,9 +26,9 @@ export const Deposit: FC<IDeposit> = ({ planList, student, closeDeposit, getStud
         studentId: student.id,
       },
     })
-      .then(() => getStudentList());
+      .then(() => depositDone());
 
-    closeDeposit();
+    closeModal();
   };
 
   return (
@@ -40,7 +41,7 @@ export const Deposit: FC<IDeposit> = ({ planList, student, closeDeposit, getStud
         )}
       </select>
       <button>[儲值]</button>
-      <button type="button" onClick={closeDeposit}>[取消]</button>
+      <button type="button" onClick={closeModal}>[取消]</button>
     </form>
   );
 };

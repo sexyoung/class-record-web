@@ -8,6 +8,7 @@ import { fetchApi, useQuery } from "utils";
 import { Deposit } from 'components/Deposit';
 import * as Type from "domain/type/res/student";
 import { usePlan } from "hooks/usePlan";
+import { Modal } from "components/Modal";
 
 export const StudentPage: FC = () => {
   const planList = usePlan();
@@ -30,7 +31,7 @@ export const StudentPage: FC = () => {
     getStudentList(status);
   }, [status]);
 
-  const closeDeposit = () => {
+  const closeModal = () => {
     setId(0);
   };
 
@@ -59,7 +60,7 @@ export const StudentPage: FC = () => {
         status !== API.Query.Dropout ?
           <div className="joinStudent">
             <select value={status} onChange={handleChangeStatus}>
-              <option value={API.Query.Join}>在籍</option>
+              <option value={API.Query.Join}>全部</option>
               <option value={API.Query.Current}>有課</option>
               <option value={API.Query.Zero}>無課</option>
               <option value={API.Query.Debts}>欠課</option>
@@ -81,12 +82,16 @@ export const StudentPage: FC = () => {
             )}
           </div>
       )}
-      {isShowModal && <Deposit {...{
-        planList,
-        closeDeposit,
-        student: findStudent(id),
-        getStudentList,
-      }} />}
+      {isShowModal &&
+      <Modal>
+        <Deposit {...{
+          planList,
+          closeModal,
+          student: findStudent(id),
+          depositDone: getStudentList,
+        }} />
+      </Modal>
+      }
     </div>
   );
 };

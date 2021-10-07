@@ -34,6 +34,7 @@ export const getAuth = (code: string) => {
   return `${getAPI()}/validate-email/${code}`;
 };
 
+// 課程資訊 ＆ 課程查詢
 export const getClassRoom = (id?: number) => {
   return id ? `${getAPI()}/classroom/${id}`: `${getAPI()}/classroom`;
 };
@@ -53,6 +54,7 @@ export const postDeposit = () => {
   return `${getAPI()}/deposit`;
 };
 
+// 課程方案
 export const getPlan = () => {
   return `${getAPI()}/plan`;
 };
