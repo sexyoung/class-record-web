@@ -56,28 +56,28 @@ export const LoginPage: FC = () => {
   // if(auth.isAuth) return <Redirect to="/class" />;
 
   return (
-    <div className="w-full flex flex-wrap">
+    <div className="h-screen w-full flex flex-wrap bg-gray-800">
       <div className="w-full md:w-1/2 flex flex-col">
         <div className="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">
-          <Link to={ROUTE.HOME} className="bg-black text-white font-bold text-xl p-4">Logo</Link>
+          <Link to={ROUTE.HOME} className="bg-indigo-300 text-gray-800 font-bold text-xl p-4">Logo</Link>
         </div>
 
         <div className="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-          <p className="text-center text-3xl">歡迎</p>
+          <p className="text-center text-3xl text-gray-200">~ 上課點點名 ~</p>
           <form className="flex flex-col pt-3 md:pt-8" onSubmit={handleLogin}>
             <div className="flex flex-col pt-4">
-              <label htmlFor="email" className="text-lg">信箱</label>
-              <input type="email" name="email" id="email" required defaultValue="sexyoung@gmail.com" placeholder="your@email.com" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+              <label htmlFor="email" className="text-lg text-gray-200">信箱</label>
+              <input type="email" name="email" id="email" required defaultValue="sexyoung@gmail.com" placeholder="your@email.com" className="shadow appearance-none rounded w-full py-2 px-3 bg-gray-700 text-gray-400 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
 
             <div className="flex flex-col pt-4">
-              <label htmlFor="password" className="text-lg">密碼</label>
-              <input type="password" id="password" required name="password" defaultValue="abc123" placeholder="Password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+              <label htmlFor="password" className="text-lg text-gray-200">密碼</label>
+              <input type="password" id="password" required name="password" defaultValue="abc123" placeholder="Password" className="shadow appearance-none rounded w-full py-2 px-3 bg-gray-700 text-gray-400 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
             {error && <div>{error}</div>}
-            <button className="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">登入</button>
+            <button className="bg-indigo-300 text-gray-800 font-bold text-lg hover:bg-indigo-200 p-2 mt-8">登入</button>
           </form>
-          <div className="text-center pt-12 pb-12">
+          <div className="text-gray-300 text-center pt-12 pb-12">
             <p>沒有帳號？<Link to={ROUTE.SIGNUP} className="underline font-semibold">註冊一下</Link></p>
           </div>
         </div>
