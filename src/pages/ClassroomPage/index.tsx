@@ -11,7 +11,9 @@ export const ClassroomPage: FC = () => {
   const [classroomList, setClassroomList] = useState<Type.Class[]>();
   useEffect(() => {
     fetchApi(API.getClassRoom())
-      .then(setClassroomList);
+      .then(setClassroomList)
+      .catch(console.error)
+    ;
   }, []);
 
   return (
