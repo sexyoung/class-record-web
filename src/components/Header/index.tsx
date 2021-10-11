@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import cx from 'classnames';
 import { Link, useHistory } from 'react-router-dom';
-import { LogoutIcon } from '@heroicons/react/solid';
+import { LogoutIcon } from '@heroicons/react/outline';
 
 import { ROUTE } from 'route';
 import { clearApiToken } from 'utils';
@@ -49,9 +49,9 @@ export const Header: FC = () => {
             <Link
               to={ROUTE.HOME}
               onClick={clearApiToken}
-              className="text-gray-600 hover:bg-indigo-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-600 px-3 py-2 rounded-md text-sm font-medium"
             >
-              <LogoutIcon className="w-5 h-5 text-blue-500" />
+              <LogoutIcon className="w-5 h-5 text-gray-600 hover:text-white" />
             </Link>
           </div>
         </div>
