@@ -1,14 +1,14 @@
-import { Link, useHistory } from "react-router-dom";
 import { FC, useEffect, useState } from 'react';
+import { Link, useHistory } from "react-router-dom";
 
 import * as API from "api";
 import { ROUTE } from 'route';
-import { Header } from 'components/Header';
-import { fetchApi, useQuery } from "utils";
-import { Deposit } from 'components/Deposit';
-import * as Type from "domain/type/res/student";
 import { usePlan } from "hooks/usePlan";
 import { Modal } from "components/Modal";
+import { Header } from 'components/Header';
+import { Deposit } from 'components/Deposit';
+import { fetchApi, useQuery } from "utils";
+import * as Type from "domain/type/res/student";
 
 export const StudentPage: FC = () => {
   const planList = usePlan();
@@ -48,15 +48,12 @@ export const StudentPage: FC = () => {
       .then(() => getStudentList(status));
   };
 
-  if(!planList) return null;
+  // if(!planList) return null;
 
   return (
     <div>
       <Header />
-      <div>-------學生頁-------</div>
-      <Link to={`${ROUTE.STUDENT}?status=${API.Query.Join}`}>[在籍]</Link>
-      <Link to={`${ROUTE.STUDENT}?status=${API.Query.Dropout}`}>[非在籍]</Link>
-      {studentList.length && (
+      {!!studentList.length && (
         status !== API.Query.Dropout ?
           <div className="joinStudent">
             <select value={status} onChange={handleChangeStatus}>
@@ -82,7 +79,7 @@ export const StudentPage: FC = () => {
             )}
           </div>
       )}
-      {isShowModal &&
+      {isShowModal && planList &&
       <Modal>
         <Deposit {...{
           planList,

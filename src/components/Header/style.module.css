@@ -1,0 +1,7 @@
+.navItem {
+  @apply  hover:bg-indigo-300 hover:text-white px-3 py-2 rounded-md text-lg font-medium;
+}
+
+.navItem.active {
+  @apply  text-indigo-600;
+}
