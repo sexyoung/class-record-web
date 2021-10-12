@@ -37,7 +37,7 @@ jobs:
     - name: 給予環境變數
       run: |
         cp .env.ci .env
-        REACT_APP_API_DOMAIN=//class-record-web.sexyoung.tw
+        echo REACT_APP_API_DOMAIN=//class-record-api.sexyoung.tw >> .env
         cat .env
 
     # - name: 跑個測試唄

@@ -14,13 +14,15 @@ export const StudentPage: FC = () => {
   const planList = usePlan();
   const history = useHistory();
   const status: API.Query = (useQuery().get('status') || API.Query.Join) as API.Query;
-  const [studentList, setStudentList] = useState<Type.Student[]>([]);
+  const [studentList, setStudentList] = useState<Type.Student[]>();
   const [id, setId] = useState(0);
   const isShowModal = !!id;
 
   const getStudentList = (status: API.Query = API.Query.Join) => {
     fetchApi(API.getAllStudent(status))
-      .then(setStudentList);
+      .then(setStudentList)
+      .catch(console.log)
+    ;
   };
 
   const handleChangeStatus: React.ChangeEventHandler<HTMLSelectElement> = ({ currentTarget }) => {
@@ -36,7 +38,7 @@ export const StudentPage: FC = () => {
   };
 
   const findStudent = (id: number) => {
-    return studentList.find(s => s.id === id) as Type.Student;
+    return studentList!.find(s => s.id === id) as Type.Student;
   };
 
   const changeStatus = (id: number, updateStatus: API.Query.Join | API.Query.Dropout) => {
@@ -53,7 +55,7 @@ export const StudentPage: FC = () => {
   return (
     <div>
       <Header />
-      {!!studentList.length && (
+      {studentList && (
         status !== API.Query.Dropout ?
           <div className="joinStudent">
             <select value={status} onChange={handleChangeStatus}>
