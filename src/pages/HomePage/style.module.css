@@ -21,3 +21,27 @@
 .HomePage > .hero > .login {
   @apply text-sm mt-2;
 }
+
+.HomePage > .block {
+  @apply py-5 px-8 text-gray-400;
+}
+
+.HomePage > .block:nth-of-type(odd) {
+  @apply bg-lavender-200;
+}
+
+.HomePage > .block > .title {
+  @apply mx-5 mb-3 text-2xl text-center text-lavender-700;
+}
+
+.HomePage > .block > .text {
+  @apply leading-7;
+}
+
+.HomePage > .block:nth-of-type(odd) > .text {
+  @apply text-lavender-500;
+}
+
+.HomePage > .block > .hint {
+  @apply text-lavender-700 border-lavender-700 bg-lavender-200 h-40 border-2 rounded-sm mb-5 flex items-center justify-center;
+}

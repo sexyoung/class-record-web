@@ -27,6 +27,7 @@ function App() {
           <Route exact path={ROUTE.HOME}><Page.HomePage /></Route>
         </Switch>
       </Router>
+      <div>footer</div>
     </ProvideAuth>
   );
 }
