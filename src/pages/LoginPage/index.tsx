@@ -68,7 +68,7 @@ export const LoginPage: FC = () => {
         </div>
 
         <div className="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-          <p className="text-center text-3xl text-gray-500 font-bold">上課點點名</p>
+          <p className="text-center text-3xl text-lavender-700">老師登入</p>
           <form className="flex flex-col pt-3 md:pt-8" onSubmit={handleLogin}>
             <div className="flex flex-col pt-4">
               <input

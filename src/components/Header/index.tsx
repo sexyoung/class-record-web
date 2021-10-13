@@ -13,7 +13,7 @@ export const Header: FC = () => {
   const pathname = history.location.pathname;
 
   return (
-    <nav className="bg-indigo-200">
+    <nav className="bg-lavender-200">
       <div className="max-w-7xl mx-auto px-2">
         <div className="relative flex items-center justify-between h-16">
           <div className="flex-1 flex items-stretch justify-start">
@@ -51,7 +51,7 @@ export const Header: FC = () => {
               onClick={clearApiToken}
               className="text-gray-600 px-3 py-2 rounded-md text-sm font-medium"
             >
-              <LogoutIcon className="w-5 h-5 text-gray-600 hover:text-white" />
+              <LogoutIcon className="w-5 h-5 text-lavender-500 hover:text-white" />
             </Link>
           </div>
         </div>
