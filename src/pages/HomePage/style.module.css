@@ -1,0 +1,23 @@
+.HomePage > .hero {
+  @apply text-lavender-700 bg-lavender-200 h-96 relative flex items-center justify-center flex-col;
+}
+
+.HomePage > .hero > .logo {
+  @apply w-8 h-8 top-3 left-3 absolute;
+}
+
+.HomePage > .hero > .title {
+  @apply text-3xl font-semibold;
+}
+
+.HomePage > .hero > .subtitle {
+  @apply text-base mb-7 tracking-widest;
+}
+
+.HomePage > .hero > .signup {
+  @apply px-6;
+}
+
+.HomePage > .hero > .login {
+  @apply text-sm mt-2;
+}
