@@ -21,7 +21,7 @@ export const HomePage: FC = () => {
         <p className={style.title}>上課點點名</p>
         <p className={style.subtitle}>輕鬆點名 優雅管理</p>
         <Link to={ROUTE.SIGNUP} className={cx(btnStyle.btn, style.signup)}>老師註冊</Link>
-        <Link to={ROUTE.LOGIN} className={style.login}>已註冊? 點此登入</Link>
+        <p className={style.signed}>已註冊？<Link to={ROUTE.LOGIN} className={style.login}>點此登入</Link></p>
       </div>
       <div className={style.block}>
         <h2 className={style.title}>掌握學生出席狀況</h2>

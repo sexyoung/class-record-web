@@ -18,8 +18,12 @@
   @apply px-6;
 }
 
-.HomePage > .hero > .login {
+.HomePage > .hero > .signed {
   @apply text-sm mt-2;
+}
+
+.HomePage > .hero > p > .login {
+  @apply underline;
 }
 
 .HomePage > .block {
