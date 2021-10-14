@@ -3,7 +3,7 @@
 }
 
 .HomePage > .hero > .logo {
-  @apply w-8 h-8 top-3 left-3 absolute;
+  @apply top-3 left-3 absolute;
 }
 
 .HomePage > .hero > .title {

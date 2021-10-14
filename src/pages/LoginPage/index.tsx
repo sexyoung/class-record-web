@@ -1,4 +1,6 @@
 // import { Helmet } from "react-helmet";
+import cx from 'classnames';
+import * as Icon from '@heroicons/react/outline';
 import { Link, useHistory } from "react-router-dom";
 import { FC, useState, FormEventHandler as FEH, useEffect } from "react";
 
@@ -6,6 +8,9 @@ import * as API from "api";
 import { ROUTE } from "route";
 import { useAuth } from "hooks";
 import { fetchApi, setApiToken, getCookie } from "utils";
+
+import btnStyle from 'components/btn.module.css';
+import comStyle from 'components/common.module.css';
 
 export const LoginPage: FC = () => {
   const auth = useAuth();
@@ -59,11 +64,8 @@ export const LoginPage: FC = () => {
     <div className="h-screen w-full flex flex-wrap">
       <div className="w-full md:w-1/2 flex flex-col">
         <div className="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">
-          <Link
-            to={ROUTE.HOME}
-            className="bg-indigo-300 text-white font-bold text-xl p-4"
-          >
-            Logo
+          <Link to={ROUTE.HOME}>
+            <Icon.ClipboardCheckIcon className={comStyle.logo} />
           </Link>
         </div>
 
@@ -77,7 +79,7 @@ export const LoginPage: FC = () => {
                 id="email"
                 required defaultValue="sexyoung@gmail.com"
                 placeholder="your@email.com"
-                className="shadow appearance-none rounded w-full py-2 px-3  text-gray-500 mt-1 leading-tight focus:outline-none focus:ring ring-indigo-200"
+                className="shadow appearance-none rounded-sm w-full py-2 px-3  text-lavender-700 mt-1 leading-tight focus:outline-none focus:ring ring-lavender-700 focus:bg-lavender-200"
               />
             </div>
             <div className="flex flex-col pt-4">
@@ -87,15 +89,15 @@ export const LoginPage: FC = () => {
                 required name="password"
                 defaultValue="abc123"
                 placeholder="Password"
-                className="shadow appearance-none rounded w-full py-2 px-3  text-gray-500 mt-1 leading-tight focus:outline-none focus:ring ring-indigo-200"
+                className="shadow appearance-none rounded-sm w-full py-2 px-3  text-lavender-700 mt-1 leading-tight focus:outline-none focus:ring ring-lavender-700 focus:bg-lavender-200"
               />
             </div>
             {error && <div>{error}</div>}
-            <button className="rounded-md bg-indigo-300 text-white font-bold text-lg hover:bg-indigo-200 p-2 mt-8">
+            <button className={cx(btnStyle.btn, "font-bold text-lg hover:bg-lavender-700 p-2 mt-8")}>
               登入
             </button>
           </form>
-          <div className="text-gray-500 text-center pt-12 pb-12">
+          <div className="text-lavender-700 text-center pt-12 pb-12">
             <p>沒有帳號？<Link to={ROUTE.SIGNUP} className="underline font-semibold">註冊一下</Link></p>
           </div>
         </div>

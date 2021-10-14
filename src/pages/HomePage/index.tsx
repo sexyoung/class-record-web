@@ -11,12 +11,13 @@ import sexyoung from './sexyoung.png';
 
 import style from './style.module.css';
 import btnStyle from 'components/btn.module.css';
+import comStyle from 'components/common.module.css';
 
 export const HomePage: FC = () => {
   return (
     <div className={style.HomePage}>
       <div className={style.hero}>
-        <Icon.ClipboardCheckIcon className={style.logo} />
+        <Icon.ClipboardCheckIcon className={cx(style.logo, comStyle.logo)} />
         <p className={style.title}>上課點點名</p>
         <p className={style.subtitle}>輕鬆點名 優雅管理</p>
         <Link to={ROUTE.SIGNUP} className={cx(btnStyle.btn, style.signup)}>老師註冊</Link>
