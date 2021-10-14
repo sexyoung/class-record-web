@@ -6,7 +6,7 @@ import {
 import { ROUTE } from "route";
 import { PrivateRoute, ProvideAuth } from "./routes";
 import * as Page from "pages";
-// import style from './App.module.scss';
+import style from './App.module.css';
 
 function App() {
   return (
@@ -27,7 +27,9 @@ function App() {
           <Route exact path={ROUTE.HOME}><Page.HomePage /></Route>
         </Switch>
       </Router>
-      <div>footer</div>
+      <div className={style.footer}>
+        © 2021 RoRoCall. 版權所有。
+      </div>
     </ProvideAuth>
   );
 }

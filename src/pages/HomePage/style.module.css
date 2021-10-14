@@ -45,3 +45,24 @@
 .HomePage > .block > .hint {
   @apply text-lavender-700 border-lavender-700 bg-lavender-200 h-40 border-2 rounded-sm mb-5 flex items-center justify-center;
 }
+
+.HomePage > .block > .referrer {
+  @apply mb-16;
+}
+
+.HomePage > .block > .referrer > .img {
+  @apply w-36 h-36 mx-auto rounded-full bg-cover bg-center mt-6 mb-3;
+}
+
+.HomePage > .block > .referrer > .name,
+.HomePage > .block > .referrer > .title {
+  @apply text-lavender-700 text-center;
+}
+
+.HomePage > .block > .referrer > .name {
+  @apply text-2xl font-semibold;
+}
+
+.HomePage > .block > .referrer > .text {
+  @apply leading-7;
+}
