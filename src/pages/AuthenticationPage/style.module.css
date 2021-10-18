@@ -1,0 +1,27 @@
+.AuthenticationPage {
+  @apply relative pt-24 px-11 text-lavender-700;
+}
+
+.AuthenticationPage .logo {
+  @apply absolute top-3 left-3;
+}
+
+.AuthenticationPage .title {
+  @apply text-center text-4xl;
+}
+
+.AuthenticationPage form {
+  @apply mt-16 mx-auto text-center max-w-xs;
+}
+
+.AuthenticationPage form input {
+  @apply mb-3;
+}
+
+.AuthenticationPage form span {
+  @apply underline ml-2;
+}
+
+.AuthenticationPage form button {
+  @apply w-full;
+}

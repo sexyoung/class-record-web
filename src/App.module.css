@@ -1,3 +1,11 @@
+.App {
+  @apply min-h-screen flex flex-col;
+}
+
+.App > .container {
+  flex: 1;
+}
+
 .footer {
   @apply text-center text-lavender-700 my-5;
 }
