@@ -6,8 +6,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { ROUTE } from 'route';
 import { clearApiToken } from 'utils';
 
-import comStyle from 'components/common.module.css';
 import style from "./style.module.css";
+import comStyle from 'components/common.module.css';
 
 export const Header: FC = () => {
   const history = useHistory();

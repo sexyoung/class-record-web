@@ -4,6 +4,7 @@ export * from './LoginPage';
 export * from './SignUpPage';
 export * from './StudentPage';
 export * from './StudentPersonalPage';
+export * from './PlanPage';
 export * from './RollCallPage';
 export * from './ClassroomPage';
 export * from './ClassroomEditPage';

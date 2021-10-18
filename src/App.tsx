@@ -21,6 +21,7 @@ function App() {
               <PrivateRoute path={ROUTE.CLASS}><Page.ClassroomPage /></PrivateRoute>
               <PrivateRoute path={ROUTE.STUDENT}><Page.StudentPage /></PrivateRoute>
               <PrivateRoute path={ROUTE.STUDENTPERSONAL}><Page.StudentPersonalPage /></PrivateRoute>
+              <PrivateRoute path={ROUTE.PLAN}><Page.PlanPage /></PrivateRoute>
               <PrivateRoute path={ROUTE.AUTH}><Page.AuthenticationPage /></PrivateRoute>
 
               {/* 登入前頁面 */}
