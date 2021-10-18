@@ -97,7 +97,7 @@ export const SignUpPage: FC = () => {
             <button className={cx(btnStyle.btn, "font-bold text-lg hover:bg-lavender-700 p-2 mt-8")}>註冊</button>
           </form>
           <div className="text-lavender-700 text-center pt-12 pb-12">
-            <p>已有帳號? <Link to={ROUTE.LOGIN} className="underline font-semibold">點這兒登入</Link></p>
+            <p>已有帳號？<Link to={ROUTE.LOGIN} className="underline font-semibold">點此登入</Link></p>
           </div>
         </div>
 
