@@ -14,7 +14,7 @@ export const Header: FC = () => {
   const pathname = history.location.pathname;
 
   return (
-    <nav className="bg-lavender-200">
+    <nav className={cx(style.Header, "bg-lavender-200")}>
       <div className="max-w-7xl mx-auto px-2">
         <div className="relative flex items-center justify-between h-16">
           <div className="flex-1 flex items-stretch justify-start">
@@ -24,24 +24,11 @@ export const Header: FC = () => {
             </Link>
             {/* logo-end */}
             <div className="block ml-6">
-              <div className="flex space-x-4">
+              <div className={cx("flex space-x-4", style.nav, style[pathname.slice(1)])}>
                 {/*  Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"  */}
-                <Link
-                  to={ROUTE.CLASS}
-                  className={cx(style.navItem, {
-                    [style.active]: pathname === ROUTE.CLASS
-                  })}
-                >
-                  點名
-                </Link>
-                <Link
-                  to={ROUTE.STUDENT}
-                  className={cx(style.navItem, {
-                    [style.active]: pathname === ROUTE.STUDENT
-                  })}
-                >
-                  點名
-                </Link>
+                <Link to={ROUTE.CLASS}>點名</Link>
+                <Link to={ROUTE.STUDENT}>學生</Link>
+                <Link to={ROUTE.PLAN}>計劃</Link>
               </div>
             </div>
           </div>
