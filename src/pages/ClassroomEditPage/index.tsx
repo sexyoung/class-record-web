@@ -33,29 +33,28 @@ export const ClassroomEditPage: FC = () => {
     }).then(history.push.bind(null, ROUTE.CLASS));
   };
 
-  if(!classroom || !studentList) return null;
-
   return (
     <div>
       <Header />
-      點名記錄修改頁<br />
-      <form onSubmit={handleSubmit}>
-        date: <input type="date" name="date" required defaultValue={classroom.date.slice(0, 10)} /><br />
-        time: <input type="time" name="time" required defaultValue={classroom.date.slice(11)} /><br />
-        <ul>
-          {studentList.map(student =>
-            <li key={student.id}>
-              <label>
-                <input type="checkbox" name="studentId" value={student.id} defaultChecked={
-                  classroom.students.some(s => s.id === student.id)
-                } />
-                <span>{student.name}</span>
-              </label>
-            </li>
-          )}
-        </ul>
-        <button>submit</button>
-      </form>
+      {classroom && studentList &&
+        <form onSubmit={handleSubmit}>
+          date: <input type="date" name="date" required defaultValue={classroom.date.slice(0, 10)} /><br />
+          time: <input type="time" name="time" required defaultValue={classroom.date.slice(11)} /><br />
+          <ul>
+            {studentList.map(student =>
+              <li key={student.id}>
+                <label>
+                  <input type="checkbox" name="studentId" value={student.id} defaultChecked={
+                    classroom.students.some(s => s.id === student.id)
+                  } />
+                  <span>{student.name}</span>
+                </label>
+              </li>
+            )}
+          </ul>
+          <button>submit</button>
+        </form>
+      }
     </div>
   );
 };

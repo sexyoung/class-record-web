@@ -31,27 +31,26 @@ export const RollCallPage = () => {
     }).then(history.push.bind(null, ROUTE.CLASS));
   };
 
-  if(!studentList) return null;
-
   return (
     <div>
       <Header />
-      點名頁面<br />
-      <form onSubmit={handleSubmit}>
-        date: <input type="date" name="date" required /><br />
-        time: <input type="time" name="time" required /><br />
-        <ul>
-          {studentList.map((student) =>
-            <li key={student.id}>
-              <label>
-                <input type="checkbox" name="studentId" value={student.id} />
-                <span>{student.name}</span>
-              </label>
-            </li>
-          )}
-        </ul>
-        <button>submit</button>
-      </form>
+      {studentList &&
+        <form onSubmit={handleSubmit}>
+          date: <input type="date" name="date" required /><br />
+          time: <input type="time" name="time" required /><br />
+          <ul>
+            {studentList.map((student) =>
+              <li key={student.id}>
+                <label>
+                  <input type="checkbox" name="studentId" value={student.id} />
+                  <span>{student.name}</span>
+                </label>
+              </li>
+            )}
+          </ul>
+          <button>submit</button>
+        </form>
+      }
     </div>
   );
 };
