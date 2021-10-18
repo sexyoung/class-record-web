@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { ROUTE } from 'route';
 import { clearApiToken } from 'utils';
 
+import comStyle from 'components/common.module.css';
 import style from "./style.module.css";
 
 export const Header: FC = () => {
@@ -18,10 +19,9 @@ export const Header: FC = () => {
         <div className="relative flex items-center justify-between h-16">
           <div className="flex-1 flex items-stretch justify-start">
             {/* logo-start */}
-            <div className="flex-shrink-0 flex items-center">
-              <img className="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow" />
-              <img className="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow" />
-            </div>
+            <Link to={ROUTE.CLASS}>
+              <Icon.ClipboardCheckIcon className={comStyle.logo} />
+            </Link>
             {/* logo-end */}
             <div className="block ml-6">
               <div className="flex space-x-4">
@@ -32,7 +32,7 @@ export const Header: FC = () => {
                     [style.active]: pathname === ROUTE.CLASS
                   })}
                 >
-                  Class
+                  點名
                 </Link>
                 <Link
                   to={ROUTE.STUDENT}
@@ -40,7 +40,7 @@ export const Header: FC = () => {
                     [style.active]: pathname === ROUTE.STUDENT
                   })}
                 >
-                  Student
+                  點名
                 </Link>
               </div>
             </div>
