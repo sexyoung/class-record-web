@@ -28,7 +28,7 @@ export const Header: FC = () => {
                 {/*  Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"  */}
                 <Link to={ROUTE.CLASS}>點名</Link>
                 <Link to={ROUTE.STUDENT}>學生</Link>
-                <Link to={ROUTE.PLAN}>計劃</Link>
+                <Link to={ROUTE.PLAN}>方案</Link>
               </div>
             </div>
           </div>
