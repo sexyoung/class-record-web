@@ -1,13 +1,13 @@
 import cx from 'classnames';
-import * as Icon from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import * as Icon from '@heroicons/react/outline';
 import { FC, FormEventHandler as FEH, useState, useEffect } from 'react';
 
 import * as API from "api";
 import { ROUTE } from 'route';
 import { useAuth } from 'hooks';
-import { fetchApi, setApiToken } from 'utils';
+import { setApiToken } from 'utils';
 
 import btnStyle from 'components/btn.module.css';
 import comStyle from 'components/common.module.css';
@@ -35,17 +35,13 @@ export const SignUpPage: FC = () => {
     setError({});
     const formData = new FormData(e.currentTarget);
     const apiRequest = {
-      name: formData.get("username"),
-      email: formData.get("email"),
-      password: formData.get("password"),
-      passwordConfirm: formData.get("passwordConfirm"),
+      name: formData.get("username") as string,
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+      passwordConfirm: formData.get("passwordConfirm") as string,
     };
 
-    fetchApi(API.postSignUp(), {
-      method: "post",
-      withToken: false,
-      body: apiRequest,
-    })
+    API.postSignUp(apiRequest)
       .then(json => {
         setApiToken(json.token);
         auth.setIsAuth!(true);

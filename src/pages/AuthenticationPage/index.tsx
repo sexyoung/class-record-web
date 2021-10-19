@@ -5,7 +5,6 @@ import { FC, FormEventHandler as FEH } from "react";
 
 import * as API from "api";
 import { ROUTE } from "route";
-import { fetchApi } from "utils";
 
 import style from './style.module.css';
 import btnStyle from 'components/btn.module.css';
@@ -18,7 +17,7 @@ export const AuthenticationPage: FC = () => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    fetchApi(API.getAuth(formData.get("code") as string))
+    API.getAuth(formData.get("code") as string)
       .then((json) => {
         if (json.message === 'TOKEN_INVALID') {
           return window.alert(json.message);

@@ -3,11 +3,11 @@ import { Link, useHistory } from "react-router-dom";
 
 import * as API from "api";
 import { ROUTE } from 'route';
+import { useQuery } from "utils";
 import { usePlan } from "hooks/usePlan";
 import { Modal } from "components/Modal";
 import { Header } from 'components/Header';
 import { Deposit } from 'components/Deposit';
-import { fetchApi, useQuery } from "utils";
 import * as Type from "domain/type/res/student";
 
 export const StudentPage: FC = () => {
@@ -19,7 +19,7 @@ export const StudentPage: FC = () => {
   const isShowModal = !!id;
 
   const getStudentList = (status: API.Query = API.Query.Join) => {
-    fetchApi(API.getAllStudent(status))
+    API.getAllStudent(status)
       .then(setStudentList)
       .catch(console.log)
     ;
@@ -42,11 +42,7 @@ export const StudentPage: FC = () => {
   };
 
   const changeStatus = (id: number, updateStatus: API.Query.Join | API.Query.Dropout) => {
-    fetchApi(API.getStudent(id), {
-      method: "post",
-      withToken: true,
-      body: {data: { status: updateStatus }}
-    })
+    API.updateStudent(id, {data: { status: updateStatus }})
       .then(() => getStudentList(status));
   };
 

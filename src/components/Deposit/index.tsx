@@ -1,7 +1,6 @@
 import { FC, FormEventHandler as FEH } from 'react';
 
 import * as API from "api";
-import { fetchApi } from 'utils';
 import { Plan } from 'domain/type/res/plan';
 import { Student } from 'domain/type/res/student';
 
@@ -19,15 +18,12 @@ export const Deposit: FC<IDeposit> = ({ planList, student, closeModal, depositDo
     const formData = new FormData(e.currentTarget);
     console.log(student);
 
-    await fetchApi(API.postDeposit(), {
-      method: "post",
-      body: {
-        planId: formData.get("plan"),
-        studentId: student.id,
-      },
-    })
-      .then(() => depositDone());
+    await API.postDeposit({
+      planId: +formData.get("plan")!,
+      studentId: student.id,
+    });
 
+    depositDone();
     closeModal();
   };
 

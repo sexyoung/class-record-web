@@ -5,12 +5,11 @@ import {
   FormEventHandler as FEH,
 } from 'react';
 import * as API from "api";
-import { fetchApi } from "utils";
-import { Header } from 'components/Header';
-import * as Type from "domain/type/res/student";
-import { Modal } from 'components/Modal';
-import { Deposit } from 'components/Deposit';
 import { usePlan } from 'hooks/usePlan';
+import { Modal } from 'components/Modal';
+import { Header } from 'components/Header';
+import { Deposit } from 'components/Deposit';
+import * as Type from "domain/type/res/student";
 
 export const StudentPersonalPage: FC = () => {
   const planList = usePlan();
@@ -21,7 +20,7 @@ export const StudentPersonalPage: FC = () => {
   const id = urlParams.get('id');
 
   const getStudent = () => {
-    id && fetchApi(API.getStudent(+id))
+    id && API.getStudent(+id)
       .then(setStudent);
   };
 
@@ -34,14 +33,10 @@ export const StudentPersonalPage: FC = () => {
 
     const formData = new FormData(e.currentTarget);
 
-    id && await fetchApi(API.getStudent(+id), {
-      method: "post",
-      withToken: true,
-      body: {
-        data: {
-          name: formData.get("name"),
-          status: formData.get("status"),
-        }
+    id && API.updateStudent(+id, {
+      data: {
+        name: formData.get("name"),
+        status: formData.get("status"),
       }
     });
 

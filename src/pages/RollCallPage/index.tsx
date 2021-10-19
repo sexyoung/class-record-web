@@ -2,7 +2,6 @@ import { useEffect, useState, FormEventHandler as FEH} from "react";
 
 import * as API from "api";
 import { ROUTE } from "route";
-import { fetchApi } from "utils";
 import { useHistory } from "react-router";
 import { Header } from "components/Header";
 import * as StudentType from "domain/type/res/student";
@@ -11,7 +10,7 @@ export const RollCallPage = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetchApi(API.getAllStudent(API.Query.Join)).then(setStudentList);
+    API.getAllStudent(API.Query.Join).then(setStudentList);
   }, []);
 
   const [studentList, setStudentList] = useState<StudentType.Student[]>();
@@ -22,12 +21,9 @@ export const RollCallPage = () => {
 
     if(!formData.getAll("studentId").length) return alert('至少選一個學生');
 
-    fetchApi(API.getClassRoom(), {
-      method: "post",
-      body: {
-        date: `${formData.get("date")} ${formData.get("time")}`,
-        studentIdList: formData.getAll("studentId"),
-      }
+    API.postClassRoom({
+      date: `${formData.get("date")} ${formData.get("time")}`,
+      studentIdList: formData.getAll("studentId") as string[],
     }).then(history.push.bind(null, ROUTE.CLASS));
   };
 

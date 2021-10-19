@@ -7,7 +7,7 @@ import { FC, useState, FormEventHandler as FEH, useEffect } from "react";
 import * as API from "api";
 import { ROUTE } from "route";
 import { useAuth } from "hooks";
-import { fetchApi, setApiToken, getCookie } from "utils";
+import { setApiToken, getCookie } from "utils";
 
 import btnStyle from 'components/btn.module.css';
 import comStyle from 'components/common.module.css';
@@ -25,22 +25,18 @@ export const LoginPage: FC = () => {
       .then(([ img ]) => setBg(img.url));
 
     getCookie().token &&
-      fetchApi(API.getTeacherInfo()).catch(e => setError(`${e}`));
+      API.getTeacherInfo().catch(e => setError(`${e}`));
   }, []);
 
   const handleLogin: FEH<HTMLFormElement> = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const apiRequest = {
-      email: formData.get("email"),
-      password: formData.get("password"),
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
     };
 
-    fetchApi(API.postLogin(), {
-      method: "post",
-      withToken: false,
-      body: apiRequest,
-    })
+    API.postLogin(apiRequest)
       .then((data) => {
         setApiToken(data.token);
         auth.setIsAuth!(true);

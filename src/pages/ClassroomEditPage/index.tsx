@@ -3,7 +3,7 @@ import { FC, useEffect, useState, FormEventHandler as FEH } from "react";
 
 import * as API from "api";
 import { ROUTE } from "route";
-import { useQuery, fetchApi } from "utils";
+import { useQuery } from "utils";
 import { Header } from "components/Header";
 import * as StudentType from "domain/type/res/student";
 import * as ClassRoomType from "domain/type/res/classroom";
@@ -14,8 +14,8 @@ export const ClassroomEditPage: FC = () => {
   const [classroom, setClassroom] = useState<ClassRoomType.Class>();
   const [studentList, setStudentList] = useState<StudentType.Student[]>();
   useEffect(() => {
-    fetchApi(API.getClassRoom(+query.get('id')!)).then(setClassroom);
-    fetchApi(API.getAllStudent(API.Query.Join)).then(setStudentList);
+    API.getClassRoom(+query.get('id')!).then(setClassroom);
+    API.getAllStudent(API.Query.Join).then(setStudentList);
   }, [query.get('id')]);
 
   const handleSubmit: FEH<HTMLFormElement> = (e) => {
@@ -24,13 +24,11 @@ export const ClassroomEditPage: FC = () => {
 
     if(!formData.getAll("studentId").length) return alert('至少選一個學生');
 
-    fetchApi(API.getClassRoom(+query.get('id')!), {
-      method: "put",
-      body: {
-        date: `${formData.get("date")} ${formData.get("time")}`,
-        studentIdList: formData.getAll("studentId"),
-      }
-    }).then(history.push.bind(null, ROUTE.CLASS));
+    API.updateClassRoom(+query.get('id')!, {
+      date: `${formData.get("date")} ${formData.get("time")}`,
+      studentIdList: formData.getAll("studentId") as string[],
+    })
+      .then(history.push.bind(null, ROUTE.CLASS));
   };
 
   return (

@@ -8,15 +8,12 @@ export const useProvideAuth = (token: string) => {
   const [isAuth, setIsAuth] = useState<boolean | void>(undefined);
 
   const checkIsAuth = async () => {
-
-    const res = await fetch(API.getTeacherInfo(), {
-      headers: API.getHeaderWithToken(),
-    });
-
-    if (!res.ok) throw new Error(res.statusText);
-
-    const user = await res.json();
-    return user;
+    try {
+      const { user } = await API.getTeacherInfo();
+      return user;
+    } catch (error) {
+      throw new Error(error as string);
+    }
   };
 
   useEffect(() => {

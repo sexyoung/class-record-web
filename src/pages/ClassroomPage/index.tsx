@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react";
 
 import * as API from "api";
-import { fetchApi } from "utils";
 import { Header } from "components/Header";
 import * as Type from "domain/type/res/classroom";
 import { Link } from "react-router-dom";
@@ -10,7 +9,7 @@ import { ROUTE } from "route";
 export const ClassroomPage: FC = () => {
   const [classroomList, setClassroomList] = useState<Type.Class[]>();
   useEffect(() => {
-    fetchApi(API.getClassRoom())
+    API.getClassRoom()
       .then(setClassroomList)
       .catch(console.error)
     ;
