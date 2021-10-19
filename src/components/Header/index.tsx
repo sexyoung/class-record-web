@@ -38,7 +38,7 @@ export const Header: FC = () => {
               onClick={clearApiToken}
               className="text-gray-600 py-2 rounded-md text-sm font-medium"
             >
-              <Icon.LogoutIcon className="w-5 h-5 text-lavender-500 hover:text-white" />
+              <Icon.LogoutIcon className="w-5 h-5 text-lavender-500 hover:text-white w-8 h-8" />
             </Link>
           </div>
         </div>
