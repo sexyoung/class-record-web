@@ -16,7 +16,7 @@ export const Header: FC = () => {
   return (
     <nav className={cx(style.Header, "bg-lavender-200")}>
       <div className="max-w-7xl mx-auto px-2">
-        <div className="relative flex items-center justify-between h-16">
+        <div className="relative flex items-center justify-between">
           <div className="flex-1 flex items-stretch justify-start">
             {/* logo-start */}
             <Link to={ROUTE.CLASS}>
@@ -36,7 +36,7 @@ export const Header: FC = () => {
             <Link
               to={ROUTE.HOME}
               onClick={clearApiToken}
-              className="text-gray-600 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-600 py-2 rounded-md text-sm font-medium"
             >
               <Icon.LogoutIcon className="w-5 h-5 text-lavender-500 hover:text-white" />
             </Link>
