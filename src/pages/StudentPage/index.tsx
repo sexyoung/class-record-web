@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import { FC, useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 
@@ -10,12 +11,15 @@ import { Header } from 'components/Header';
 import { Deposit } from 'components/Deposit';
 import * as Type from "domain/type/res/student";
 
+import style from "./style.module.css";
+import inputStyle from 'components/input.module.css';
+
 export const StudentPage: FC = () => {
   const planList = usePlan();
   const history = useHistory();
-  const status: API.Query = (useQuery().get('status') || API.Query.Join) as API.Query;
-  const [studentList, setStudentList] = useState<Type.Student[]>();
   const [id, setId] = useState(0);
+  const [studentList, setStudentList] = useState<Type.Student[]>();
+  const status: API.Query = (useQuery().get('status') || API.Query.Join) as API.Query;
   const isShowModal = !!id;
 
   const getStudentList = (status: API.Query = API.Query.Join) => {
@@ -46,36 +50,51 @@ export const StudentPage: FC = () => {
       .then(() => getStudentList(status));
   };
 
-  // if(!planList) return null;
-
   return (
-    <div>
+    <div className={style.StudentPage}>
       <Header />
       {studentList && (
-        status !== API.Query.Dropout ?
-          <div className="joinStudent">
-            <select value={status} onChange={handleChangeStatus}>
-              <option value={API.Query.Join}>全部</option>
-              <option value={API.Query.Current}>有課</option>
-              <option value={API.Query.Zero}>無課</option>
-              <option value={API.Query.Debts}>欠課</option>
-            </select>
-            {studentList.map(s =>
-              <div key={s.id}>
-                <Link to={`${ROUTE.STUDENTPERSONAL}?id=${s.id}`}>{s.name}</Link>
-                <button onClick={setId.bind(null, s.id)}>[儲值]</button>
-                <button onClick={changeStatus.bind(null, s.id, API.Query.Dropout)}>[除籍]</button>
+        <>
+          <nav className={cx(style.statusNav, style[status !== API.Query.Dropout ? 'join': 'dropout'])}>
+            <ul>
+              <li><Link to={ROUTE.STUDENT}>在籍學生</Link></li>
+              <li><Link to={`${ROUTE.STUDENT}?status=${API.Query.Dropout}`}>除籍學生</Link></li>
+            </ul>
+          </nav>
+          {status !== API.Query.Dropout ?
+            <div className={style.joinStudent}>
+              <select className={inputStyle.input} value={status} onChange={handleChangeStatus}>
+                <option value={API.Query.Join}>全部</option>
+                <option value={API.Query.Current}>有課</option>
+                <option value={API.Query.Zero}>無課</option>
+                <option value={API.Query.Debts}>欠課</option>
+              </select>
+              <div className={style.list}>
+                {studentList.map(s =>
+                  <div key={s.id} className={style.item}>
+                    <div className={style.student}>
+                      <Link to={`${ROUTE.STUDENTPERSONAL}?id=${s.id}`}>{s.name}</Link>
+                      <button onClick={setId.bind(null, s.id)}>[儲值]</button>
+                      <button onClick={changeStatus.bind(null, s.id, API.Query.Dropout)}>[除籍]</button>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-          </div>:
-          <div className="dropoutStudent">
-            {studentList.map(s =>
-              <div key={s.id}>
-                <span>{s.name}</span>
-                <button onClick={changeStatus.bind(null, s.id, API.Query.Join)}>[復藉]</button>
+            </div>:
+            <div className={style.dropoutStudent}>
+              <div className={style.list}>
+                {studentList.map(s =>
+                  <div key={s.id} className={style.item}>
+                    <div className={style.student}>
+                      <span>{s.name}</span>
+                      <button onClick={changeStatus.bind(null, s.id, API.Query.Join)}>[復藉]</button>
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            </div>
+          }
+        </>
       )}
       {isShowModal && planList &&
       <Modal>

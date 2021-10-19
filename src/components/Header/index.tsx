@@ -19,12 +19,10 @@ export const Header: FC = () => {
         <div className="relative flex items-center justify-between">
           <div className="flex-1 flex items-stretch justify-start">
             {/* logo-start */}
-            <Link to={ROUTE.CLASS}>
-              <Icon.ClipboardCheckIcon className={comStyle.logo} />
-            </Link>
+            <Link to={ROUTE.CLASS}><Icon.ClipboardCheckIcon className={comStyle.logo} /></Link>
             {/* logo-end */}
-            <div className="block ml-6">
-              <div className={cx("flex space-x-4", style.nav, style[pathname.slice(1)])}>
+            <div className="block ml-2">
+              <div className={cx("flex space-x-1", style.nav, style[pathname.slice(1)])}>
                 {/*  Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"  */}
                 <Link to={ROUTE.CLASS}>點名</Link>
                 <Link to={ROUTE.STUDENT}>學生</Link>

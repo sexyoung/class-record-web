@@ -1,0 +1,48 @@
+.StudentPage .joinStudent,
+.StudentPage .dropoutStudent
+{
+  @apply p-6;
+}
+
+.StudentPage .joinStudent > select {
+  @apply mb-6;
+}
+
+.StudentPage .list {
+  @apply flex flex-wrap -mx-1 overflow-hidden;
+}
+
+.StudentPage .list .item {
+  @apply my-1 px-1 w-1/2 overflow-hidden sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4;
+}
+
+.StudentPage .list .student {
+  background-color: #F6F6F6;
+  @apply h-52;
+}
+
+.StudentPage > .statusNav > ul {
+  background-color: #eee;
+  @apply flex gap-0.5;
+}
+
+.StudentPage > .statusNav.join > ul > li:first-of-type,
+.StudentPage > .statusNav.dropout > ul > li:last-of-type
+{
+  @apply bg-lavender-500 ;
+}
+
+.StudentPage > .statusNav.join > ul > li:first-of-type a,
+.StudentPage > .statusNav.dropout > ul > li:last-of-type a
+{
+  @apply text-white;
+}
+
+.StudentPage > .statusNav li {
+  background-color: #F8F8F8;
+  @apply text-lavender-700 inline-flex flex-1 justify-center py-4;
+}
+
+.StudentPage > .statusNav a {
+  @apply text-lavender-700;
+}
