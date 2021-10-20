@@ -73,9 +73,27 @@ export const StudentPage: FC = () => {
                 {studentList.map(s =>
                   <div key={s.id} className={style.item}>
                     <div className={style.student}>
-                      <Link to={`${ROUTE.STUDENTPERSONAL}?id=${s.id}`}>{s.name}</Link>
-                      <button onClick={setId.bind(null, s.id)}>[儲值]</button>
-                      <button onClick={changeStatus.bind(null, s.id, API.Query.Dropout)}>[除籍]</button>
+                      <div className={style.info}>
+                        <div className={style.img} />
+                        <div className={style.name}>
+                          <Link to={`${ROUTE.STUDENTPERSONAL}?id=${s.id}`}>{s.name}</Link>
+                        </div>
+                        <div className={style.expiredAt}>2021-10-31到期(未做)</div>
+                      </div>
+                      <div className={cx(style.progress, style.step6)}>
+                        <div className={style.bar} />
+                        <div className={style.bar} />
+                        <div className={style.bar} />
+                        <div className={style.bar} />
+                        <div className={style.bar} />
+                        <div className={style.bar} />
+                        <div className={style.bar} />
+                        <div className={style.bar} />
+                      </div>
+                      <div className={style.buttonGroup}>
+                        <button onClick={setId.bind(null, s.id)}>儲值</button>
+                        <button onClick={changeStatus.bind(null, s.id, API.Query.Dropout)}>除籍</button>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -86,8 +104,16 @@ export const StudentPage: FC = () => {
                 {studentList.map(s =>
                   <div key={s.id} className={style.item}>
                     <div className={style.student}>
-                      <span>{s.name}</span>
-                      <button onClick={changeStatus.bind(null, s.id, API.Query.Join)}>[復藉]</button>
+                      <div className={style.info}>
+                        <div className={style.img} />
+                        <div className={style.name}>
+                          <Link to={`${ROUTE.STUDENTPERSONAL}?id=${s.id}`}>{s.name}</Link>
+                        </div>
+                        <div className={style.expiredAt}>2021-10-31到期(未做)</div>
+                      </div>
+                      <div className={style.buttonGroup}>
+                        <button onClick={changeStatus.bind(null, s.id, API.Query.Join)}>復籍</button>
+                      </div>
                     </div>
                   </div>
                 )}

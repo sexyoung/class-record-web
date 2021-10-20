@@ -18,7 +18,60 @@
 
 .StudentPage .list .student {
   background-color: #F6F6F6;
-  @apply h-52;
+  /* @apply h-52; */
+}
+
+.StudentPage .list .student .info {
+  @apply text-center pt-5 pb-2.5;
+}
+
+.StudentPage .list .student .info .img {
+  @apply bg-white rounded-full w-20 h-20 mx-auto mb-2 inline-block;
+}
+
+.StudentPage .list .student .info .name {
+  @apply text-gray-500 text-lg;
+}
+
+.StudentPage .list .student .info .expiredAt {
+  @apply text-gray-400 text-sm;
+}
+
+.StudentPage .list .student .progress {
+  gap: 1px;
+  @apply flex mx-0.5;
+}
+
+.StudentPage .list .student .progress.step1 .bar:nth-of-type(-n+1),
+.StudentPage .list .student .progress.step2 .bar:nth-of-type(-n+2),
+.StudentPage .list .student .progress.step3 .bar:nth-of-type(-n+3),
+.StudentPage .list .student .progress.step4 .bar:nth-of-type(-n+4),
+.StudentPage .list .student .progress.step5 .bar:nth-of-type(-n+5),
+.StudentPage .list .student .progress.step6 .bar:nth-of-type(-n+6),
+.StudentPage .list .student .progress.step7 .bar:nth-of-type(-n+7),
+.StudentPage .list .student .progress.step8 .bar:nth-of-type(-n+8)
+{
+  @apply bg-lavender-500;
+}
+
+.StudentPage .list .student .progress .bar {
+  @apply h-1.5 bg-white flex-1;
+}
+
+.StudentPage .list .student .buttonGroup {
+  @apply flex mx-0.5 mt-0.5;
+}
+
+.StudentPage .list .student .buttonGroup button {
+  @apply flex-1 text-white py-2;
+}
+
+.StudentPage .list .student .buttonGroup button:nth-of-type(1) {
+  @apply bg-lavender-500;
+}
+
+.StudentPage .list .student .buttonGroup button:nth-of-type(2) {
+  background-color: #C5BAC8;
 }
 
 .StudentPage > .statusNav > ul {
