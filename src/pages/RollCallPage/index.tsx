@@ -3,7 +3,7 @@ import { useEffect, useState, FormEventHandler as FEH} from "react";
 import * as API from "api";
 import { ROUTE } from "route";
 import { useHistory } from "react-router";
-import { Header } from "components/Header";
+import * as Comp from "components";
 import * as StudentType from "domain/type/res/student";
 
 export const RollCallPage = () => {
@@ -29,7 +29,7 @@ export const RollCallPage = () => {
 
   return (
     <div>
-      <Header />
+      <Comp.Header />
       {studentList &&
         <form onSubmit={handleSubmit}>
           date: <input type="date" name="date" required /><br />

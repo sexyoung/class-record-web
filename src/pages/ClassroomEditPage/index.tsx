@@ -4,7 +4,7 @@ import { FC, useEffect, useState, FormEventHandler as FEH } from "react";
 import * as API from "api";
 import { ROUTE } from "route";
 import { useQuery } from "utils";
-import { Header } from "components/Header";
+import * as Comp from "components";
 import * as StudentType from "domain/type/res/student";
 import * as ClassRoomType from "domain/type/res/classroom";
 
@@ -33,7 +33,7 @@ export const ClassroomEditPage: FC = () => {
 
   return (
     <div>
-      <Header />
+      <Comp.Header />
       {classroom && studentList &&
         <form onSubmit={handleSubmit}>
           date: <input type="date" name="date" required defaultValue={classroom.date.slice(0, 10)} /><br />

@@ -5,10 +5,8 @@ import {
   FormEventHandler as FEH,
 } from 'react';
 import * as API from "api";
+import * as Comp from 'components';
 import { usePlan } from 'hooks/usePlan';
-import { Modal } from 'components/Modal';
-import { Header } from 'components/Header';
-import { Deposit } from 'components/Deposit';
 import * as Type from "domain/type/res/student";
 
 export const StudentPersonalPage: FC = () => {
@@ -49,7 +47,7 @@ export const StudentPersonalPage: FC = () => {
 
   return (
     <div>
-      <Header />
+      <Comp.Header />
       {student && planList &&
         <>
           個人頁
@@ -80,14 +78,14 @@ export const StudentPersonalPage: FC = () => {
             )}
           </ul>
           {isShowModal &&
-          <Modal>
-            <Deposit {...{
+          <Comp.Modal>
+            <Comp.Deposit {...{
               planList,
               closeModal,
               student,
               depositDone: getStudent,
             }} />
-          </Modal>
+          </Comp.Modal>
           }
         </>
       }

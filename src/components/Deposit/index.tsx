@@ -29,7 +29,7 @@ export const Deposit: FC<IDeposit> = ({ planList, student, closeModal, depositDo
 
   return (
     <form onSubmit={deposit}>
-      <div>儲值?</div>
+      <div>儲值</div>
       <div>{student.name}</div>
       <select name="plan">
         {planList.map(plan =>

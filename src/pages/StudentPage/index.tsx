@@ -6,9 +6,7 @@ import * as API from "api";
 import { ROUTE } from 'route';
 import { useQuery } from "utils";
 import { usePlan } from "hooks/usePlan";
-import { Modal } from "components/Modal";
-import { Header } from 'components/Header';
-import { Deposit } from 'components/Deposit';
+import * as Comp from 'components';
 import * as Type from "domain/type/res/student";
 
 import style from "./style.module.css";
@@ -17,10 +15,10 @@ import inputStyle from 'components/input.module.css';
 export const StudentPage: FC = () => {
   const planList = usePlan();
   const history = useHistory();
-  const [id, setId] = useState(0);
+  const [modalStatus, setModalStatus] = useState("");
   const [studentList, setStudentList] = useState<Type.Student[]>();
   const status: API.Query = (useQuery().get('status') || API.Query.Join) as API.Query;
-  const isShowModal = !!id;
+  const [modalType = '', id = ''] = modalStatus.split('-');
 
   const getStudentList = (status: API.Query = API.Query.Join) => {
     API.getAllStudent(status)
@@ -38,7 +36,7 @@ export const StudentPage: FC = () => {
   }, [status]);
 
   const closeModal = () => {
-    setId(0);
+    setModalStatus("");
   };
 
   const findStudent = (id: number) => {
@@ -52,7 +50,7 @@ export const StudentPage: FC = () => {
 
   return (
     <div className={style.StudentPage}>
-      <Header />
+      <Comp.Header />
       {studentList && (
         <>
           <nav className={cx(style.statusNav, style[status !== API.Query.Dropout ? 'join': 'dropout'])}>
@@ -91,8 +89,9 @@ export const StudentPage: FC = () => {
                         <div className={style.bar} />
                       </div>
                       <div className={style.buttonGroup}>
-                        <button onClick={setId.bind(null, s.id)}>儲值</button>
-                        <button onClick={changeStatus.bind(null, s.id, API.Query.Dropout)}>除籍</button>
+                        <button onClick={setModalStatus.bind(null, `deposit-${s.id}`)}>儲值</button>
+                        <button onClick={setModalStatus.bind(null, `status-${s.id}`)}>除籍</button>
+                        {/* <button onClick={changeStatus.bind(null, s.id, API.Query.Dropout)}>除籍</button> */}
                       </div>
                     </div>
                   </div>
@@ -112,7 +111,8 @@ export const StudentPage: FC = () => {
                         <div className={style.expiredAt}>2021-10-31到期(未做)</div>
                       </div>
                       <div className={style.buttonGroup}>
-                        <button onClick={changeStatus.bind(null, s.id, API.Query.Join)}>復籍</button>
+                        <button onClick={setModalStatus.bind(null, `status-${s.id}`)}>復籍</button>
+                        {/* <button onClick={changeStatus.bind(null, s.id, API.Query.Join)}>復籍</button> */}
                       </div>
                     </div>
                   </div>
@@ -122,15 +122,20 @@ export const StudentPage: FC = () => {
           }
         </>
       )}
-      {isShowModal && planList &&
-      <Modal onClose={setId.bind(null, 0)}>
-        <Deposit {...{
-          planList,
-          closeModal,
-          student: findStudent(id),
-          depositDone: getStudentList,
-        }} />
-      </Modal>
+      {modalType === 'deposit' && planList &&
+        <Comp.Modal onClose={closeModal}>
+          <Comp.Deposit {...{
+            planList,
+            closeModal,
+            student: findStudent(+id),
+            depositDone: getStudentList,
+          }} />
+        </Comp.Modal>
+      }
+      {modalType === 'status' && planList &&
+        <Comp.Modal onClose={closeModal}>
+          <Comp.StatusChanger />
+        </Comp.Modal>
       }
     </div>
   );

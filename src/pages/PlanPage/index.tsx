@@ -1,8 +1,6 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
+import * as Comp from 'components';
 import * as Type from 'domain/type/res/plan';
-import { Header } from 'components/Header';
-import * as API from "api";
-import { fetchApi } from 'utils';
 
 const Plan: FC<Type.IPlanData>  = ({money, times, expiresDays}) => {
   // const formatMoney = new Intl.NumberFormat('en_EN', { style: 'currency', currency: 'USD' }).format(money);
@@ -23,7 +21,7 @@ export const PlanPage: FC = () => {
   const planList = usePlan();
   return (
     <div className={style.PlanPage}>
-      <Header />
+      <Comp.Header />
       編輯課程頁 (計劃頁)
       {planList && planList.map(plan =>
         <Plan key={plan.id} {...plan} />

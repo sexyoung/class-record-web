@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 
 import * as API from "api";
-import { Header } from "components/Header";
+import * as Comp from "components";
 import * as Type from "domain/type/res/classroom";
 import { Link } from "react-router-dom";
 import { ROUTE } from "route";
@@ -17,7 +17,7 @@ export const ClassroomPage: FC = () => {
 
   return (
     <div>
-      <Header />
+      <Comp.Header />
       課程頁
       <p>
         <Link to={ROUTE.ROLLCALL}>點名</Link>
