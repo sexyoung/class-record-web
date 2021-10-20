@@ -26,7 +26,7 @@ export const PlanPage: FC = () => {
       <Header />
       編輯課程頁 (計劃頁)
       {planList && planList.map(plan =>
-        <Plan {...plan} />
+        <Plan key={plan.id} {...plan} />
       )}
     </div>
   );

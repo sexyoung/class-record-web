@@ -123,7 +123,7 @@ export const StudentPage: FC = () => {
         </>
       )}
       {isShowModal && planList &&
-      <Modal>
+      <Modal onClose={setId.bind(null, 0)}>
         <Deposit {...{
           planList,
           closeModal,
