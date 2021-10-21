@@ -1,8 +1,13 @@
+import cx from 'classnames';
 import { FC, FormEventHandler as FEH } from 'react';
 
 import * as API from "api";
 import { Plan } from 'domain/type/res/plan';
 import { Student } from 'domain/type/res/student';
+
+import style from "./style.module.css";
+import btnStyle from 'components/btn.module.css';
+import inputStyle from 'components/input.module.css';
 
 interface IDeposit {
   planList: Plan[];
@@ -28,16 +33,16 @@ export const Deposit: FC<IDeposit> = ({ planList, student, closeModal, depositDo
   };
 
   return (
-    <form onSubmit={deposit}>
-      <div>儲值</div>
-      <div>{student.name}</div>
-      <select name="plan">
+    <form onSubmit={deposit} className={style.Deposit}>
+      <div className={style.title}>儲值</div>
+      <div className={style.img} />
+      <div className={style.name}>{student.name}</div>
+      <select name="plan" className={cx(inputStyle.input, "mt-5")}>
         {planList.map(plan =>
           <option key={plan.id} value={plan.id}>{plan.name}</option>
         )}
       </select>
-      <button>[儲值]</button>
-      <button type="button" onClick={closeModal}>[取消]</button>
+      <button className={cx(btnStyle.btn, "w-full mt-3")}>儲值</button>
     </form>
   );
 };

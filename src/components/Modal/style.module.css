@@ -3,5 +3,9 @@
 }
 
 .modalBG .modal {
-  @apply bg-white shadow-lg rounded-lg transition-all duration-300;
+  @apply bg-white shadow-lg rounded-lg transition-all duration-300 relative;
+}
+
+.modalBG .modal .close {
+  @apply absolute top-3 right-3 text-lavender-700 w-5 h-5;
 }

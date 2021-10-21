@@ -5,8 +5,8 @@ import { Link, useHistory } from "react-router-dom";
 import * as API from "api";
 import { ROUTE } from 'route';
 import { useQuery } from "utils";
-import { usePlan } from "hooks/usePlan";
 import * as Comp from 'components';
+import { usePlan } from "hooks/usePlan";
 import * as Type from "domain/type/res/student";
 
 import style from "./style.module.css";

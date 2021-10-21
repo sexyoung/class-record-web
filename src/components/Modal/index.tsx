@@ -1,4 +1,5 @@
 import { FC, useEffect } from 'react';
+import * as Icon from '@heroicons/react/outline';
 
 import style from "./style.module.css";
 
@@ -21,6 +22,7 @@ export const Modal:FC<Modal> = ({ children, onClose = () => {} }) => {
   return (
     <div className={style.modalBG} id="modalBG" onClick={handleClick}>
       <div className={style.modal}>
+        <Icon.XIcon className={style.close} onClick={onClose} />
         {children}
       </div>
     </div>
