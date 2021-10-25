@@ -77,22 +77,16 @@ export const StudentPage: FC = () => {
                         <div className={style.name}>
                           <Link to={`${ROUTE.STUDENTPERSONAL}?id=${s.id}`}>{s.name}</Link>
                         </div>
-                        <div className={style.expiredAt}>2021-10-31到期(未做)</div>
+                        <div className={style.expiredAt}>{s.expiresAt || '未儲值'}</div>
                       </div>
-                      <div className={cx(style.progress, style.step6)}>
-                        <div className={style.bar} />
-                        <div className={style.bar} />
-                        <div className={style.bar} />
-                        <div className={style.bar} />
-                        <div className={style.bar} />
-                        <div className={style.bar} />
-                        <div className={style.bar} />
-                        <div className={style.bar} />
+                      <div className={cx(style.progress, style[`step${s.rollcalls || 0}`])}>
+                        {[...Array(s.planTimes || 1).keys()].map(() =>
+                          <div className={style.bar} />
+                        )}
                       </div>
                       <div className={style.buttonGroup}>
                         <button onClick={setModalStatus.bind(null, `deposit-${s.id}`)}>儲值</button>
                         <button onClick={setModalStatus.bind(null, `dropout-${s.id}`)}>除籍</button>
-                        {/* <button onClick={changeStatus.bind(null, s.id, API.Query.Dropout)}>除籍</button> */}
                       </div>
                     </div>
                   </div>
@@ -109,11 +103,10 @@ export const StudentPage: FC = () => {
                         <div className={style.name}>
                           <Link to={`${ROUTE.STUDENTPERSONAL}?id=${s.id}`}>{s.name}</Link>
                         </div>
-                        <div className={style.expiredAt}>2021-10-31到期(未做)</div>
+                        {/* <div className={style.expiredAt}>2021-10-31到期(未做)</div> */}
                       </div>
                       <div className={style.buttonGroup}>
                         <button onClick={setModalStatus.bind(null, `join-${s.id}`)}>復籍</button>
-                        {/* <button onClick={changeStatus.bind(null, s.id, API.Query.Join)}>復籍</button> */}
                       </div>
                     </div>
                   </div>
