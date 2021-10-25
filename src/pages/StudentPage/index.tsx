@@ -77,7 +77,9 @@ export const StudentPage: FC = () => {
                         <div className={style.name}>
                           <Link to={`${ROUTE.STUDENTPERSONAL}?id=${s.id}`}>{s.name}</Link>
                         </div>
-                        <div className={style.expiredAt}>{s.expiresAt || '未儲值'}</div>
+                        <div className={style.expiredAt}>
+                          {s.expiresAt ? `${s.expiresAt.slice(0, 10)} 到期`: '未儲值'}
+                        </div>
                       </div>
                       <div className={cx(style.progress, style[`step${s.rollcalls || 0}`])}>
                         {[...Array(s.planTimes || 1).keys()].map(() =>
