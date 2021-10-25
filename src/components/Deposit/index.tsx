@@ -21,7 +21,6 @@ export const Deposit: FC<IDeposit> = ({ planList, student, closeModal, depositDo
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    console.log(student);
 
     await API.postDeposit({
       planId: +formData.get("plan")!,

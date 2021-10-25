@@ -9,8 +9,8 @@ const Plan: FC<Type.IPlanData>  = ({money, times, expiresDays}) => {
       {` $${formatMoney} `}
       {` ${times}次 `}
       {` ${expiresDays}天 `}
-      <Link to={ROUTE.PLANEDIT}> 編輯 </Link>
-      <Link to={ROUTE.PLANDEL}> 刪除 </Link>
+      {/* <Link to={ROUTE.PLANEDIT}> 編輯 </Link>
+      <Link to={ROUTE.PLANDEL}> 刪除 </Link> */}
     </div>
   );
 };
@@ -29,7 +29,7 @@ export const PlanPage: FC = () => {
         <Plan key={plan.id} {...plan} />
       )}
       <div>
-        <Link to={ROUTE.PLANNEW}>新增</Link>
+        {/* <Link to={ROUTE.PLANNEW}>新增</Link> */}
       </div>
     </div>
   );

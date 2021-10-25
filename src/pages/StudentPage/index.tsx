@@ -20,8 +20,8 @@ export const StudentPage: FC = () => {
   const status: API.Query = (useQuery().get('status') || API.Query.Join) as API.Query;
   const [modalType = '', id = ''] = modalStatus.split('-');
 
-  const getStudentList = (status: API.Query = API.Query.Join) => {
-    API.getAllStudent(status)
+  const getStudentList = async (status: API.Query = API.Query.Join) => {
+    await API.getAllStudent(status)
       .then(setStudentList)
       .catch(console.log)
     ;
@@ -43,9 +43,10 @@ export const StudentPage: FC = () => {
     return studentList!.find(s => s.id === id) as Type.Student;
   };
 
-  const changeStatus = (id: number, updateStatus: API.Query.Join | API.Query.Dropout) => {
-    API.updateStudent(id, {data: { status: updateStatus }})
-      .then(() => getStudentList(status));
+  const changeStatus = async (id: number, updateStatus: API.Query.Join | API.Query.Dropout) => {
+    closeModal();
+    await API.updateStudent(id, {data: { status: updateStatus }});
+    await getStudentList(status);
   };
 
   return (
@@ -90,7 +91,7 @@ export const StudentPage: FC = () => {
                       </div>
                       <div className={style.buttonGroup}>
                         <button onClick={setModalStatus.bind(null, `deposit-${s.id}`)}>儲值</button>
-                        <button onClick={setModalStatus.bind(null, `status-${s.id}`)}>除籍</button>
+                        <button onClick={setModalStatus.bind(null, `dropout-${s.id}`)}>除籍</button>
                         {/* <button onClick={changeStatus.bind(null, s.id, API.Query.Dropout)}>除籍</button> */}
                       </div>
                     </div>
@@ -111,7 +112,7 @@ export const StudentPage: FC = () => {
                         <div className={style.expiredAt}>2021-10-31到期(未做)</div>
                       </div>
                       <div className={style.buttonGroup}>
-                        <button onClick={setModalStatus.bind(null, `status-${s.id}`)}>復籍</button>
+                        <button onClick={setModalStatus.bind(null, `join-${s.id}`)}>復籍</button>
                         {/* <button onClick={changeStatus.bind(null, s.id, API.Query.Join)}>復籍</button> */}
                       </div>
                     </div>
@@ -132,9 +133,14 @@ export const StudentPage: FC = () => {
           }} />
         </Comp.Modal>
       }
-      {modalType === 'status' && planList &&
+      {[API.Query.Dropout, API.Query.Join].includes(modalType as (API.Query.Dropout | API.Query.Join)) &&
         <Comp.Modal onClose={closeModal}>
-          <Comp.StatusChanger />
+          <Comp.StatusChanger {...{
+            closeModal,
+            status: modalType as API.Query.Dropout | API.Query.Join,
+            student: findStudent(+id),
+            changeStatus: changeStatus.bind(null, +id, modalType as API.Query.Dropout | API.Query.Join),
+          }} />
         </Comp.Modal>
       }
     </div>
