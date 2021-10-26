@@ -8,5 +8,5 @@ export const usePlan = () => {
   useEffect(() => {
     API.getPlan().then(setPlanList);
   }, []);
-  return planList;
+  return {planList, setPlanList};
 };

@@ -23,7 +23,7 @@ const Plan: FC<Type.IPlanData>  = ({id, setId, money, times, expiresDays}) => {
 
 export const PlanPage: FC = () => {
   // const [planList, setPlanList] = useState(usePlan());
-  const planList = usePlan();
+  const {planList, setPlanList} = usePlan();
   const [modalStatus, setModalStatus] = useState("");
   // const [modalType = '', id = ''] = modalStatus.split('-');
   const [id, setId] = useState("");
