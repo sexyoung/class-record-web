@@ -94,3 +94,6 @@ export const postDeposit = (body: { planId: number, studentId: number}) =>
 
 // 課程方案
 export const getPlan = () => fetchApi(`${getAPI()}/plan`);
+
+// 刪除課程方案
+export const delPlan = (id: number) => fetchApi(`${getAPI()}/plan/${id}`);

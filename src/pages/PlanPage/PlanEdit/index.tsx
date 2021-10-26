@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
-export const PlanNewPage: FC = () => {
+export const PlanEdit: FC = () => {
   return (
     <div>
-      新增頁
+      編輯頁
     </div>
   );
 };
