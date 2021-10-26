@@ -1,0 +1,19 @@
+.ClassroomPage .classroom .title {
+  @apply text-lavender-500 text-xs;
+}
+
+.ClassroomPage .classroom .title > * {
+  @apply mx-1.5;
+}
+
+.ClassroomPage .classroom .date {
+  @apply text-lavender-700 text-lg;
+}
+
+.ClassroomPage .classroom .student {
+  @apply text-gray-400;
+}
+
+.ClassroomPage .add {
+  @apply fixed right-8 bottom-8 w-16 h-16;
+}

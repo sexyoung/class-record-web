@@ -1,9 +1,25 @@
+@keyframes modal-from-down-to-top {
+  0% {
+    transform: translateY(100%);
+  }
+  60% {
+    transform: translateY(-3%);
+  }
+  80% {
+    transform: translateY(1%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .modalBG {
   @apply fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 flex justify-center items-center;
 }
 
 .modalBG .modal {
   @apply bg-white shadow-lg rounded-lg transition-all duration-300 relative;
+  animation: modal-from-down-to-top 0.4s;
 }
 
 .modalBG .modal .close {

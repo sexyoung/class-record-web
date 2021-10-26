@@ -45,12 +45,12 @@ export const PlanPage: FC = () => {
       <Comp.Header />
       {planList && planList.map(plan =>
         // <Plan key={plan.id} {...plan} setId={setId} />
-        <div>
+        <div key={plan.id}>
           {` $${formatMoney} `}
-          {` ${times}次 `}
-          {` ${expiresDays}天 `}
+          {` ${plan.times}次 `}
+          {` ${plan.expiresDays}天 `}
           <button> 編輯 </button>
-          <button onClick={setId(id)}> 刪除 </button>
+          <button onClick={setId(plan.id)}> 刪除 </button>
         </div>
       )}
 
