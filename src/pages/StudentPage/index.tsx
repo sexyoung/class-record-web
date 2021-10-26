@@ -13,7 +13,7 @@ import style from "./style.module.css";
 import inputStyle from 'components/input.module.css';
 
 export const StudentPage: FC = () => {
-  const planList = usePlan();
+  const {planList} = usePlan();
   const history = useHistory();
   const [modalStatus, setModalStatus] = useState("");
   const [studentList, setStudentList] = useState<Type.Student[]>();

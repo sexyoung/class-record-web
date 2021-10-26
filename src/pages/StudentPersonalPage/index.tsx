@@ -10,7 +10,7 @@ import { usePlan } from 'hooks/usePlan';
 import * as Type from "domain/type/res/student";
 
 export const StudentPersonalPage: FC = () => {
-  const planList = usePlan();
+  const {planList} = usePlan();
   const [student, setStudent] = useState<Type.Detail>();
   const [isEdit, setIsEdit] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);

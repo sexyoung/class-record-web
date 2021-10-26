@@ -22,7 +22,6 @@ const Plan: FC<Type.IPlanData>  = ({id, setId, money, times, expiresDays}) => {
 
 
 export const PlanPage: FC = () => {
-  // const [planList, setPlanList] = useState(usePlan());
   const {planList, setPlanList} = usePlan();
   const [modalStatus, setModalStatus] = useState("");
   // const [modalType = '', id = ''] = modalStatus.split('-');
@@ -37,7 +36,7 @@ export const PlanPage: FC = () => {
   const deletePlan = async (id: number) => {
     closeModal();
     await API.delPlan(id);
-    // setPlanList(usePlan());
+    setPlanList(usePlan().planList);
   };
 
   return (
@@ -46,9 +45,9 @@ export const PlanPage: FC = () => {
       {planList && planList.map(plan =>
         // <Plan key={plan.id} {...plan} setId={setId} />
         <div>
-          {/* {` $${formatMoney} `} */}
-          {/* {` ${times}次 `} */}
-          {/* {` ${expiresDays}天 `} */}
+          {` $${plan.money} `}
+          {` ${plan.times}次 `}
+          {` ${plan.expiresDays}天 `}
           <button> 編輯 </button>
           <button onClick={setId.bind(null,id)}> 刪除 </button>
         </div>
