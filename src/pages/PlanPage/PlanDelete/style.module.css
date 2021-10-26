@@ -1,11 +1,15 @@
-.StatusChanger {
+.PlanDelete {
   @apply w-64 text-center p-5 text-gray-600;
 }
 
-.StatusChanger .title, .StatusChanger .name{
+.PlanDelete .title{
   @apply text-2xl;
 }
 
-.StatusChanger .img {
+.PlanDelete .name{
+  @apply text-xl text-gray-500;
+}
+
+.PlanDelete .img {
   @apply w-24 h-24 bg-gray-100 rounded-full mx-auto my-5;
 }

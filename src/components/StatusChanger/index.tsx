@@ -9,7 +9,7 @@ import btnStyle from 'components/btn.module.css';
 
 interface StatusChangerProps {
   student: Student;
-  closeModal: () => void;
+  // closeModal: () => void;
   changeStatus: () => void;
   status: API.Query.Join | API.Query.Dropout,
 }
@@ -19,7 +19,7 @@ const statusNameMap = {
   [API.Query.Dropout]: '除籍',
 };
 
-export const StatusChanger: FC<StatusChangerProps> = ({ status, student, closeModal, changeStatus }) => {
+export const StatusChanger: FC<StatusChangerProps> = ({ status, student, changeStatus }) => {
   return (
     <div className={style.StatusChanger}>
       <div className={style.title}>{statusNameMap[status]}</div>

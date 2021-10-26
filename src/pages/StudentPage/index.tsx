@@ -131,7 +131,7 @@ export const StudentPage: FC = () => {
       {[API.Query.Dropout, API.Query.Join].includes(modalType as (API.Query.Dropout | API.Query.Join)) &&
         <Comp.Modal onClose={closeModal}>
           <Comp.StatusChanger {...{
-            closeModal,
+            // closeModal,
             status: modalType as API.Query.Dropout | API.Query.Join,
             student: findStudent(+id),
             changeStatus: changeStatus.bind(null, +id, modalType as API.Query.Dropout | API.Query.Join),
