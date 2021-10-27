@@ -1,0 +1,11 @@
+.Deposit {
+  @apply w-64 text-center p-5 text-gray-600;
+}
+
+.Deposit .title, .Deposit .name{
+  @apply text-2xl;
+}
+
+.Deposit .img {
+  @apply w-24 h-24 bg-gray-100 rounded-full mx-auto my-5;
+}
