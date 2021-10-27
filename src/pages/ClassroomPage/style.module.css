@@ -1,8 +1,32 @@
+.ClassroomPage .classroomList {
+  @apply p-5 pl-14;
+}
+
+.ClassroomPage .classroom {
+  @apply mb-5 relative;
+}
+
+.ClassroomPage .classroom:before {
+  content: '';
+  left: -30px;
+  top: 6px;
+  @apply border-lavender-700 w-4 h-4 absolute divide-solid border-2 rounded-full;
+}
+
+.ClassroomPage .classroom:not(:last-of-type):after {
+  content: '';
+  left: -23px;
+  top: 22px;
+  height: calc(100% + 5px);
+  background-color: #F1EBF2;
+  @apply w-0.5 absolute;
+}
+
 .ClassroomPage .classroom .title {
   @apply text-lavender-500 text-xs;
 }
 
-.ClassroomPage .classroom .title > * {
+.ClassroomPage .classroom .title > *:not(:first-of-type) {
   @apply mx-1.5;
 }
 
@@ -11,9 +35,17 @@
 }
 
 .ClassroomPage .classroom .student {
-  @apply text-gray-400;
+  @apply text-gray-400 text-sm;
+}
+
+.ClassroomPage .classroom .student:after {
+  content: ' 、 ';
+}
+
+.ClassroomPage .classroom .student:last-of-type:after {
+  content: '。';
 }
 
 .ClassroomPage .add {
-  @apply fixed right-8 bottom-8 w-16 h-16;
+  @apply fixed right-6 bottom-6 w-16 h-16;
 }

@@ -82,8 +82,8 @@ export const StudentPage: FC = () => {
                         </div>
                       </div>
                       <div className={cx(style.progress, style[`step${s.rollcalls || 0}`])}>
-                        {[...Array(s.planTimes || 1).keys()].map(() =>
-                          <div className={style.bar} />
+                        {[...Array(s.planTimes || 1).keys()].map(i =>
+                          <div key={i} className={style.bar} />
                         )}
                       </div>
                       <div className={style.buttonGroup}>
