@@ -1,0 +1,23 @@
+.RollCallPage form {
+  @apply p-5;
+}
+
+.RollCallPage form .datetime {
+  @apply text-center;
+}
+
+.RollCallPage form .datetime input {
+  @apply appearance-none border bg-white h-8 text-lg rounded-none px-2 mb-2;
+}
+
+.RollCallPage form .studentList {
+  @apply my-5 leading-7;
+}
+
+.RollCallPage form .studentList input[type="checkbox"] {
+  @apply mr-1 border border-lavender-700 rounded-none shadow-none;
+}
+
+.RollCallPage form .studentList input[type="checkbox"] + span {
+  @apply text-gray-500;
+}

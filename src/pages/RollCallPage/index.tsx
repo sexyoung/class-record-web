@@ -1,10 +1,27 @@
+import cx from 'classnames';
+import { useHistory } from "react-router";
 import { useEffect, useState, FormEventHandler as FEH} from "react";
 
 import * as API from "api";
 import { ROUTE } from "route";
-import { useHistory } from "react-router";
 import * as Comp from "components";
 import * as StudentType from "domain/type/res/student";
+
+import style from './style.module.css';
+import btnStyle from 'components/btn.module.css';
+import inputStyle from 'components/input.module.css';
+
+const pad = (n: number) => `00${n}`.slice(-2);
+
+const getDate = () => {
+  const date = new Date();
+  return date.getFullYear().toString() + '-' + pad(date.getMonth() + 1) + '-' + pad(date.getDate());
+};
+
+const getTime = () => {
+  const date = new Date();
+  return pad(date.getHours()) + ':' + pad(date.getMinutes());
+};
 
 export const RollCallPage = () => {
   const history = useHistory();
@@ -28,13 +45,15 @@ export const RollCallPage = () => {
   };
 
   return (
-    <div>
+    <div className={style.RollCallPage}>
       <Comp.Header />
       {studentList &&
         <form onSubmit={handleSubmit}>
-          date: <input type="date" name="date" required /><br />
-          time: <input type="time" name="time" required /><br />
-          <ul>
+          <div className={style.datetime}>
+            <input type="date" name="date" required className={inputStyle.input} defaultValue={getDate()} />
+            <input type="time" name="time" required className={inputStyle.input} defaultValue={getTime()} />
+          </div>
+          <ul className={style.studentList}>
             {studentList.map((student) =>
               <li key={student.id}>
                 <label>
@@ -44,7 +63,7 @@ export const RollCallPage = () => {
               </li>
             )}
           </ul>
-          <button>submit</button>
+          <button className={cx(btnStyle.btn, 'w-full')}>點名</button>
         </form>
       }
     </div>

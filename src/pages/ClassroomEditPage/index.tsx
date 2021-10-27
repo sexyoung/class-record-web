@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import { useHistory } from "react-router-dom";
 import { FC, useEffect, useState, FormEventHandler as FEH } from "react";
 
@@ -7,6 +8,10 @@ import { useQuery } from "utils";
 import * as Comp from "components";
 import * as StudentType from "domain/type/res/student";
 import * as ClassRoomType from "domain/type/res/classroom";
+
+import style from './style.module.css';
+import btnStyle from 'components/btn.module.css';
+import inputStyle from 'components/input.module.css';
 
 export const ClassroomEditPage: FC = () => {
   const query = useQuery();
@@ -32,13 +37,13 @@ export const ClassroomEditPage: FC = () => {
   };
 
   return (
-    <div>
+    <div className={style.ClassroomEditPage}>
       <Comp.Header />
       {classroom && studentList &&
         <form onSubmit={handleSubmit}>
-          date: <input type="date" name="date" required defaultValue={classroom.date.slice(0, 10)} /><br />
-          time: <input type="time" name="time" required defaultValue={classroom.date.slice(11)} /><br />
-          <ul>
+          <input type="date" name="date" required className={inputStyle.input} defaultValue={classroom.date.slice(0, 10)} /><br />
+          <input type="time" name="time" required className={inputStyle.input} defaultValue={classroom.date.slice(11)} /><br />
+          <ul className={style.studentList}>
             {studentList.map(student =>
               <li key={student.id}>
                 <label>
@@ -50,7 +55,7 @@ export const ClassroomEditPage: FC = () => {
               </li>
             )}
           </ul>
-          <button>submit</button>
+          <button className={cx(btnStyle.btn, 'w-full')}>更新</button>
         </form>
       }
     </div>
