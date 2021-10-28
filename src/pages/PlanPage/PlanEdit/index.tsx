@@ -14,6 +14,7 @@ export const PlanEdit: FC<IPlanEdit> = ({ plan, editPlan }) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     editPlan({
+      id: plan.id,
       name: `${formData.get("name")}`,
       money: +formData.get("money")!,
       times: +formData.get("times")!,
@@ -24,10 +25,10 @@ export const PlanEdit: FC<IPlanEdit> = ({ plan, editPlan }) => {
   return (
     <form onSubmit={handleSubmit} className={style.Deposit}>
       <div className={style.title}>編輯方案</div>
-      <input name="name" className={cx(inputStyle.input, "mt-5")} defaultValue={plan.id}/>
-      <input name="money" className={cx(inputStyle.input, "mt-5")} />
-      <input name="times" className={cx(inputStyle.input, "mt-5")} />
-      <input name="expiresDays" className={cx(inputStyle.input, "mt-5")} />
+      <input name="name" className={cx(inputStyle.input, "mt-5")} defaultValue={plan.name} required />
+      <input name="money" className={cx(inputStyle.input, "mt-5")} defaultValue={plan.money} required />
+      <input name="times" className={cx(inputStyle.input, "mt-5")} defaultValue={plan.times} required />
+      <input name="expiresDays" className={cx(inputStyle.input, "mt-5")} defaultValue={plan.expiresDays} required />
       <button className={cx(btnStyle.btn, "w-full mt-3")}>送出</button>
     </form>
   );

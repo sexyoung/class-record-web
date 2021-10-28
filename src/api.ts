@@ -1,3 +1,4 @@
+import { IPlanData } from "domain/type/res/plan";
 import { fetchApi } from "utils";
 
 const { REACT_APP_API_DOMAIN: API } = process.env;
@@ -102,3 +103,10 @@ export const delPlan = (id: number) =>
   });
 
 // 新增課程方案在哪你？？？？
+
+// 編輯課程方案
+export const editPlan = (id: number, body: IPlanData) =>
+  fetchApi(`${getAPI()}/plan/${id}`, {
+    method: "put",
+    body,
+  });

@@ -16,7 +16,7 @@ export const PlanNew: FC<IPlanNew> = ({ newPlan }) => {
 
   return (
     <form onSubmit={newPlan} className={style.Deposit}>
-      <div className={style.title}>儲值</div>
+      <div className={style.title}>新增方案</div>
       <input name="plan" className={cx(inputStyle.input, "mt-5")} />
       <input name="plan" className={cx(inputStyle.input, "mt-5")} />
       <input name="plan" className={cx(inputStyle.input, "mt-5")} />
