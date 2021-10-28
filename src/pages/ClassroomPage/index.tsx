@@ -27,7 +27,8 @@ export const ClassroomPage: FC = () => {
             <div className={style.title}>
               <span className={style.date}>{classroom.date.slice(5, 16)}</span>
               <span>{classroom.students.length}人</span>
-              <Link to={`${ROUTE.CLASS_EDIT}/?id=${classroom.id}`}>編輯</Link><br />
+              <Link to={`${ROUTE.CLASS_EDIT}/?id=${classroom.id}`}>編輯</Link>
+              <span>刪除(未做)</span>
             </div>
             {classroom.students.map(student =>
               <span key={student.id} className={style.student}>{student.name}</span>

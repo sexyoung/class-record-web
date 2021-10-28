@@ -1,0 +1,23 @@
+.ClassroomEditPage form {
+  @apply p-5;
+}
+
+.ClassroomEditPage form .datetime {
+  @apply text-center;
+}
+
+.ClassroomEditPage form .datetime input {
+  @apply appearance-none border bg-white h-8 text-lg rounded-none px-2 mb-2;
+}
+
+.ClassroomEditPage form .studentList {
+  @apply my-5 leading-7;
+}
+
+.ClassroomEditPage form .studentList input[type="checkbox"] {
+  @apply mr-1 border border-lavender-700 rounded-none shadow-none;
+}
+
+.ClassroomEditPage form .studentList input[type="checkbox"] + span {
+  @apply text-gray-500;
+}
