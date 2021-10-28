@@ -108,5 +108,5 @@ export const delPlan = (id: number) =>
 export const editPlan = (id: number, body: IPlanData) =>
   fetchApi(`${getAPI()}/plan/${id}`, {
     method: "put",
-    body,
+    body: { data: body },
   });

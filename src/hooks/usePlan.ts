@@ -5,8 +5,17 @@ import { Plan } from 'domain/type/res/plan';
 
 export const usePlan = () => {
   const [planList, setPlanList] = useState<Plan[]>();
-  useEffect(() => {
+
+  const fetch = () => {
     API.getPlan().then(setPlanList);
+  };
+
+  useEffect(() => {
+    fetch();
   }, []);
-  return {planList, setPlanList};
+  return {
+    fetch,
+    planList,
+    setPlanList,
+  };
 };

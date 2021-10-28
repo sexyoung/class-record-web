@@ -25,7 +25,7 @@ import { NamedTupleMember } from 'typescript';
 // };
 
 export const PlanPage: FC = () => {
-  const {planList, setPlanList} = usePlan();
+  const {planList, setPlanList, fetch} = usePlan();
   const [modalStatus, setModalStatus] = useState("");
   // modalType: new, edit, delete
   const [modalType = '', id = ''] = modalStatus.split('-');
@@ -36,13 +36,12 @@ export const PlanPage: FC = () => {
 
   const deletePlan = async (id: string) => {
     closeModal();
-    await API.delPlan(+id);
-    setPlanList(usePlan().planList);
+    await API.delPlan(+id).then(fetch);
   };
 
   const newPlan = async () => {
     closeModal();
-    setPlanList(usePlan().planList);
+    fetch();
   };
 
   const editPlan = async (params: Type.IPlanData) => {
@@ -54,7 +53,7 @@ export const PlanPage: FC = () => {
       times: params.times,
       expiresDays: params.expiresDays,
     });
-    setPlanList(usePlan().planList);
+    fetch();
   };
 
   return (
