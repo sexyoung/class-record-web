@@ -1,3 +1,19 @@
-.PlanPage {
-  
+.PlanPage .planContainer {
+  @apply p-6;
+}
+
+.PlanPage .planContainer .plan {
+  @apply flex justify-center;
+}
+
+.PlanPage .planContainer .plan p {
+  @apply text-lavender-700 m-1 flex justify-end;
+}
+
+.PlanPage .planContainer .plan button {
+  @apply text-gray-500 flex justify-center m-1;
+}
+
+.PlanPage .addPlan {
+  @apply fixed bottom-16 right-8
 }

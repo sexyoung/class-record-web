@@ -4,12 +4,12 @@ import * as Comp from 'components';
 import * as Type from 'domain/type/res/plan';
 import { usePlan } from 'hooks/usePlan';
 import { PlanDelete } from './PlanDelete';
-import style from './style.module.css';
 import { formatMoney } from 'utils/format';
 import { PlanNew } from './PlanNew';
-import { IPlanEdit } from './PlanEdit/type';
 import { PlanEdit } from './PlanEdit';
-import { NamedTupleMember } from 'typescript';
+import * as Icon from '@heroicons/react/solid';
+import style from './style.module.css';
+import comStyle from 'components/common.module.css';
 
 // const Plan: FC<Type.IPlanData>  = ({id, setId, money, times, expiresDays}) => {
 //   const formatMoney = new Intl.NumberFormat().format(money);
@@ -25,7 +25,7 @@ import { NamedTupleMember } from 'typescript';
 // };
 
 export const PlanPage: FC = () => {
-  const {planList, setPlanList, fetch} = usePlan();
+  const {planList, fetch} = usePlan();
   const [modalStatus, setModalStatus] = useState("");
   // modalType: new, edit, delete
   const [modalType = '', id = ''] = modalStatus.split('-');
@@ -59,17 +59,19 @@ export const PlanPage: FC = () => {
   return (
     <div className={style.PlanPage}>
       <Comp.Header />
-      {planList && planList.map(plan =>
+      <div className={style.planContainer}>
+        {planList && planList.map(plan =>
         // <Plan key={plan.id} {...plan} setId={setId} />
-        <div key={plan.id}>
-          {` $${formatMoney(plan.money)} `}
-          {` ${plan.times}次 `}
-          {` ${plan.expiresDays}天 `}
-          <button onClick={setModalStatus.bind(null, `edit-${plan.id}`)}> 編輯 </button>
-          <button onClick={setModalStatus.bind(null, `delete-${plan.id}`)}> 刪除 </button>
-        </div>
-      )}
-
+          <div className={style.plan} key={plan.id}>
+            <p className="w-18">{`${plan.name}`}</p>
+            <p className="w-16">{`$${formatMoney(plan.money)}`}</p>
+            <p className="w-8">{`${plan.times}次`}</p>
+            <p className="w-10">{`${plan.expiresDays}天`}</p>
+            <button onClick={setModalStatus.bind(null, `edit-${plan.id}`)}> 編輯 </button>
+            <button onClick={setModalStatus.bind(null, `delete-${plan.id}`)}> 刪除 </button>
+          </div>
+        )}
+      </div>
       {modalType === "edit" && planList &&
         <Comp.Modal onClose={closeModal}>
           <PlanEdit {...{
@@ -87,7 +89,12 @@ export const PlanPage: FC = () => {
           }} />
         </Comp.Modal>
       }
-      <div onClick={setModalStatus.bind(null, `new`)}>新增</div>
+      <div
+        onClick={setModalStatus.bind(null, `new`)}
+        className={style.addPlan}
+      >
+        <Icon.PlusCircleIcon className={comStyle.create} />
+      </div>
       {modalType === "new" &&
         <Comp.Modal onClose={closeModal}>
           <PlanNew {...{newPlan}}/>

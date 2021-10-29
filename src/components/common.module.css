@@ -1,3 +1,7 @@
 .logo {
   @apply w-8 h-8 text-lavender-700;
 }
+
+.create {
+  @apply w-12 h-12 text-lavender-700;
+}
