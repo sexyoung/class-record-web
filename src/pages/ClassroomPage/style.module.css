@@ -34,6 +34,10 @@
   @apply text-lavender-700 text-lg;
 }
 
+.ClassroomPage .classroom .delete {
+  @apply cursor-pointer;
+}
+
 .ClassroomPage .classroom .student {
   @apply text-gray-400 text-sm;
 }

@@ -1,0 +1,7 @@
+.RemoveRollCall {
+  @apply w-64 text-center p-5 text-gray-600;
+}
+
+.RemoveRollCall .title, .RemoveRollCall .name{
+  @apply text-2xl;
+}

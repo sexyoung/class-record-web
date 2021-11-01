@@ -71,6 +71,11 @@ export const updateClassRoom = (id: number, body: RollCallParam) =>
     body,
   });
 
+export const deleteClassRoom = (id: number) =>
+  fetchApi(`${getAPI()}/classroom/${id}`, {
+    method: "delete",
+  });
+
 // 學生查詢
 export const getAllStudent = (status: `${Query}`) =>
   fetchApi(`${getAPI()}/student?status=${status}`);
