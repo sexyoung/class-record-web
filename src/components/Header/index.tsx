@@ -54,15 +54,16 @@ export const Header: FC = () => {
                 {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
                 <div className={style.menuItem}>個人資料</div>
                 <div className={style.menuItem}>匯入資料</div>
-                <div className={style.menuItem}>
-                  <Link
-                    to={ROUTE.HOME}
-                    onClick={clearApiToken}
-                    className="text-gray-600 py-2 rounded-md text-sm font-medium"
-                  >
-                    <Icon.LogoutIcon className="w-5 h-5 text-lavender-500 hover:text-white" />
-                  </Link>
-                </div>
+                <Link
+                  to={ROUTE.HOME}
+                  onClick={clearApiToken}
+                  className="text-gray-600 py-2 rounded-md text-sm font-medium"
+                >
+                  <div className={style.menuItem}>
+                    {/* <Icon.LogoutIcon className="w-5 h-5 text-lavender-500 hover:text-white" /> */}
+                    登出
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
