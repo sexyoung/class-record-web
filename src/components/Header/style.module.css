@@ -10,3 +10,7 @@
 {
   @apply text-white bg-lavender-700;
 }
+
+.menuItem {
+  @apply text-lavender-700 hover:bg-gray-700 hover:text-white w-full block px-3 py-2 rounded-md text-base font-medium
+}
