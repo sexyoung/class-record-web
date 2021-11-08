@@ -9,6 +9,8 @@ import * as Comp from 'components';
 import { usePlan } from 'hooks/usePlan';
 import * as Type from "domain/type/res/student";
 
+import style from './style.module.css';
+
 export const StudentPersonalPage: FC = () => {
   const {planList} = usePlan();
   const [student, setStudent] = useState<Type.Detail>();
@@ -46,37 +48,42 @@ export const StudentPersonalPage: FC = () => {
   };
 
   return (
-    <div>
+    <div className={style.StudentPersonalPage}>
       <Comp.Header />
       {student && planList &&
-        <>
-          個人頁
+        <div>
           {!isEdit && student &&
-          <div>
-            <div>{student.name}</div>
-            <div>{student.status}</div>
-            <button onClick={setIsEdit.bind(null, true)}>[編輯]</button>
-          </div>
+          <>
+            <div className={style.img} />
+            <div className="text-center">{student.name}</div>
+            <div className="text-center">{student.status}</div>
+            <button
+              className="w-16 text-center"
+              onClick={setIsEdit.bind(null, true)}
+            >[編輯]</button>
+          </>
           }
           {isEdit && student &&
-            <form onSubmit={finishEdit}>
-              <input type="text" name="name" defaultValue={student.name} placeholder="name" required />
-              <input type="text" name="status" defaultValue={student.status} placeholder="status" required />
-              <button>[完成]</button>
+            <form onSubmit={finishEdit} className="flex w-full">
+              <input className="flex-1" type="text" name="name" defaultValue={student.name} placeholder="name" required />
+              <input className="flex-1" type="text" name="status" defaultValue={student.status} placeholder="status" required />
+              <button className="w-16 text-center">[完成]</button>
             </form>
           }
           <button onClick={setIsShowModal.bind(null, true)}>[儲值]</button>
-          <ul>
+          <div className={style.classroomList}>
             {student.records.map((record: Type.Deposit | Type.RollCall) =>
-              <li key={`${record.type}-${record.id}`}>
-                <span>{record.type}</span>
-                <span>{record.date}</span>
-                {record.type === 'deposit' &&
-                  <span>過期日{record.data!.expiresAt}</span>
-                }
-              </li>
+              <div key={`${record.type}-${record.id}`} className={style.classroom}>
+                <div className={style.title}>
+                  <span className={style.date}>{record.date}</span>
+                  <span>{record.type}</span>
+                  {record.type === 'deposit' &&
+                  <div>過期日{record.data!.expiresAt}</div>
+                  }
+                </div>
+              </div>
             )}
-          </ul>
+          </div>
           {isShowModal &&
           <Comp.Modal>
             <Comp.Deposit {...{
@@ -87,7 +94,7 @@ export const StudentPersonalPage: FC = () => {
             }} />
           </Comp.Modal>
           }
-        </>
+        </div>
       }
     </div>
   );
