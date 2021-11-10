@@ -16,13 +16,10 @@ jobs:
       with:
         node-version: '14.17.1'
 
-    - name: 下載程式碼
+    - name: 下載程式碼 & 下載 submodules
       uses: actions/checkout@v2
-
-    - name: 下載 submodules
-      uses: textbook/git-checkout-submodule-action@master
       with:
-        remote: true
+        submodules: recursive
 
     - name: 建立快照 (node_modules)
       uses: actions/cache@v2
