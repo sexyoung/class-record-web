@@ -9,7 +9,9 @@ export const ImportPage = () => {
     if(!file) return;
     const data = await file.arrayBuffer();
     const workbook = XLSX.read(data);
-    console.log(XLSX.utils.sheet_to_json(workbook.Sheets.Sheet1));
+    console.log(XLSX.utils.sheet_to_json(workbook.Sheets.student));
+    console.log(XLSX.utils.sheet_to_json(workbook.Sheets.plan));
+    console.log(XLSX.utils.sheet_to_json(workbook.Sheets.rollcall));
   };
 
   return (
@@ -17,6 +19,7 @@ export const ImportPage = () => {
       <Comp.Header />
       ImportPage
       <input type="file" onChange={handleChange} />
+      <a download href="/data.xlsx">download sample</a>
     </div>
   );
 };
