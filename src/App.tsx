@@ -23,6 +23,8 @@ function App() {
               <PrivateRoute path={ROUTE.STUDENTPERSONAL}><Page.StudentPersonalPage /></PrivateRoute>
               <PrivateRoute path={ROUTE.PLAN}><Page.PlanPage /></PrivateRoute>
               <PrivateRoute path={ROUTE.AUTH}><Page.AuthenticationPage /></PrivateRoute>
+              <PrivateRoute path={ROUTE.PROFILE}><Page.TeacherPage /></PrivateRoute>
+              <PrivateRoute path={ROUTE.IMPORT}><Page.ImportPage /></PrivateRoute>
 
               {/* 登入前頁面 */}
               <Route exact path={ROUTE.LOGIN}><Page.LoginPage /></Route>

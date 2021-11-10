@@ -8,3 +8,5 @@ export * from './PlanPage';
 export * from './RollCallPage';
 export * from './ClassroomPage';
 export * from './ClassroomEditPage';
+export * from './TeacherPage';
+export * from './ImportPage';
