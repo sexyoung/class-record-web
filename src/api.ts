@@ -108,9 +108,14 @@ export const delPlan = (id: number) =>
   });
 
 // 新增課程方案在哪你？？？？
+export const newPlan = (body: IPlanData) =>
+  fetchApi(`${getAPI()}/plan`, {
+    method: "post",
+    body: { data: body },
+  });
 
 // 編輯課程方案
-export const editPlan = (id: number, body: IPlanData) =>
+export const editPlan = ({ id, ...body }: IPlanData & {id: number}) =>
   fetchApi(`${getAPI()}/plan/${id}`, {
     method: "put",
     body: { data: body },

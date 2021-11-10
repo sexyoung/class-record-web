@@ -1,28 +1,16 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 import * as API from "api";
 import * as Comp from 'components';
 import * as Type from 'domain/type/res/plan';
 import { usePlan } from 'hooks/usePlan';
 import { PlanDelete } from './PlanDelete';
 import { formatMoney } from 'utils/format';
-import { PlanNew } from './PlanNew';
-import { PlanEdit } from './PlanEdit';
+
+import { PlanForm } from './PlanForm';
 import * as Icon from '@heroicons/react/solid';
 import style from './style.module.css';
 import comStyle from 'components/common.module.css';
 
-// const Plan: FC<Type.IPlanData>  = ({id, setId, money, times, expiresDays}) => {
-//   const formatMoney = new Intl.NumberFormat().format(money);
-//   return (
-//     <div>
-//       {` $${formatMoney} `}
-//       {` ${times}次 `}
-//       {` ${expiresDays}天 `}
-//       <button> 編輯 </button>
-//       <button onClick={setId.bind(null, id)}> 刪除 </button>
-//     </div>
-//   );
-// };
 
 export const PlanPage: FC = () => {
   const {planList, fetch} = usePlan();
@@ -39,22 +27,17 @@ export const PlanPage: FC = () => {
     await API.delPlan(+id).then(fetch);
   };
 
-  const newPlan = async () => {
-    closeModal();
-    fetch();
+  const genPlanFunc = (action: 'new' | 'edit') => {
+    return async (params: Type.IPlanData) => {
+      closeModal();
+      if(action === 'edit') await API.editPlan({id: +id, ...params});
+      else if(action === 'new') await API.newPlan(params);
+      fetch();
+    };
   };
 
-  const editPlan = async (params: Type.IPlanData) => {
-    closeModal();
-
-    await API.editPlan(+params.id!, {
-      name: params.name,
-      money: params.money,
-      times: params.times,
-      expiresDays: params.expiresDays,
-    });
-    fetch();
-  };
+  const newPlan = genPlanFunc('new');
+  const editPlan = genPlanFunc('edit');
 
   return (
     <div className={style.PlanPage}>
@@ -74,9 +57,11 @@ export const PlanPage: FC = () => {
       </div>
       {modalType === "edit" && planList &&
         <Comp.Modal onClose={closeModal}>
-          <PlanEdit {...{
+          <PlanForm {...{
+            title: "修改方案",
+            submitText: "送出",
             plan: planList[planList.findIndex(plan => plan.id === +id)],
-            editPlan,
+            postPlan: editPlan,
           }} />
         </Comp.Modal>
       }
@@ -97,7 +82,11 @@ export const PlanPage: FC = () => {
       </div>
       {modalType === "new" &&
         <Comp.Modal onClose={closeModal}>
-          <PlanNew {...{newPlan}}/>
+          <PlanForm {...{
+            title: "新增方案",
+            submitText: "新增方案",
+            postPlan: newPlan,
+          }}/>
         </Comp.Modal>
       }
     </div>
