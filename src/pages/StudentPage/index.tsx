@@ -7,6 +7,7 @@ import { ROUTE } from 'route';
 import { useQuery } from "utils";
 import * as Comp from 'components';
 import { usePlan } from "hooks/usePlan";
+import * as Icon from '@heroicons/react/solid';
 import * as Type from "domain/type/res/student";
 
 import style from "./style.module.css";
@@ -116,6 +117,12 @@ export const StudentPage: FC = () => {
               </div>
             </div>
           }
+          <div
+            className={style.add}
+            onClick={setModalStatus.bind(null, `addStudent`)}
+          >
+            <Icon.PlusCircleIcon color="#926C9A" />
+          </div>
         </>
       )}
       {modalType === 'deposit' && planList &&
@@ -134,6 +141,15 @@ export const StudentPage: FC = () => {
             status: modalType as API.Query.Dropout | API.Query.Join,
             student: findStudent(+id),
             changeStatus: changeStatus.bind(null, +id, modalType as API.Query.Dropout | API.Query.Join),
+          }} />
+        </Comp.Modal>
+      }
+      {modalType === 'addStudent' && planList &&
+        <Comp.Modal onClose={closeModal}>
+          <Comp.addStudent {...{
+            planList,
+            closeModal,
+            addStudentDone: getStudentList,
           }} />
         </Comp.Modal>
       }

@@ -84,8 +84,17 @@ export const getAllStudent = (status: `${Query}`) =>
 export const getStudent = (id: number) =>
   fetchApi(`${getAPI()}/student/${id}`);
 
+// 學生更新
 export const updateStudent = (id: number, body: any) =>
   fetchApi(`${getAPI()}/student/${id}`, {
+    method: "post",
+    withToken: true,
+    body,
+  });
+
+// 新增學生
+export const addStudent = (body: any) =>
+  fetchApi(`${getAPI()}/student`, {
     method: "post",
     withToken: true,
     body,

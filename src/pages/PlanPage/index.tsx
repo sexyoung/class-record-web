@@ -44,7 +44,6 @@ export const PlanPage: FC = () => {
       <Comp.Header />
       <div className={style.planContainer}>
         {planList && planList.map(plan =>
-        // <Plan key={plan.id} {...plan} setId={setId} />
           <div className={style.plan} key={plan.id}>
             <p className="w-18">{`${plan.name}`}</p>
             <p className="w-16">{`$${formatMoney(plan.money)}`}</p>
@@ -92,3 +91,6 @@ export const PlanPage: FC = () => {
     </div>
   );
 };
+
+
+

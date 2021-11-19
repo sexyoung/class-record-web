@@ -99,3 +99,7 @@
 .StudentPage > .statusNav a {
   @apply text-lavender-700;
 }
+
+.StudentPage .add {
+  @apply fixed right-4 bottom-4 w-16 h-16;
+}
