@@ -129,3 +129,19 @@ export const editPlan = ({ id, ...body }: IPlanData & {id: number}) =>
     method: "put",
     body: { data: body },
   });
+
+interface IUpdatePassword {
+  oldPassword?: string;
+  newPassword?: string;
+}
+
+// 修改密碼
+export const updatePassword = ( {oldPassword = '', newPassword = ''}: IUpdatePassword ) => {
+  fetchApi(`${getAPI()}/update-password`, {
+    method: "put",
+    body: {
+      oldPassword,
+      newPassword
+    },
+  });
+};
