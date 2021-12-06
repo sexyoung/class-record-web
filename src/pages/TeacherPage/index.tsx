@@ -19,9 +19,17 @@ export const TeacherPage = () => {
   console.log("teacher", teacher);
 
   return (
-    <div className={style.StudentPersonalPage}>
+    <div className={style.TeacherPage}>
       <Comp.Header />
       <div className={style.img} />
+      {
+        teacher &&
+        <div  className={style.data}>
+          <div className={style.title}>{teacher.id}</div>
+          <div className={style.title}>{teacher.name}</div>
+          <div className={style.title}>{teacher.email}</div>
+        </div>
+      }
     </div>
   );
 };
