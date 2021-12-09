@@ -24,9 +24,9 @@ export const PlanForm: FC<IPlanForm> = ({ title, submitText, plan, postPlan }) =
     <form onSubmit={handleSubmit} className={style.Deposit}>
       <div className={style.title}>{title}</div>
       <input name="name" className={cx(inputStyle.input, "mt-5")} defaultValue={plan?.name} placeholder="方案名稱" required />
-      <input name="money" className={cx(inputStyle.input, "mt-5")} defaultValue={plan?.money} placeholder="方案金額" required />
-      <input name="times" className={cx(inputStyle.input, "mt-5")} defaultValue={plan?.times} placeholder="可上堂數" required />
-      <input name="expiresDays" className={cx(inputStyle.input, "mt-5")} defaultValue={plan?.expiresDays} placeholder="使用期限" required />
+      <input name="money" type="tel" className={cx(inputStyle.input, "mt-5")} defaultValue={plan?.money} placeholder="方案金額" required />
+      <input name="times" type="tel" className={cx(inputStyle.input, "mt-5")} defaultValue={plan?.times} placeholder="可上堂數" required />
+      <input name="expiresDays" type="tel" className={cx(inputStyle.input, "mt-5")} defaultValue={plan?.expiresDays} placeholder="可使用天數" required />
       <button className={cx(btnStyle.btn, "w-full mt-3")}>{submitText}</button>
     </form>
   );
