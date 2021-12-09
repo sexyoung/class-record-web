@@ -9,3 +9,7 @@
 .Deposit .img {
   @apply w-24 h-24 bg-gray-100 rounded-full mx-auto my-5;
 }
+
+.Deposit .title, .Deposit .inputTitle{
+  @apply text-left mt-5 ml-3 mb-2 text-lavender-700;
+}
