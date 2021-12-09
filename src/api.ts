@@ -101,7 +101,7 @@ export const addStudent = (body: any) =>
   });
 
 // 儲值
-export const postDeposit = (body: { planId: number, studentId: number}) =>
+export const postDeposit = (body: { planId: number, studentId: number, date: string}) =>
   fetchApi(`${getAPI()}/deposit`, {
     method: "post",
     body,
