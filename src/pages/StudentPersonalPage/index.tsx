@@ -4,12 +4,15 @@ import {
   useState,
   FormEventHandler as FEH,
 } from 'react';
+import cx from 'classnames';
 import * as API from "api";
 import * as Comp from 'components';
 import { usePlan } from 'hooks/usePlan';
 import * as Type from "domain/type/res/student";
 
 import style from './style.module.css';
+import btnStyle from 'components/btn.module.css';
+import inputStyle from 'components/input.module.css';
 
 export const StudentPersonalPage: FC = () => {
   const {planList} = usePlan();
@@ -55,22 +58,25 @@ export const StudentPersonalPage: FC = () => {
           {!isEdit && student &&
           <>
             <div className={style.img} />
-            <div className="text-center">{student.name}</div>
+            <div className="text-center" >{student.name}</div>
             <div className="text-center">{student.status}</div>
             <button
-              className="w-16 text-center"
+              className={cx(btnStyle.btn, "mt-5 w-1/2 ml-auto mr-auto block")}
               onClick={setIsEdit.bind(null, true)}
-            >[編輯]</button>
+            >編輯</button>
           </>
           }
           {isEdit && student &&
-            <form onSubmit={finishEdit} className="flex w-full">
-              <input className="flex-1" type="text" name="name" defaultValue={student.name} placeholder="name" required />
-              <input className="flex-1" type="text" name="status" defaultValue={student.status} placeholder="status" required />
-              <button className="w-16 text-center">[完成]</button>
+            <form onSubmit={finishEdit}>
+              <input className={cx(inputStyle.input, "mt-5 w-1/2 ml-auto mr-auto block")}  type="text" name="name" defaultValue={student.name} placeholder="name" required />
+              <input className={cx(inputStyle.input, "mt-5 w-1/2 ml-auto mr-auto block")}  type="text" name="status" defaultValue={student.status} placeholder="status" required />
+              <button className={cx(btnStyle.btn, "mt-5 w-1/2 ml-auto mr-auto block")}>完成</button>
             </form>
           }
-          <button onClick={setIsShowModal.bind(null, true)}>[儲值]</button>
+          <button
+            className={cx(btnStyle.btn, "mt-5 w-1/2 ml-auto mr-auto block")}
+            onClick={setIsShowModal.bind(null, true)}
+          >儲值</button>
           <div className={style.classroomList}>
             {student.records.map((record: Type.Deposit | Type.RollCall) =>
               <div key={`${record.type}-${record.id}`} className={style.classroom}>
