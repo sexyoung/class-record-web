@@ -1,13 +1,20 @@
 import XLSX from 'xlsx';
+import cx from 'classnames';
 import React, { useState } from "react";
 
+import * as API from "api";
 import * as Type from './type';
+import * as TypeImport from "domain/type/req/importing";
 import * as Comp from "components";
+
+import style from './style.module.css';
+import btnStyle from 'components/btn.module.css';
+
 export const ImportPage = () => {
 
-  const [planList, setPlanList] = useState<Type.PlanRow[]>();
-  const [studentList, setStudentList] = useState<Type.StudentRow[]>();
-  const [rollCallList, setRollCallList] = useState<Type.RollCallRow[]>();
+  const [planList, setPlanList] = useState<TypeImport.Plan[]>();
+  const [studentList, setStudentList] = useState<TypeImport.Student[]>();
+  const [rollCallList, setRollCallList] = useState<TypeImport.RollCall[]>();
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = async ({ currentTarget }) => {
     const [ file = null ] = currentTarget.files as FileList;
@@ -19,21 +26,21 @@ export const ImportPage = () => {
   };
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = async () => {
-    console.log({
-      planList,
-      studentList,
-      rollCallList,
-    });
+    if(!planList || !studentList || !rollCallList) return;
+    API.importing({ planList, studentList, rollCallList })
+      .then(console.log)
+      .catch(console.log)
+    ;
   };
 
   return (
-    <div>
+    <div className={style.ImportPage}>
       <Comp.Header />
-      ImportPage
-      <input type="file" onChange={handleChange} />
-      <div><a download href="/data.xlsx">download sample</a></div>
+      <div className={style.content}>
+        <h2><a download href="/data.xlsx">download sample</a></h2>
+        {!studentList && <input type="file" onChange={handleChange} />}
 
-      {studentList &&
+        {studentList &&
         <table>
           <thead>
             <tr>
@@ -54,9 +61,9 @@ export const ImportPage = () => {
             )}
           </tbody>
         </table>
-      }
+        }
 
-      {planList &&
+        {planList &&
         <table>
           <thead>
             <tr>
@@ -77,9 +84,9 @@ export const ImportPage = () => {
             )}
           </tbody>
         </table>
-      }
+        }
 
-      {rollCallList &&
+        {rollCallList &&
         <table>
           <thead>
             <tr>
@@ -96,11 +103,12 @@ export const ImportPage = () => {
             )}
           </tbody>
         </table>
-      }
+        }
 
-      {studentList && studentList.length && planList && planList.length &&
-        <button onClick={handleClick}>匯入並取代資料</button>
-      }
+        {studentList && studentList.length && planList && planList.length &&
+        <button className={cx(btnStyle.btn, 'w-full')} onClick={handleClick}>匯入並取代資料</button>
+        }
+      </div>
     </div>
   );
 };

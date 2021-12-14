@@ -1,4 +1,5 @@
 import { IPlanData } from "domain/type/res/plan";
+import * as TypeImport from "domain/type/req/importing";
 import { fetchApi } from "utils";
 
 const { REACT_APP_API_DOMAIN: API } = process.env;
@@ -145,3 +146,8 @@ export const updatePassword = ( {oldPassword = '', newPassword = ''}: IUpdatePas
     },
   });
 };
+export const importing = (body: { planList: TypeImport.Plan[], studentList: TypeImport.Student[], rollCallList: TypeImport.RollCall[]}) =>
+  fetchApi(`${getAPI()}/import`, {
+    method: "post",
+    body,
+  });
