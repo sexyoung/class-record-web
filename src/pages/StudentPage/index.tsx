@@ -86,6 +86,9 @@ export const StudentPage: FC = () => {
                         {[...Array(s.planTimes || 1).keys()].map(i =>
                           <div key={i} className={style.bar} />
                         )}
+                        {s.times < 0 && [...Array(Math.abs(s.times)).keys()].map(i =>
+                          <div key={i} className={cx(style.bar, style.debts)} />
+                        )}
                       </div>
                       <div className={style.buttonGroup}>
                         <button onClick={setModalStatus.bind(null, `deposit-${s.id}`)}>儲值</button>

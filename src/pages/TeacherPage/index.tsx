@@ -1,17 +1,22 @@
+import { useHistory } from "react-router-dom";
 import { useEffect, useState, FormEventHandler as FEH } from "react";
-import * as Comp from "components";
 import * as API from "api";
+import { ROUTE } from "route";
+import * as Comp from "components";
 import * as Type from "domain/type/res/teacher";
+
 import style from './style.module.css';
 
 export const TeacherPage = () => {
-  const [teacher, setTeacher] = useState<Type.Detail>();
+  const history = useHistory();
   const [isChange, setIsChange] = useState(false);
+  const [teacher, setTeacher] = useState<Type.Detail>();
   const [isShowModal, setIsShowModal] = useState(false);
 
   const getTeacher = () => {
     API.getTeacherInfo()
-      .then(setTeacher);
+      .then(setTeacher)
+      .catch(() => history.replace(ROUTE.LOGIN));
   };
 
   const changePassword: FEH<HTMLFormElement> = async (e) => {

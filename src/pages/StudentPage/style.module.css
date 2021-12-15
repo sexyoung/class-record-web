@@ -49,9 +49,15 @@
 .StudentPage .list .student .progress.step5 .bar:nth-of-type(-n+5),
 .StudentPage .list .student .progress.step6 .bar:nth-of-type(-n+6),
 .StudentPage .list .student .progress.step7 .bar:nth-of-type(-n+7),
-.StudentPage .list .student .progress.step8 .bar:nth-of-type(-n+8)
+.StudentPage .list .student .progress.step8 .bar:nth-of-type(-n+8),
+.StudentPage .list .student .progress.step9 .bar:nth-of-type(-n+9),
+.StudentPage .list .student .progress.step10 .bar:nth-of-type(-n+10)
 {
   @apply bg-lavender-500;
+}
+
+.StudentPage .list .student .progress .bar.debts {
+  @apply bg-pink-500 !important;
 }
 
 .StudentPage .list .student .progress .bar {

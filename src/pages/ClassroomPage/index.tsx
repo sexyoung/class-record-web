@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { FC, useEffect, useState } from "react";
 import * as Icon from '@heroicons/react/solid';
+import { FC, useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 import * as API from "api";
 import { ROUTE } from "route";
@@ -10,6 +10,7 @@ import * as Type from "domain/type/res/classroom";
 import style from './style.module.css';
 
 export const ClassroomPage: FC = () => {
+  const history = useHistory();
   const [modalStatus, setModalStatus] = useState("");
   const [modalType = '', id = ''] = modalStatus.split('-');
   const [classroomList, setClassroomList] = useState<Type.Class[]>();
@@ -17,7 +18,7 @@ export const ClassroomPage: FC = () => {
   const getClassRoomList = async () => {
     await API.getClassRoom()
       .then(setClassroomList)
-      .catch(console.log)
+      .catch(() => history.replace(ROUTE.LOGIN))
     ;
   };
 

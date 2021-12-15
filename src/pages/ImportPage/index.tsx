@@ -37,7 +37,7 @@ export const ImportPage = () => {
     <div className={style.ImportPage}>
       <Comp.Header />
       <div className={style.content}>
-        <h2><a download href="/data.xlsx">download sample</a></h2>
+        <h2><a download href="/data.xlsx">下戴樣本</a></h2>
         {!studentList && <input type="file" onChange={handleChange} />}
 
         {studentList &&
