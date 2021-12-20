@@ -1,3 +1,4 @@
+import cx from 'classnames';
 import { FC, useState } from 'react';
 import * as API from "api";
 import * as Comp from 'components';
@@ -75,7 +76,7 @@ export const PlanPage: FC = () => {
       }
       <div
         onClick={setModalStatus.bind(null, `new`)}
-        className={style.addPlan}
+        className={cx(style.add, comStyle.add)}
       >
         <Icon.PlusCircleIcon className={comStyle.create} />
       </div>

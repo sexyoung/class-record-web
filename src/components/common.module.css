@@ -2,6 +2,11 @@
   @apply w-8 h-8 text-lavender-700;
 }
 
+.add:before {
+  content: '';
+  @apply z-0 transform -translate-y-1/2 -translate-x-1/2 top-1/2 left-1/2 w-9 h-9 bg-white rounded-full block absolute;
+}
+
 .create {
   @apply w-12 h-12 text-lavender-700;
 }

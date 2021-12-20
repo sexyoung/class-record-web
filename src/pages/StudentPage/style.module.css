@@ -107,5 +107,9 @@
 }
 
 .StudentPage .add {
-  @apply fixed right-4 bottom-4 w-16 h-16;
+  @apply fixed right-4 bottom-4;
+}
+
+.StudentPage .add > svg {
+  @apply relative z-10;
 }

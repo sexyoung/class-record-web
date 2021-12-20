@@ -11,6 +11,7 @@ import * as Icon from '@heroicons/react/solid';
 import * as Type from "domain/type/res/student";
 
 import style from "./style.module.css";
+import comStyle from 'components/common.module.css';
 import inputStyle from 'components/input.module.css';
 
 export const StudentPage: FC = () => {
@@ -121,10 +122,10 @@ export const StudentPage: FC = () => {
             </div>
           }
           <div
-            className={style.add}
+            className={cx(style.add, comStyle.add)}
             onClick={setModalStatus.bind(null, `addStudent`)}
           >
-            <Icon.PlusCircleIcon color="#926C9A" />
+            <Icon.PlusCircleIcon className={comStyle.create} />
           </div>
         </>
       )}

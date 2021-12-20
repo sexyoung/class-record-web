@@ -24,6 +24,7 @@ export const addStudent: FC<IaddStudent> = ({ planList, closeModal, addStudentDo
     await API.addStudent({
       name: formData.get("name")!,
       planId: +formData.get("plan")!,
+      date: formData.get("date")!.toString()!,
     });
 
     addStudentDone();
@@ -40,6 +41,8 @@ export const addStudent: FC<IaddStudent> = ({ planList, closeModal, addStudentDo
           <option key={plan.id} value={plan.id}>{plan.name}</option>
         )}
       </select>
+      <div className={style.inputTitle}>加入日期</div>
+      <input name="date" type="date" required className={cx(inputStyle.input, "mt-0")} />
       <button className={cx(btnStyle.btn, "w-full mt-3")}>新增</button>
     </form>
   );

@@ -2,7 +2,8 @@
   @apply w-64 text-center p-5 text-gray-600;
 }
 
-.Deposit .title, .Deposit .name{
+.Deposit > .title,
+.Deposit .name {
   @apply text-2xl;
 }
 
@@ -10,6 +11,6 @@
   @apply w-24 h-24 bg-gray-100 rounded-full mx-auto my-5;
 }
 
-.Deposit .title, .Deposit .inputTitle{
+.Deposit .inputTitle {
   @apply text-left mt-5 ml-3 mb-2 text-lavender-700;
 }

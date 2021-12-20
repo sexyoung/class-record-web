@@ -14,6 +14,10 @@
   @apply text-gray-500 flex justify-center m-1;
 }
 
-.PlanPage .addPlan {
-  @apply fixed bottom-16 right-8
+.PlanPage .add {
+  @apply fixed right-4 bottom-4;
+}
+
+.PlanPage .add > svg {
+  @apply relative z-10;
 }
