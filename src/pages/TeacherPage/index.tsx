@@ -5,7 +5,10 @@ import { ROUTE } from "route";
 import * as Comp from "components";
 import * as Type from "domain/type/res/teacher";
 
+import cx from 'classnames';
 import style from './style.module.css';
+import btnStyle from 'components/btn.module.css';
+import inputStyle from 'components/input.module.css';
 
 export const TeacherPage = () => {
   const history = useHistory();
@@ -42,31 +45,26 @@ export const TeacherPage = () => {
   return (
     <div className={style.TeacherPage}>
       <Comp.Header />
-      <div className={style.img} />
-      {
-        teacher &&
-        <div  className={style.data}>
-          <div className={style.title}>{teacher.id}</div>
-          <div className={style.title}>{teacher.name}</div>
-          <div className={style.title}>{teacher.email}</div>
-          <button onClick={setIsChange.bind(null, true)}>更改密碼</button>
-        </div>
-      }
-      {
-        isChange &&
+      <div className={style.container}>
         <form className={style.change} onSubmit={changePassword}>
-          <input name="oldPassword" type="password" placeholder="請輸入舊密碼" />
-          <input name="newPassword" type="password" placeholder="請輸入新密碼" />
-          <input type="password" placeholder="請再次輸入新密碼" />
-          <button>確認</button>
+          <input className={cx(inputStyle.input, "mt-5")} name="oldPassword" type="password" placeholder="請輸入舊密碼" required/>
+          <input className={cx(inputStyle.input, "mt-5")} name="newPassword" type="password" placeholder="請輸入新密碼" required/>
+          <input className={cx(inputStyle.input, "mt-5")} type="password" placeholder="請再次輸入新密碼" required/>
+          <button className={cx(btnStyle.btn, "w-full mt-8")} >確認</button>
         </form>
-      }
-      {isShowModal &&
+        <button className={cx(btnStyle.btn, "w-full mt-5")} onClick={setIsChange.bind(null, false)}>取消</button>
+        {isShowModal &&
           <Comp.Modal>
-            <div>修改成功</div>
-            <button onClick={setIsShowModal.bind(null, false)}>確認</button>
+            <div className={style.modalContainer}>
+              <div className={style.modalText}>修改成功</div>
+              <button className={cx(btnStyle.btn, "w-full")} onClick={setIsShowModal.bind(null, false)}>確認</button>
+            </div>
           </Comp.Modal>
-      }
+        }
+      </div>
     </div>
   );
 };
+
+
+

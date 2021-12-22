@@ -3,13 +3,16 @@ import { useState, useEffect } from "react";
 
 import * as API from "api";
 import { clearApiToken } from "utils";
+import * as Type from "domain/type/res/teacher";
 
 export const useProvideAuth = (token: string) => {
   const [isAuth, setIsAuth] = useState<boolean | void>(undefined);
+  const [teacher, setTeacher] = useState<Type.Teacher>();
 
   const checkIsAuth = async () => {
     try {
-      const { user } = await API.getTeacherInfo();
+      const user = await API.getTeacherInfo();
+
       return user;
     } catch (error) {
       throw new Error(error as string);
@@ -21,8 +24,8 @@ export const useProvideAuth = (token: string) => {
 
     checkIsAuth()
       .then((res) => {
-        // console.log(res);
         setIsAuth(true);
+        setTeacher(res);
       })
       .catch(e => {
         if(`${e}` === 'TypeError: Failed to fetch') return;
@@ -34,5 +37,6 @@ export const useProvideAuth = (token: string) => {
   return {
     isAuth,
     setIsAuth,
+    teacher,
   };
 };

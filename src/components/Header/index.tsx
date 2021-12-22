@@ -4,12 +4,16 @@ import * as Icon from '@heroicons/react/outline';
 import { Link, useHistory } from 'react-router-dom';
 
 import { ROUTE } from 'route';
+import { useAuth } from 'hooks';
 import { clearApiToken } from 'utils';
 
 import style from "./style.module.css";
 import comStyle from 'components/common.module.css';
 
 export const Header: FC = () => {
+  const auth = useAuth();
+  console.log("auth",auth);
+
   const history = useHistory();
   const pathname = history.location.pathname;
   const [isMenu, setIsMenu] = useState(false);
@@ -39,10 +43,19 @@ export const Header: FC = () => {
               <button onClick={setIsMenu.bind(null, !isMenu)} type="button" className="my-2.5 mx-2 absolute right-0 bg-lavender-200 rounded-md inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
                 <Icon.MenuIcon className="w-5 h-5" />
               </button>
+              <div className={style.img} />
+              {auth.teacher &&
+                  <div  className={style.data}>
+                    <div className={style.title}>{auth.teacher.name}</div>
+                    <div className={style.email}>{auth.teacher.email}</div>
+                  </div>
+              }
               <div className="absolute top-11 px-10 pt-2 pb-3 space-y-1">
                 {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                <Link to={ROUTE.PROFILE} className={style.menuItem}>個人資料</Link>
                 <Link to={ROUTE.IMPORT} className={style.menuItem}>匯入資料</Link>
+                <Link to={ROUTE.PROFILE} className={style.menuItem}>更改密碼</Link>
+                <div className={style.hyperlink}>老師請假</div>
+
                 <Link
                   to={ROUTE.HOME}
                   onClick={clearApiToken}
