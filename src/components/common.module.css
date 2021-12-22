@@ -10,3 +10,30 @@
 .create {
   @apply w-12 h-12 text-lavender-700;
 }
+
+.progress {
+  gap: 1px;
+  @apply flex mx-auto mt-3 mb-5 max-w-xs;
+}
+
+.progress.step1 .bar:nth-of-type(-n+1),
+.progress.step2 .bar:nth-of-type(-n+2),
+.progress.step3 .bar:nth-of-type(-n+3),
+.progress.step4 .bar:nth-of-type(-n+4),
+.progress.step5 .bar:nth-of-type(-n+5),
+.progress.step6 .bar:nth-of-type(-n+6),
+.progress.step7 .bar:nth-of-type(-n+7),
+.progress.step8 .bar:nth-of-type(-n+8),
+.progress.step9 .bar:nth-of-type(-n+9),
+.progress.step10 .bar:nth-of-type(-n+10)
+{
+  @apply bg-lavender-500;
+}
+
+.progress .bar.debts {
+  @apply bg-pink-500 !important;
+}
+
+.progress .bar {
+  @apply h-1.5 bg-white flex-1;
+}

@@ -1,3 +1,7 @@
+.StudentPersonalPage .student {
+  @apply p-6;
+}
+
 .StudentPersonalPage .classroomList {
   @apply p-5 pl-14;
 }
@@ -56,4 +60,28 @@
 
 .StudentPersonalPage .img {
   @apply bg-gray-200 rounded-full w-32 h-32 mx-auto my-3;
+}
+
+.StudentPersonalPage .name {
+  @apply text-center text-gray-700 text-4xl;
+}
+
+.StudentPersonalPage .expiresAt {
+  @apply text-gray-400 text-sm text-center text-2xl;
+}
+
+.StudentPersonalPage .buttonGroup {
+  @apply flex max-w-xs m-auto;
+}
+
+.StudentPersonalPage .buttonGroup button {
+  @apply flex-1 text-white py-2;
+}
+
+.StudentPersonalPage .buttonGroup button:nth-of-type(1) {
+  @apply bg-lavender-500;
+}
+
+.StudentPersonalPage .buttonGroup button:nth-of-type(2) {
+  background-color: #C5BAC8;
 }
