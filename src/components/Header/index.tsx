@@ -19,7 +19,7 @@ export const Header: FC = () => {
   const [isMenu, setIsMenu] = useState(false);
 
   return (
-    <nav className={cx(style.Header, "bg-lavender-200")}>
+    <nav className={style.Header}>
       <div className="max-w-7xl mx-auto px-2">
         <div className="relative flex items-center justify-between">
           <div className="flex-1 flex items-stretch justify-start">
@@ -38,36 +38,39 @@ export const Header: FC = () => {
           </button>
 
           {isMenu &&
-          <div className="fixed inset-0 w-screen h-screen bg-lavender-200 z-50">
-            <div className="sm:items-stretch sm:justify-start">
-              <button onClick={setIsMenu.bind(null, !isMenu)} type="button" className="my-2.5 mx-2 absolute right-0 bg-lavender-200 rounded-md inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
-                <Icon.MenuIcon className="w-5 h-5" />
-              </button>
+          <div className={style.menuContainer}>
+            {/* <div className={style.menuContent}> */}
+            <div className={style.buttonContainer}>
+              <div onClick={setIsMenu.bind(null, !isMenu)} className={style.menuButton} aria-expanded="false">
+                <Icon.XIcon className="w-5 h-5" />
+              </div>
+            </div>
+            <div className={style.profileContainer}>
               <div className={style.img} />
               {auth.teacher &&
-                  <div  className={style.data}>
+                  <div>
                     <div className={style.title}>{auth.teacher.name}</div>
                     <div className={style.email}>{auth.teacher.email}</div>
                   </div>
               }
-              <div className="absolute top-11 px-10 pt-2 pb-3 space-y-1">
-                {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                <Link to={ROUTE.IMPORT} className={style.menuItem}>匯入資料</Link>
-                <Link to={ROUTE.PROFILE} className={style.menuItem}>更改密碼</Link>
-                <div className={style.hyperlink}>老師請假</div>
+            </div>
+            <div>
+              {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
+              <Link to={ROUTE.IMPORT} className={style.menuItem}>匯入資料</Link>
+              <Link to={ROUTE.PROFILE} className={style.menuItem}>更改密碼</Link>
+              <div className={style.menuItem}>老師請假</div>
 
+              <div className={style.menuItem}>
                 <Link
                   to={ROUTE.HOME}
                   onClick={clearApiToken}
-                  className="text-gray-600 py-2 rounded-md text-sm font-medium"
                 >
-                  <div className={style.menuItem}>
-                    {/* <Icon.LogoutIcon className="w-5 h-5 text-lavender-500 hover:text-white" /> */}
+                  {/* <Icon.LogoutIcon className="w-5 h-5 text-lavender-500 hover:text-white" /> */}
                     登出
-                  </div>
                 </Link>
               </div>
             </div>
+            {/* </div> */}
           </div>
           }
 

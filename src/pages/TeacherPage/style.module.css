@@ -4,14 +4,14 @@
 }
 
 .TeacherPage .container{
-  @apply w-full h-full px-10;
+  @apply w-full h-full pt-10 px-14;
 }
 
 .TeacherPage .img {
   @apply bg-gray-200 rounded-full w-32 h-32 mx-auto my-3;
 }
 
-.TeacherPage .data .title{
+.TeacherPage .container .title{
   @apply text-gray-800 text-center text-3xl mt-5;
 }
 
