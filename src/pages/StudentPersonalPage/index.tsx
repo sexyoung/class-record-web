@@ -1,7 +1,7 @@
 import {
   FC,
-  useEffect,
   useState,
+  useEffect,
   FormEventHandler as FEH,
 } from 'react';
 import cx from 'classnames';
@@ -14,6 +14,11 @@ import style from './style.module.css';
 import comStyle from 'components/common.module.css';
 import btnStyle from 'components/btn.module.css';
 import inputStyle from 'components/input.module.css';
+
+const typeMapping = {
+  rollcall: '上課',
+  deposit: '儲值',
+};
 
 export const StudentPersonalPage: FC = () => {
   const {planList} = usePlan();
@@ -34,12 +39,16 @@ export const StudentPersonalPage: FC = () => {
   const finishEdit: FEH<HTMLFormElement> = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    id && API.updateStudent(+id, {
+    const name = formData.get("name") as string;
+
+    await API.updateStudent(+id!, {
       data: {
         name: formData.get("name"),
-        status: formData.get("status"),
       }
     });
+
+    getStudent();
+    setIsEdit(false);
   };
 
   const closeModal = () => {
@@ -60,7 +69,21 @@ export const StudentPersonalPage: FC = () => {
           {student &&
           <>
             <div className={style.img} />
-            <div className={style.name} >{student.name}</div>
+            <div className={style.name}>
+              {isEdit ?
+                <form onSubmit={finishEdit}>
+                  <input id="nameDOM" type="text" name="name" defaultValue={student.name} required />
+                  <div className={style.buttonGroup}>
+                    <button>更名</button>
+                    <button onClick={setIsEdit.bind(null, false)}>取消</button>
+                  </div>
+                </form>:
+                <>
+                  <span onClick={setIsEdit.bind(null, true)}>{student.name}</span>
+                  <div className={style.edit}>編輯</div>
+                </>
+              }
+            </div>
             <div className={style.expiresAt} >
               {student.expiresAt ? `${student.expiresAt.slice(0, 10)} 到期`: '未儲值'}
             </div>
@@ -87,8 +110,11 @@ export const StudentPersonalPage: FC = () => {
             {student.records.map((record: Type.Deposit | Type.RollCall) =>
               <div key={`${record.type}-${record.id}`} className={style.classroom}>
                 <div className={style.title}>
-                  <span className={style.date}>{record.date}</span>
-                  <span>{record.type}</span>
+                  <span className={style.date}>{record.date.toString().slice(5)}</span>
+                  <span>
+                    {typeMapping[record.type]}
+                    {record.type === 'deposit' && record.data!.name}
+                  </span>
                 </div>
               </div>
             )}
