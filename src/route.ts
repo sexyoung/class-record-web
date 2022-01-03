@@ -10,6 +10,6 @@ export const ROUTE = {
   PLAN: "/plan",
   MAIN: "/main",
   ROLLCALL: "/rollcall",
-  PROFILE: "/profile",
+  PASSWD: "/passwd",
   IMPORT: "/import",
 };

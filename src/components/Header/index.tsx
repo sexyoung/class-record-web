@@ -57,7 +57,7 @@ export const Header: FC = () => {
             <div>
               {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
               <Link to={ROUTE.IMPORT} className={style.menuItem}>匯入資料</Link>
-              <Link to={ROUTE.PROFILE} className={style.menuItem}>更改密碼</Link>
+              <Link to={ROUTE.PASSWD} className={style.menuItem}>更改密碼</Link>
               <div className={style.menuItem}>老師請假</div>
 
               <div className={style.menuItem}>
