@@ -25,6 +25,7 @@ function App() {
               <PrivateRoute path={ROUTE.AUTH}><Page.AuthenticationPage /></PrivateRoute>
               <PrivateRoute path={ROUTE.PASSWD}><Page.PasswdPage /></PrivateRoute>
               <PrivateRoute path={ROUTE.IMPORT}><Page.ImportPage /></PrivateRoute>
+              <PrivateRoute path={ROUTE.POSTPONE}><Page.PostponePage /></PrivateRoute>
 
               {/* 登入前頁面 */}
               <Route exact path={ROUTE.LOGIN}><Page.LoginPage /></Route>

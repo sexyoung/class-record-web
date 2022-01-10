@@ -34,7 +34,7 @@ export const Menu: FC<IMenu> = (props) => {
       <div>
         <Link to={ROUTE.IMPORT} className={style.menuItem}>匯入資料</Link>
         <Link to={ROUTE.PASSWD} className={style.menuItem}>更改密碼</Link>
-        <div className={style.menuItem}>老師請假</div>
+        <Link to={ROUTE.POSTPONE} className={style.menuItem}>老師請假</Link>
 
         <div className={style.menuItem}>
           <Link to={ROUTE.HOME} onClick={clearApiToken}>

@@ -12,4 +12,5 @@ export const ROUTE = {
   ROLLCALL: "/rollcall",
   PASSWD: "/passwd",
   IMPORT: "/import",
+  POSTPONE: "/postpone",
 };

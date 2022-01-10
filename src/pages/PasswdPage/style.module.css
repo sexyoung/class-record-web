@@ -1,33 +1,33 @@
-.PasswdPage{
+.PasswdPage {
   @apply w-screen h-screen;
   background-color: #f5f5f5;
 }
 
-.PasswdPage .container{
-  @apply w-full h-full pt-10 px-14 bg-white;
+.PasswdPage .container {
+  @apply w-full h-full px-14 bg-white pt-2;
 }
 
 .PasswdPage .img {
   @apply bg-gray-200 rounded-full w-32 h-32 mx-auto my-3;
 }
 
-.PasswdPage .container .title{
-  @apply text-gray-800 text-center text-3xl mt-5;
+.PasswdPage .container .title {
+  @apply text-gray-800 text-center text-3xl pt-5;
 }
 
 .PasswdPage .data .email {
   @apply text-gray-400 text-center text-xl mb-3;
 }
 
-.PasswdPage .modalContainer{
+.PasswdPage .modalContainer {
   @apply w-40 h-40 p-10;
 }
 
-.PasswdPage .modalContainer .modalText{
+.PasswdPage .modalContainer .modalText {
   @apply mt-3 mb-5 mx-auto text-center;
 }
 
-.PasswdPage .data .linkContainer{
+.PasswdPage .data .linkContainer {
   @apply top-10 relative;
 }
 

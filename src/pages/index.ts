@@ -10,3 +10,4 @@ export * from './ClassroomPage';
 export * from './ClassroomEditPage';
 export * from './PasswdPage';
 export * from './ImportPage';
+export * from './PostponePage';

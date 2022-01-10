@@ -146,8 +146,18 @@ export const updatePassword = ( {oldPassword = '', newPassword = ''}: IUpdatePas
     },
   });
 };
+
 export const importing = (body: { planList: TypeImport.Plan[], studentList: TypeImport.Student[], rollCallList: TypeImport.RollCall[]}) =>
   fetchApi(`${getAPI()}/import`, {
     method: "post",
     body,
   });
+
+export const postpone = (day: number) => {
+  fetchApi(`${getAPI()}/deposit/postpone`, {
+    method: "post",
+    body: {
+      day,
+    },
+  });
+};

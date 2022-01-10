@@ -7,7 +7,7 @@ interface Modal {
   onClose?: () => void;
 }
 
-export const Modal:FC<Modal> = ({ children, onClose = () => {} }) => {
+export const Modal:FC<Modal> = ({ children, onClose }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -16,13 +16,13 @@ export const Modal:FC<Modal> = ({ children, onClose = () => {} }) => {
   }, []);
 
   const handleClick: React.MouseEventHandler = ({ target }) => {
-    (target === document.getElementById('modalBG')) && onClose();
+    (target === document.getElementById('modalBG')) && onClose && onClose();
   };
 
   return (
     <div className={style.modalBG} id="modalBG" onClick={handleClick}>
       <div className={style.modal}>
-        <Icon.XIcon className={style.close} onClick={onClose} />
+        {onClose && <Icon.XIcon className={style.close} onClick={onClose} />}
         {children}
       </div>
     </div>
