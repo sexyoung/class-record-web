@@ -36,7 +36,7 @@ export const PostponePage = () => {
         <Comp.Modal>
           <div className={style.modalContainer}>
             <div className={style.modalText}>請假成功</div>
-            <button className={cx(btnStyle.btn, "w-full")} onClick={() => history.replace(ROUTE.CLASS)}>確認</button>
+            <button className={cx(btnStyle.btn, "w-full")} onClick={() => history.replace(ROUTE.STUDENT)}>確認</button>
           </div>
         </Comp.Modal>
       }

@@ -5,10 +5,16 @@ import {
   FormEventHandler as FEH,
 } from 'react';
 import cx from 'classnames';
+import { useHistory } from 'react-router-dom';
+import imageCompression from 'browser-image-compression';
+
 import * as API from "api";
+import { ROUTE } from "route";
 import * as Comp from 'components';
 import { usePlan } from 'hooks/usePlan';
 import * as Type from "domain/type/res/student";
+
+const { REACT_APP_API_DOMAIN: API_DOMAIN } = process.env;
 
 import style from './style.module.css';
 import comStyle from 'components/common.module.css';
@@ -20,8 +26,17 @@ const typeMapping = {
   deposit: '儲值',
 };
 
+const toBase64 = (file: File) => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
+
 export const StudentPersonalPage: FC = () => {
   const {planList} = usePlan();
+  const history = useHistory();
+  const [preview, setPreview] = useState<string>();
   const [isEdit, setIsEdit] = useState(false);
   const [modalStatus, setModalStatus] = useState("");
   const [student, setStudent] = useState<Type.Detail>();
@@ -31,7 +46,9 @@ export const StudentPersonalPage: FC = () => {
 
   const getStudent = () => {
     id && API.getStudent(+id)
-      .then(setStudent);
+      .then(setStudent)
+      .catch(() => history.replace(ROUTE.LOGIN))
+    ;
   };
 
   useEffect(getStudent, [id]);
@@ -42,9 +59,7 @@ export const StudentPersonalPage: FC = () => {
     const name = formData.get("name") as string;
 
     await API.updateStudent(+id!, {
-      data: {
-        name: formData.get("name"),
-      }
+      data: { name }
     });
 
     getStudent();
@@ -61,6 +76,19 @@ export const StudentPersonalPage: FC = () => {
     await getStudent();
   };
 
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files![0];
+    const formData = new FormData();
+    const blob = await imageCompression(file, {maxSizeMB: 0.1, maxWidthOrHeight: 900});
+    setPreview(await toBase64(blob) as string);
+    formData.append("picture", blob);
+
+    await API.updateStudent(+id!, formData, true).then(() => {
+      setPreview('');
+    });
+    getStudent();
+  };
+
   return (
     <div className={style.StudentPersonalPage}>
       <Comp.Header />
@@ -68,7 +96,14 @@ export const StudentPersonalPage: FC = () => {
         <div className={style.student}>
           {student &&
           <>
-            <div className={style.img} />
+            <label className={style.img}>
+              {preview && <div className={style.preview} style={{backgroundImage: `url(${preview})`}} />}
+              {student.picture && <div className={style.picture} style={{backgroundImage: `url(${API_DOMAIN}/avatar/${student.picture})`}} />}
+              <div className={style.text}>
+                {preview ? '上傳中...': '上傳照片'}
+              </div>
+              {!preview && <input type="file" onChange={handleUpload} accept="image/*" />}
+            </label>
             <div className={style.name}>
               {isEdit ?
                 <form onSubmit={finishEdit}>

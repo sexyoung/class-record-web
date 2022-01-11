@@ -13,6 +13,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "autoprefixer": "^9.8.7",
+    "browser-image-compression": "^1.0.17",
     "classnames": "^2.3.1",
     "postcss": "^7.0.38",
     "react": "^17.0.2",
@@ -54,6 +55,7 @@
   "devDependencies": {
     "@types/react-helmet": "^6.1.2",
     "@types/react-router-dom": "^5.1.8",
+    "@types/xlsx": "^0.0.36",
     "react-snap": "^1.23.0"
   },
   "reactSnap": {

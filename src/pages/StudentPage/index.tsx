@@ -10,6 +10,8 @@ import { usePlan } from "hooks/usePlan";
 import * as Icon from '@heroicons/react/solid';
 import * as Type from "domain/type/res/student";
 
+const { REACT_APP_API_DOMAIN: API_DOMAIN } = process.env;
+
 import style from "./style.module.css";
 import comStyle from 'components/common.module.css';
 import inputStyle from 'components/input.module.css';
@@ -75,7 +77,7 @@ export const StudentPage: FC = () => {
                   <div key={s.id} className={style.item}>
                     <div className={style.student}>
                       <div className={style.info}>
-                        <div className={style.img} />
+                        <div className={style.img} style={{backgroundImage: `url(${API_DOMAIN}/avatar/${s.picture})`}} />
                         <div className={style.name}>
                           <Link to={`${ROUTE.STUDENTPERSONAL}?id=${s.id}`}>{s.name}</Link>
                         </div>

@@ -86,10 +86,11 @@ export const getStudent = (id: number) =>
   fetchApi(`${getAPI()}/student/${id}`);
 
 // 學生更新
-export const updateStudent = (id: number, body: any) =>
+export const updateStudent = (id: number, body: any, isUpload: boolean = false) =>
   fetchApi(`${getAPI()}/student/${id}`, {
     method: "post",
     withToken: true,
+    isUpload,
     body,
   });
 
