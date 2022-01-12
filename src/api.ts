@@ -1,6 +1,6 @@
 import { IPlanData } from "domain/type/res/plan";
 import * as TypeImport from "domain/type/req/importing";
-import { fetchApi } from "utils";
+import { fetchApi, uploadApi } from "utils";
 
 const { REACT_APP_API_DOMAIN: API } = process.env;
 
@@ -86,11 +86,10 @@ export const getStudent = (id: number) =>
   fetchApi(`${getAPI()}/student/${id}`);
 
 // 學生更新
-export const updateStudent = (id: number, body: any, isUpload: boolean = false) =>
+export const updateStudent = (id: number, body: any) =>
   fetchApi(`${getAPI()}/student/${id}`, {
     method: "post",
     withToken: true,
-    isUpload,
     body,
   });
 
@@ -162,3 +161,6 @@ export const postpone = (day: number) => {
     },
   });
 };
+
+export const imageUpload = (body: FormData) =>
+  uploadApi(`${getAPI()}/image/upload`, body);

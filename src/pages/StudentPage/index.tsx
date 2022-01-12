@@ -77,7 +77,9 @@ export const StudentPage: FC = () => {
                   <div key={s.id} className={style.item}>
                     <div className={style.student}>
                       <div className={style.info}>
-                        <div className={style.img} style={{backgroundImage: `url(${API_DOMAIN}/avatar/${s.picture})`}} />
+                        <div className={style.img} style={
+                          s.picture ? {backgroundImage: `url(${API_DOMAIN}/avatar/${s.picture})`}: {backgroundColor: '#eee'}
+                        } />
                         <div className={style.name}>
                           <Link to={`${ROUTE.STUDENTPERSONAL}?id=${s.id}`}>{s.name}</Link>
                         </div>

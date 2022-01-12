@@ -81,9 +81,12 @@ export const StudentPersonalPage: FC = () => {
     const formData = new FormData();
     const blob = await imageCompression(file, {maxSizeMB: 0.1, maxWidthOrHeight: 900});
     setPreview(await toBase64(blob) as string);
-    formData.append("picture", blob);
+    formData.append("image", blob);
+    formData.append("id", id!);
+    formData.append("model", "Student");
+    formData.append("field", "picture");
 
-    await API.updateStudent(+id!, formData, true).then(() => {
+    await API.imageUpload(formData).then(() => {
       setPreview('');
     });
     getStudent();

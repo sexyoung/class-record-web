@@ -6,7 +6,6 @@ type FetchApiOptionType = {
   body?: { [key: string]: any };
   withToken?: boolean;
   method?: HttpMethod;
-  isUpload?: boolean;
 }
 
 interface IFetchApi {
@@ -16,14 +15,12 @@ interface IFetchApi {
 export const fetchApi: IFetchApi = (url: string, option = {
   method: 'get',
   withToken: true,
-  isUpload: false,
 }) => {
   const { token: apiToken } = getCookie();
 
   const {
     method = 'get',
     withToken = true,
-    isUpload = false,
     body,
   } = option;
 
@@ -31,14 +28,29 @@ export const fetchApi: IFetchApi = (url: string, option = {
   //   body!.token = document.getElementById('token')!.getAttribute('content');
   // }
 
-  console.log(body);
   return fetch(url, {
     method,
     headers: {
-      ...(isUpload ? {}: {"Content-Type": "application/json"}),
+      "Content-Type": "application/json",
       ...(withToken ? { Authorization: `Bearer ${apiToken}` }: {}),
     },
-    ...(body ? { body: (isUpload ? body as FormData: JSON.stringify(body)) }: {}),
+    ...(body ? { body: JSON.stringify(body) }: {}),
+  })
+    .then(async (res) => {
+      if(res.ok) return res.json();
+      const error = await res.json();
+      throw new Error(error.message || JSON.stringify(error));
+    });
+};
+
+export const uploadApi = (url: string, body: FormData) => {
+  const { token: apiToken } = getCookie();
+  return fetch(url, {
+    method: 'post',
+    headers: {
+      Authorization: `Bearer ${apiToken}`,
+    },
+    body,
   })
     .then(async (res) => {
       if(res.ok) return res.json();
