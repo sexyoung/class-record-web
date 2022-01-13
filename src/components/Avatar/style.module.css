@@ -1,0 +1,23 @@
+.avatar {
+  @apply bg-white border border-lavender-200 rounded-full w-32 h-32 mx-auto my-3 flex items-center justify-center text-lavender-700 relative overflow-hidden;
+}
+
+.avatar .preview {
+  @apply opacity-30;
+}
+
+.avatar .preview,
+.avatar .picture
+{
+  @apply bg-white w-full h-full absolute;
+  background-position: center;
+  background-size: cover;
+}
+
+.avatar .text {
+  @apply bg-white relative z-10;
+}
+
+.avatar input[type=file] {
+  display: none;
+}

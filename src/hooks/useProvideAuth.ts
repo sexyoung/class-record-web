@@ -36,7 +36,8 @@ export const useProvideAuth = (token: string) => {
 
   return {
     isAuth,
-    setIsAuth,
     teacher,
+    setIsAuth,
+    setTeacher,
   };
 };
