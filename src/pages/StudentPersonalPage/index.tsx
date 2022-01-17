@@ -82,8 +82,8 @@ export const StudentPersonalPage: FC = () => {
             {isEdit ?
               <form onSubmit={finishEdit}>
                 <label><input id="nameDOM" type="text" name="name" defaultValue={student.name} required placeholder="名字" /></label>
-                <label><input id="phoneDOM" type="tel" name="phone" defaultValue={student.phone} required placeholder="phone" /></label>
-                <label><input id="emailDOM" type="email" name="email" defaultValue={student.email} required placeholder="Email" /></label>
+                <label><input id="phoneDOM" type="tel" name="phone" defaultValue={student.phone} placeholder="phone" /></label>
+                <label><input id="emailDOM" type="email" name="email" defaultValue={student.email} placeholder="Email" /></label>
                 <div className={style.buttonGroup}>
                   <button>修改</button>
                   <button onClick={setIsEdit.bind(null, false)}>取消</button>
