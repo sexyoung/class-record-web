@@ -43,9 +43,11 @@ export const StudentPersonalPage: FC = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
+    const phone = formData.get("phone") as string;
+    const email = formData.get("email") as string;
 
     await API.updateStudent(+id!, {
-      data: { name }
+      data: { name, email, phone }
     });
 
     getStudent();
@@ -76,21 +78,25 @@ export const StudentPersonalPage: FC = () => {
               afterChange: getStudent,
               picture: student.picture,
             }} />
-            <div className={style.name}>
-              {isEdit ?
-                <form onSubmit={finishEdit}>
-                  <input id="nameDOM" type="text" name="name" defaultValue={student.name} required />
-                  <div className={style.buttonGroup}>
-                    <button>更名</button>
-                    <button onClick={setIsEdit.bind(null, false)}>取消</button>
-                  </div>
-                </form>:
-                <>
-                  <span onClick={setIsEdit.bind(null, true)}>{student.name}</span>
-                  <div className={style.edit}>編輯</div>
-                </>
-              }
-            </div>
+
+            {isEdit ?
+              <form onSubmit={finishEdit}>
+                <label><input id="nameDOM" type="text" name="name" defaultValue={student.name} required placeholder="名字" /></label>
+                <label><input id="phoneDOM" type="tel" name="phone" defaultValue={student.phone} required placeholder="phone" /></label>
+                <label><input id="emailDOM" type="email" name="email" defaultValue={student.email} required placeholder="Email" /></label>
+                <div className={style.buttonGroup}>
+                  <button>修改</button>
+                  <button onClick={setIsEdit.bind(null, false)}>取消</button>
+                </div>
+              </form>:
+              <div className={style.profile}>
+                <div className={cx(style.field, style.name)}>{student.name}</div>
+                <div className={cx(style.field)}>{student.phone}</div>
+                <div className={cx(style.field)}>{student.email}</div>
+                <div onClick={setIsEdit.bind(null, true)} className={style.edit}>編輯</div>
+              </div>
+            }
+
             <div className={style.expiresAt} >
               {student.expiresAt ? `${student.expiresAt.slice(0, 10)} 到期`: '未儲值'}
             </div>

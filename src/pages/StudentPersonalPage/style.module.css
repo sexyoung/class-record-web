@@ -82,17 +82,24 @@
   display: none;
 }
 
-.StudentPersonalPage .name {
+.StudentPersonalPage form {
+  @apply max-w-xs mx-auto;
+}
+
+.StudentPersonalPage form label {
+  @apply mb-1 block;
+}
+
+.StudentPersonalPage .profile {
   @apply text-center text-gray-700;
 }
 
-.StudentPersonalPage .name span,
-.StudentPersonalPage .name input {
+.StudentPersonalPage .profile .name {
   @apply text-4xl;
 }
 
-.StudentPersonalPage .name input {
-  @apply w-full text-center bg-lavender-200 max-w-sm;
+.StudentPersonalPage form input {
+  @apply text-left w-full bg-lavender-200 text-xl px-2;
 }
 
 .StudentPersonalPage .edit{
