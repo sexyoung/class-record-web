@@ -20,10 +20,10 @@ export const Modal:FC<Modal> = ({ children, onClose }) => {
   };
 
   return (
-    <div className={style.modalBG} id="modalBG" onClick={handleClick}>
+    <div data-testid='modalBG' className={style.modalBG} id="modalBG" onClick={handleClick}>
       <div className={style.modal}>
         {onClose && <Icon.XIcon className={style.close} onClick={onClose} />}
-        {children}
+        <p data-testid='children'>{children}</p>
       </div>
     </div>
   );
