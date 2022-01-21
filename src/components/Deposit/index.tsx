@@ -22,8 +22,6 @@ export const Deposit: FC<IDeposit> = ({ planList, student, closeModal, depositDo
 
     const formData = new FormData(e.currentTarget);
 
-    console.log("formData", formData.get("date"));
-
     await API.postDeposit({
       planId: +formData.get("plan")!,
       studentId: student.id,
@@ -41,11 +39,11 @@ export const Deposit: FC<IDeposit> = ({ planList, student, closeModal, depositDo
       <div className={style.name}>{student.name}</div>
       <select name="plan" className={cx(inputStyle.input, "mt-5")}>
         {planList.map(plan =>
-          <option key={plan.id} value={plan.id}>{plan.name}</option>
+          <option data-testid={plan.id} key={plan.id} value={plan.id}>{plan.name}</option>
         )}
       </select>
       <div className={style.inputTitle}>儲值日期</div>
-      <input name="date" type="date" required className={cx(inputStyle.input, "mt-0")} />
+      <input data-testid='date' name="date" type="date" required className={cx(inputStyle.input, "mt-0")} />
       <button className={cx(btnStyle.btn, "w-full mt-3")}>儲值</button>
     </form>
   );

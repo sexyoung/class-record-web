@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should onSubmit be triggered 1`] = `
+<div>
+  <form
+    class="Deposit"
+  >
+    <div
+      class="title"
+    >
+      儲值
+    </div>
+    <div
+      class="img"
+    />
+    <div
+      class="name"
+    >
+      WALLET
+    </div>
+    <select
+      class="input mt-5"
+      name="plan"
+    >
+      <option
+        data-testid="2"
+        value="2"
+      >
+        五堂套票
+      </option>
+      <option
+        data-testid="3"
+        value="3"
+      >
+        八堂套票
+      </option>
+    </select>
+    <div
+      class="inputTitle"
+    >
+      儲值日期
+    </div>
+    <input
+      class="input mt-0"
+      data-testid="date"
+      name="date"
+      required=""
+      type="date"
+    />
+    <button
+      class="btn w-full mt-3"
+    >
+      儲值
+    </button>
+  </form>
+</div>
+`;
