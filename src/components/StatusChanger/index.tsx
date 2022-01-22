@@ -9,7 +9,6 @@ import btnStyle from 'components/btn.module.css';
 
 interface StatusChangerProps {
   student: Student;
-  // closeModal: () => void;
   changeStatus: () => void;
   status: API.Query.Join | API.Query.Dropout,
 }

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should changeStatus be triggered 1`] = `
+<div>
+  <div
+    class="StatusChanger"
+  >
+    <div
+      class="title"
+    >
+      除籍
+    </div>
+    <div
+      class="img"
+    />
+    <div
+      class="name"
+    >
+      WALLET
+    </div>
+    <button
+      class="btn w-full mt-3"
+    >
+      除籍
+    </button>
+  </div>
+</div>
+`;
