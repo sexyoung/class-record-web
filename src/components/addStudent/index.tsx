@@ -3,7 +3,6 @@ import { FC, FormEventHandler as FEH } from 'react';
 
 import * as API from "api";
 import { Plan } from 'domain/type/res/plan';
-import { Student } from 'domain/type/res/student';
 
 import style from "./style.module.css";
 import btnStyle from 'components/btn.module.css';
@@ -15,7 +14,7 @@ interface IaddStudent {
   addStudentDone: () => void;
 }
 
-export const addStudent: FC<IaddStudent> = ({ planList, closeModal, addStudentDone }) => {
+export const AddStudent: FC<IaddStudent> = ({ planList, closeModal, addStudentDone }) => {
   const deposit: FEH<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
@@ -35,14 +34,14 @@ export const addStudent: FC<IaddStudent> = ({ planList, closeModal, addStudentDo
     <form onSubmit={deposit} className={style.Deposit}>
       <div className={style.title}>新增學生</div>
       <div className={style.img} />
-      <input name="name" className={cx(inputStyle.input, "mt-5")} placeholder="學生名稱" required />
+      <input data-testid='name' name="name" className={cx(inputStyle.input, "mt-5")} placeholder="學生名稱" required />
       <select name="plan" className={cx(inputStyle.input, "mt-5")}>
         {planList.map(plan =>
-          <option key={plan.id} value={plan.id}>{plan.name}</option>
+          <option data-testid={plan.id} key={plan.id} value={plan.id}>{plan.name}</option>
         )}
       </select>
       <div className={style.inputTitle}>加入日期</div>
-      <input name="date" type="date" required className={cx(inputStyle.input, "mt-0")} />
+      <input data-testid='date' name="date" type="date" required className={cx(inputStyle.input, "mt-0")} />
       <button className={cx(btnStyle.btn, "w-full mt-3")}>新增</button>
     </form>
   );

@@ -154,7 +154,7 @@ export const StudentPage: FC = () => {
       }
       {modalType === 'addStudent' && planList &&
         <Comp.Modal onClose={closeModal}>
-          <Comp.addStudent {...{
+          <Comp.AddStudent {...{
             planList,
             closeModal,
             addStudentDone: getStudentList,
