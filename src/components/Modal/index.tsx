@@ -23,7 +23,7 @@ export const Modal:FC<Modal> = ({ children, onClose }) => {
     <div data-testid='modalBG' className={style.modalBG} id="modalBG" onClick={handleClick}>
       <div className={style.modal}>
         {onClose && <Icon.XIcon className={style.close} onClick={onClose} />}
-        <p data-testid='children'>{children}</p>
+        <span data-testid='children'>{children}</span>
       </div>
     </div>
   );

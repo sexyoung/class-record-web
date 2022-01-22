@@ -1,5 +1,4 @@
 # https://dev.to/dyarleniber/setting-up-a-ci-cd-workflow-on-github-actions-for-a-react-app-with-github-pages-and-codecov-4hnp
-
 name: deploy to dev server
 on:
   push:
@@ -37,8 +36,8 @@ jobs:
         echo REACT_APP_API_DOMAIN=//class-record-api.sexyoung.tw >> .env
         cat .env
 
-    # - name: 跑個測試唄
-    #   run: yarn test -- --coverage --watchAll=false -u
+    - name: 跑個測試唄
+      run: yarn test -- --coverage --watchAll=false -u
 
     - name: 打包
       uses: nick-invision/retry@v2
