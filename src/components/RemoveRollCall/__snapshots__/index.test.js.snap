@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should confirm be triggered 1`] = `
+<div>
+  <div
+    class="RemoveRollCall"
+  >
+    <div
+      class="title"
+    >
+      刪除點名
+    </div>
+    <div
+      class="name"
+    >
+      確定刪除嗎?
+    </div>
+    <button
+      class="btn w-full mt-3"
+    >
+      刪除
+    </button>
+  </div>
+</div>
+`;
