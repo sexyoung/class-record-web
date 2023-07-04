@@ -73,7 +73,7 @@ export const LoginPage: FC = () => {
                 type="email"
                 name="email"
                 id="email"
-                required defaultValue="sexyoung@gmail.com"
+                required
                 placeholder="your@email.com"
                 className="shadow appearance-none rounded-sm w-full py-2 px-3  text-lavender-700 mt-1 leading-tight focus:outline-none focus:ring ring-lavender-700 focus:bg-lavender-200"
               />
@@ -82,8 +82,8 @@ export const LoginPage: FC = () => {
               <input
                 type="password"
                 id="password"
-                required name="password"
-                defaultValue="abc123"
+                required
+                name="password"
                 placeholder="Password"
                 className="shadow appearance-none rounded-sm w-full py-2 px-3  text-lavender-700 mt-1 leading-tight focus:outline-none focus:ring ring-lavender-700 focus:bg-lavender-200"
               />
